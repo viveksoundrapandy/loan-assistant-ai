@@ -1,0 +1,200 @@
+Context:
+you are an expert in python, langchain , langflow ecosystem and capable of building complex AI agents using langflow with customisng the code wherever needed to build a production ready langflow agent orchestrating multiple agents each with different standard langflow tools and custom tools.
+
+Ask:
+You are tasked with analysing the below flow and come up with a plan to solve this using your knowledge above to build AI agent.
+
+Problem:
+Trigger for the agent will be manual to start with
+    After a loan is ready for assessment, user invokes the agent from browser to do his tasks on his behalf
+Agent should perform the following
+    Fetch all tasks for the user from GET tasks api
+    For each task:
+            Categorise the task into one of the following categories
+                If task is related to fact checking something that is displayed on UI
+                    Categorise it as Fact Check
+                    All UI related checks and comparison
+                        Ex: have all credit filter rules passed
+                        This should not be done as a DB check, agent has to verify as an end user either by crawling HTML or interpreting the API response
+                If task is related to document obtained and verified
+                    Categorise it as OCR
+                    Extract document data and compare
+                        Identify the document category mentioned in the task
+                        Intelligently figure out the matching documents in platform
+                        Do doc search
+                        Extract and compare
+                If task is failing under below rules
+                    Categorise as IGNORED
+                    Rules:
+                    Tasks falling under this are:
+                    related to physical visit and verify 
+                    Related to verifying some system within the bank, which agent cant access to
+        Distribute the categorised task to one of Fact Check / OCR / IGNORE agents
+        Fact Check Agent:
+            Should check if the mentioned fact is present in the HTML
+        OCR Agent
+            SHould identify the mentioned document
+            Fethc the documents S3 link available in the HTML
+            Extract the name, address, DOB, image and signature from the document
+            Compare it against the corresponding data in the HTML 
+            Break the OCR agent into smaller agents as the documents to handle fall under different category:
+                1. Driving license/voter id/ aadhar 
+                    - these documents will have id number, name , image, dob and address. These are considered as address proof. These are indian documents and varies slightly based on the state
+                2. PAn 
+                    - contains name, image and dob. Considered as Identity proof. This is consistent for entire india
+                3. Other documents include Bank statement, ITR, GST, agreement, tittle deed
+                    - These are indian documents and will contain mostly name, one of the address proof id numbers and signature. These may run into few pages and its important to extract the signature
+        IGNORE Agent
+            Maintain the list of tasks that are ignored
+            Agent should list the tasks ignored at the end for the end user to act on
+    Mark the tasks as done by triggering tasks API for successful completion
+Summarise to the user what tasks are done vs ignored
+
+
+-- 
+DEEPSEEK
+Let's break down the solution using LangFlow and LangChain ecosystem:
+
+Main Orchestrator Agent Flow:
+from langflow import Component, Agent, Tool
+from typing import List, Dict
+
+class TaskOrchestrator(Component):
+    def build(self) -> Agent:
+        agent = Agent(
+            tools=[
+                FetchTasksTool(),
+                TaskClassifierTool(),
+                TaskRouterTool(),
+                MarkTaskCompleteTool(),
+                SummaryGeneratorTool()
+            ],
+            memory=True
+        )
+        return agent
+
+Core Components:
+a) Task Classification Tool:
+
+class TaskClassifierTool(Tool):
+    def classify_task(self, task_description: str) -> str:
+        from langchain.llms import OpenAI
+        from langchain.prompts import PromptTemplate
+        
+        classifier_prompt = """Categorize the task into [FactCheck|OCR|IGNORE]:
+        Rules:
+        - FactCheck: UI verification, HTML/API checks
+        - OCR: Document processing, data extraction
+        - IGNORE: Physical verification, internal systems
+        
+        Task: {task}
+        Category:"""
+        
+        llm = OpenAI(temperature=0)
+        return llm(PromptTemplate.from_template(classifier_prompt).format(task=task_description))
+
+b) Specialized Agents:
+
+FactCheck Agent:
+
+class FactCheckAgent(Component):
+    def build(self) -> Agent:
+        return Agent(
+            tools=[
+                UIInspectorTool(),
+                APICheckerTool(),
+                ComparisonEngineTool()
+            ],
+            system_message="You are an expert in UI fact verification"
+        )
+
+OCR Agent:
+
+class OCRAgent(Component):
+    def build(self) -> Agent:
+        return Agent(
+            tools=[
+                DocumentIdentifierTool(),
+                S3DownloadTool(),
+                OCRProcessorTool(),
+                DataComparisonTool()
+            ],
+            system_message="Expert in document processing and data extraction"
+        )
+
+c) Key Custom Tools:
+
+UI Inspector Tool:
+
+class UIInspectorTool(Tool):
+    def check_ui_element(self, html_content: str, element_id: str) -> bool:
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(html_content, 'html.parser')
+        return bool(soup.find(id=element_id))
+
+OCR Processor Tool:
+
+class OCRProcessorTool(Tool):
+    def extract_data(self, document_path: str) -> Dict:
+        import pytesseract
+        from PIL import Image
+        
+        img = Image.open(document_path)
+        text = pytesseract.image_to_string(img)
+        return self.parse_ocr_data(text)
+
+Flow Integration:
+def main_flow():
+    orchestrator = TaskOrchestrator().build()
+    
+    tasks = orchestrator.use_tool("FetchTasksTool", {})
+    
+    results = {"completed": [], "ignored": []}
+    
+    for task in tasks:
+        category = orchestrator.use_tool("TaskClassifierTool", {"task_description": task["description"]})
+        
+        if category == "FactCheck":
+            result = FactCheckAgent().run({"html": task["content"], "requirements": task["checks"]})
+        elif category == "OCR":
+            result = OCRAgent().run({"document_task": task})
+        else:
+            results["ignored"].append(task)
+            continue
+            
+        if result["success"]:
+            orchestrator.use_tool("MarkTaskCompleteTool", {"task_id": task["id"]})
+            results["completed"].append(task)
+    
+    summary = orchestrator.use_tool("SummaryGeneratorTool", results)
+    return summary
+
+Deployment Considerations:
+Use LangFlow's visual interface to connect components
+Add error handling for API failures
+Implement retry mechanisms for OCR processing
+Add validation layers for data comparison
+Include async processing for parallel task handling
+Add logging and monitoring hooks
+Security Enhancements:
+class SecureAPITool(Tool):
+    def __init__(self):
+        self.session = requests.Session()
+        self.session.headers.update({
+            "Authorization": f"Bearer {os.getenv('API_TOKEN')}",
+            "Content-Encryption": "AES-256"
+        })
+
+Performance Optimization:
+Implement caching for frequent UI checks
+Use connection pooling for S3 access
+Add document processing queue
+Implement binary tree search for document matching
+This architecture provides:
+
+Clear task categorization through LLM classification
+Specialized agents for different task types
+Secure API integrations
+End-to-end processing with audit trails
+User-friendly summary output
+Would you like me to elaborate on any specific component or provide implementation details for particular tools?

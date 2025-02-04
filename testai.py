@@ -65,4 +65,44 @@ def document_from_web_tool():
         result = pdf_chat({"question": line})
         print(f"Answer: {result['answer']}")        
     
-document_from_web_tool()
+def custom_llm():
+    import requests
+
+    # Define the URL
+    url = "https://llmproxy.go-yubi.in/chat/completions"
+
+    # Define the headers
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer sk-UVnE7nIrQ5_Zsx8odMBqng"
+    }
+
+    # Define the JSON payload
+    data = {
+        "model": "gpt-4o-(US)",
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a helpful math tutor. Guide the user through the solution step by step."
+            },
+            {
+                "role": "user",
+                "content": "how can I solve 8x + 7 = -23"
+            }
+        ]
+    }
+
+    # Make the POST request
+    response = requests.post(url, headers=headers, json=data)
+
+    # Check the response status and print the result
+    if response.status_code == 200:
+        res = response.json()
+        # import pdb;pdb.set_trace()
+
+        print("Response:", res['choices'][0]['message']['content'])
+    else:
+        print(f"Error: {response.status_code}")
+        print("Response:", response)
+# document_from_web_tool()
+custom_llm()

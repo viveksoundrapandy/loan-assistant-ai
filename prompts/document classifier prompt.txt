@@ -1,0 +1,140 @@
+Context:
+You are an expert in categorizing/classifyiong the given `{message}` into one of the following categories:
+Categorise the task into one of the following categories
+            If task is related to fact checking something that is displayed on UI
+                Categorise it as Fact Check
+                All UI related checks and comparison
+                    Ex: have all credit filter rules passed
+                    This should not be done as a DB check, agent has to verify as an end user either by crawling HTML or interpreting the API response
+            If task is related to document obtained and verified
+                Categorise it as OCR
+                Extract document data and compare
+                    Identify the document category mentioned in the task
+                    Intelligently figure out the matching documents in platform
+                    Do doc search
+                    Extract and compare
+            If task is failing under below rules
+                Categorise as IGNORED
+                Rules:
+                related to physical visit and verify 
+                Related to verifying some system within the bank, which agent cant access to
+                related to verifying a external site
+
+input:
+ `{message}`: str - The message that needs to be categorized
+
+Examples:
+Use the below examples to understand further context before categorisation. Its a CSV format with => as delimiter
+
+Requirement	=>Category
+Credit Filter results checked (BRE)	=>FACT CHECK
+Address Proof of Borrowers/Promoters/Guarantors obtained/verified & kept on record.	=>OCR
+Application duly filled in and signed by borrowers/Guarantors obtained & kept on record.	=>OCR
+Identity proof documents such as Photograph, PAN card, Passport Copy, Driving License etc. obtained/verified & kept on record.	=>OCR
+Income Proof documents such as I.T Returns, Salary slips, Form 16 etc. Obtained & verified.	=>OCR
+Bureau (Consumer/Commercial) Report of Applicants/Guarantors Generated and verified.	=>FACT CHECK
+Address Proof of Borrowers/Promoters/Guarantors obtained/verified & kept on record.	=>OCR
+Application duly filled in and signed by Borrowers/Guarantors obtained & kept on record.	=>OCR
+Identity proof documents such as Photograph, PAN card, Passport copy, Driving License etc. obtained/verified & kept on record.	=>OCR
+Document Income Proof documents such as I.T Returns, Salary slips, Form 16 etc. Obtained & verified.	=>OCR
+Bureau (Consumer/Commercial) Report of Applicants/Guarantors Generated and verified.	=>FACT CHECK
+Address Proof of Borrowers/Promoters/Guarantors obtained/verified & kept on record.	=>OCR
+Application duly filled in and signed by borrowers/Guarantors obtained & kept on record.	=>OCR
+Identity proof documents such as Photograph, PAN card, Passport Copy, Driving License etc. obtained/verified & kept on record.	=>OCR
+Income Proof documents such as I.T Returns, Salary slips, Form 16 etc. Obtained & verified.	=>OCR
+Bureau (Consumer/Commercial) Report of Applicants/Guarantors Generated and verified.	=>FACT CHECK
+Assessment is done as per the approved common lending parameters.	=>FACT CHECK
+Assessment is done as per the approved common lending parameters.	=>FACT CHECK
+Credit Filter results checked (BRE)	=>FACT CHECK
+Credit Filter results checked (BRE)	=>FACT CHECK
+Address Proof of Borrowers/Promoters/Guarantors obtained/verified & kept on record.	=>OCR
+Application duly filled in and signed by Borrowers/Guarantors obtained & kept on record.	=>OCR
+Identity proof documents such as Photograph, PAN card, Passport copy, Driving License etc. obtained/verified & kept on record.	=>OCR
+Document Income Proof documents such as I.T Returns, Salary slips, Form 16 etc. Obtained & verified.	=>OCR
+Bureau (Consumer/Commercial) Report of Applicants/Guarantors Generated and verified.	=>FACT CHECK
+Assessment is done as per the approved common lending parameters.	=>FACT CHECK
+Assessment is done as per the approved common lending parameters.	=>FACT CHECK
+NACH has been verified (if e-NACH not obtained or for physical NACH PDCs to be obtained)	=>OCR
+Udyam RegistrationCertificate	=>OCR
+Copy of Sanction	=>OCR
+CIBIL consumer score of promoters - minimum 650. Incase of more than 1 promoter, then the consumer score of all the promoters	=>FACT CHECK
+Risk Score verified	=>FACT CHECK
+Minimum 6 months bank account statement obtained	=>FACT CHECK
+KYC of each individuals	=>FACT CHECK
+KYC of Company	=>FACT CHECK
+Details of CKYC, Video KYC (if available)	=>FACT CHECK
+Details of Visits (if available)	=>FACT CHECK
+Signed loan agreement complying the terms and conditions/disbursement request form	=>OCR
+Copy of Sanction	=>OCR
+MIS Class and MIS Code	=>IGNORED
+Verified Investment in Plant and Machinery/Equipment	=>FACT CHECK
+Classification of Micro, Small and Medium	=>FACT CHECK
+Check Open Queries / Sanction Conditions	=>FACT CHECK
+Check Open Queries / Disbursement Check List	=>FACT CHECK
+KYC documents as applicable for the constitution of borrower/co-borrower/guarantor has been obtained to the satisfaction of the bank.	=>OCR
+Address Proof of borrower/Promoters/Guarantors obtained & kept on record.	=>OCR
+Application Duly filled by borrower/Guarantors obtained and kept on record.	=>OCR
+Income proof documents such I.T Returns/audited balance sheet/provisional balance sheet/income assessment sheet based on PD(personal discussions) by NBFC.	=>OCR
+Verification of Sanction Inspection/Site visit report of the officials of Originator (NBFC)	=>OCR
+Whether Udyam registration certificate obtained & copy on kept on record	=>OCR
+Bureau (Consumer/Commercial) Report of Applicants/Guarantors Generated and verified. Bureau report dated: Bureau personal score: (Should be 675 and above)	=>FACT CHECK
+Assessment is done as per the common lending parameters & methods applied.	=>FACT CHECK
+In case of partnership firms, proof of partnership registration obtained.	=>OCR
+In case of Limited Company, Certified Copy of Memorandum, Art. of Association and Certificate of Incorporation along with board resolution is held on records.	=>OCR
+Whether the clubbing of income of co-applicants included for repayment of loan.	=>FACT CHECK
+Whether Security documents executed by borrower obtained from the NBFC.	=>OCR
+LTV ratio (<=75 for residential & <=65 for commercial)	=>IGNORED
+Whether FOIR <=75% (fixed obligation to income ratio)	=>IGNORED
+Date of title search report & copy obtained	=>OCR
+Valuation report from valuer obtained and verified by NBFC. (in case of value of property more than 50 lakhs two valuation reports)	=>FACT CHECK
+Date of vetting report for genuineness for title deed & copy obtained.	=>FACT CHECK
+Negative profiles checked (to be rejected)	=>IGNORED
+ROI charged by Originator (not exceeds BOI's RBLR (presently 9.25%) +10%=19.25% —Ä.–∞	=>IGNORED
+Whether disbursement completed or not.	=>FACT CHECK
+All Open Queries are to be Closed	=>FACT CHECK
+KYC documents as applicable for the constitution of borrower/co-borrower/guarantor has been obtained to the satisfaction of the bank.	=>FACT CHECK
+Address Proof of borrower/Promoters/Guarantors obtained & kept on record.	=>FACT CHECK
+Application Duly filled by borrower/Guarantors obtained and kept on record.	=>FACT CHECK
+Income proof documents such I.T Returns/audited balance sheet/provisional balance sheet/income assessment sheet based on PD(personal discussions) by NBFC.	=>FACT CHECK
+Verification of Sanction Inspection/Site visit report of the officials of Originator (NBFC)	=>IGNORED
+Whether Udyam registration certificate obtained & copy on kept on record	=>OCR
+Bureau (Consumer/Commercial) Report of Applicants/Guarantors Generated and verified. Bureau report dated: Bureau personal score: (Should be 675 and above)	=>FACT CHECK
+Assessment is done as per the common lending parameters & methods applied.	=>FACT CHECK
+In case of partnership firms, proof of partnership registration obtained.	=>FACT CHECK
+In case of Limited Company, Certified Copy of Memorandum, Art. of Association and Certificate of Incorporation along with board resolution is held on records.	=>FACT CHECK
+Whether the clubbing of income of co-applicants included for repayment of loan.	=>IGNORED
+Whether Security documents executed by borrower obtained from the NBFC.	=>FACT CHECK
+LTV ratio (>=80 for residential, >=75 for commercial, >=70 for mixed & >=50 for industrial)	=>IGNORED
+Whether FOIR <=85% (fixed obligation to income ratio)	=>IGNORED
+Date of title search report & copy obtained	=>FACT CHECK
+Valuation report from valuer obtained and verified by NBFC. (in case of value of property more than 50 lakhs two valuation reports)	=>FACT CHECK
+Date of vetting report for genuineness for title deed & copy obtained.	=>FACT CHECK
+Negative profiles checked (to be rejected)	=>IGNORED
+Whether disbursement completed or not.	=>FACT CHECK
+All Open Queries are to be Closed	=>FACT CHECK
+KYC documents as applicable for the constitution of borrower/co-borrower/guarantor has been obtained to the satisfaction of the Bank	=>OCR
+Address Proof of Borrowers/Promoters/Guarantors obtained & kept on record	=>OCR
+Application duly filled by borrowers / Guarantors obtained & kept on record.	=>FACT CHECK
+Income Proof documents such as I.T Returns/Salary Slips/Employment letter/ income assessment sheet based on PD(personal discussions) or any other documents used by NBFC for assessment of income is Obtained (if available)	=>FACT CHECK
+Verification of Pre Sanction Inspection / site visit report of the officials of Originator.	=>IGNORED
+Whether Udyam registration certificate obtained & copy on kept on record	=>OCR
+Whether Assessment is done as per the common lending parameters	=>FACT CHECK
+Bank statement of operative accounts obtained [of Applicants or Guarantor(if applicable)] & verified.	=>OCR
+In case of partnership firms, proof of partnership registration obtained.(if applicable)	=>FACT CHECK
+In case of Limited Company, Certified Copy of Memorandum, Art. Of Association and Certificate of Incorporation along with Board Resolution is held on records.(if applicable)	=>FACT CHECK
+Whether the Viability study performed and report obtained.	=>FACT CHECK
+Whether Charge documents for registration of lenders charge obtained from the borrower.	=>FACT CHECK
+RC book obtained. Or will be obtained within prescribed time limit.	=>OCR
+Copy of invoices or any other proof for purchase of vehicles obtained.	=>OCR
+Vehicle registration search from ROC (in case of companies) in case of old vehicle duly verified by NBFC obtained.	=>OCR
+Valuation report from valuer obtained and verified by NBFC. (in case of 2nd hand vehicle)	=>OCR
+Whether all related documents for financing a vehicle as per local law obtained.	=>IGNORED
+Whether LTV ratio is as per Common Lending Parameters	=>FACT CHECK
+Visit to borrower‚Äôs house carried out & report kept on record. (By IKF)	=>IGNORED
+Bureau (Consumer/Commercial) Report of Applicants /co-applicants/ guarantors Generated and verified.	=>FACT CHECK
+Insurance details obtained & updated	=>OCR
+
+
+Output:
+Return the message in following format:
+The given `{message}' falls under the categgory: `{category}`
