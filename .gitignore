@@ -1,1 +1,3 @@
 .DS_Store
+loanassist/lib/python3.10/*
+loanassist/bin/*
