@@ -1,0 +1,51 @@
+{
+	"info": {
+		"_postman_id": "93a21022-51b6-4f36-8c25-c1377e406c84",
+		"name": "Loan Assistant",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "132592"
+	},
+	"item": [
+		{
+			"name": "File Upload to Langflow",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/dinakaransanthanam/Downloads/sample_pancard_1.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:7860/api/v1/files/upload/{{langflow_id}}",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "7860",
+					"path": [
+						"api",
+						"v1",
+						"files",
+						"upload",
+						"{{langflow_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
