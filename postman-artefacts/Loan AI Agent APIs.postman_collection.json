@@ -8,6 +8,40 @@
 	},
 	"item": [
 		{
+			"name": "Task langflow responses",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "phwotcqe500it4sv76yiz2u63wwcgk16ob5b5iwt693joifpzvx4fmg6djpr4zh15zkcbrv1487qhjhnh6mmu6xvvu32lbyuv5b565p0byb67bwfu5pvhotq"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/internal/loan_ai_agents/:loan_id/task_langflow_responses",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"internal",
+						"loan_ai_agents",
+						":loan_id",
+						"task_langflow_responses"
+					],
+					"variable": [
+						{
+							"key": "loan_id",
+							"value": "142073"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Unify all loan APIs",
 			"request": {
 				"method": "GET",
@@ -18,15 +52,21 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/internal/loan_ai_agents/411812/unify_all_loan_apis",
+					"raw": "{{baseUrl}}/internal/loan_ai_agents/:loan_id/unify_all_loan_apis",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"internal",
 						"loan_ai_agents",
-						"411812",
+						":loan_id",
 						"unify_all_loan_apis"
+					],
+					"variable": [
+						{
+							"key": "loan_id",
+							"value": "411812"
+						}
 					]
 				}
 			},
@@ -46,16 +86,26 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/internal/loan_ai_agents/130452/document_attachment_links/aadhar_number",
+					"raw": "{{baseUrl}}/internal/loan_ai_agents/:loan_id/document_attachment_links/:document_type",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"internal",
 						"loan_ai_agents",
-						"130452",
+						":loan_id",
 						"document_attachment_links",
-						"aadhar_number"
+						":document_type"
+					],
+					"variable": [
+						{
+							"key": "loan_id",
+							"value": "130452"
+						},
+						{
+							"key": "document_type",
+							"value": "aadhar_number"
+						}
 					]
 				}
 			},
@@ -75,43 +125,26 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/internal/loan_ai_agents/411812/extract_document_data",
+					"raw": "{{baseUrl}}/internal/loan_ai_agents/:loan_id/extract_document_data/:document_type",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"internal",
 						"loan_ai_agents",
-						"411812",
-						"extract_document_data"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Task langflow responses",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Api-Key",
-						"value": "phwotcqe500it4sv76yiz2u63wwcgk16ob5b5iwt693joifpzvx4fmg6djpr4zh15zkcbrv1487qhjhnh6mmu6xvvu32lbyuv5b565p0byb67bwfu5pvhotq"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/internal/loan_ai_agents/411812/task_langflow_responses",
-					"host": [
-						"{{baseUrl}}"
+						":loan_id",
+						"extract_document_data",
+						":document_type"
 					],
-					"path": [
-						"internal",
-						"loan_ai_agents",
-						"411812",
-						"task_langflow_responses"
+					"variable": [
+						{
+							"key": "loan_id",
+							"value": "411812"
+						},
+						{
+							"key": "document_type",
+							"value": "aadhar_number"
+						}
 					]
 				}
 			},
