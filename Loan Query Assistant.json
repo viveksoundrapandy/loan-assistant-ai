@@ -1,5 +1,5 @@
 {
-  "updated_at": "2025-02-23T17:21:17+00:00",
+  "updated_at": "2025-02-23T18:02:23+00:00",
   "locked": false,
   "webhook": false,
   "folder_id": "bbf9d2f1-5b4b-4f0b-8dde-cfd67543ab3d",
@@ -385,7 +385,7 @@
                 "name": "body",
                 "value": [],
                 "display_name": "Body",
-                "advanced": true,
+                "advanced": false,
                 "input_types": [
                   "Data"
                 ],
@@ -425,9 +425,9 @@
                 "placeholder": "",
                 "show": true,
                 "name": "curl",
-                "value": "curl --location 'https://colend-uat-01-api.go-yubi.in/colending/clients/arvind/api/v2/loans/Drona_40' --header 'Product-Id: ARVIND_SHIPROCKET_BL' --header 'Api-Key: 661f14a7-9fbc-4f07-8f18-2917065d8017' --header 'Content-Type: application/json'",
+                "value": "",
                 "display_name": "cURL",
-                "advanced": false,
+                "advanced": true,
                 "input_types": [
                   "Message"
                 ],
@@ -524,7 +524,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "include_httpx_metadata",
-                "value": false,
+                "value": true,
                 "display_name": "Include HTTPx Metadata",
                 "advanced": true,
                 "dynamic": false,
@@ -587,7 +587,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "timeout",
-                "value": 5,
+                "value": 15,
                 "display_name": "Timeout",
                 "advanced": true,
                 "dynamic": false,
@@ -632,7 +632,7 @@
                 "name": "use_curl",
                 "value": true,
                 "display_name": "Use cURL",
-                "advanced": false,
+                "advanced": true,
                 "dynamic": false,
                 "info": "Enable cURL mode to populate fields from a cURL command.",
                 "real_time_refresh": true,
@@ -717,7 +717,7 @@
                   }
                 ],
                 "display_name": "Edit tools",
-                "advanced": false,
+                "advanced": true,
                 "dynamic": false,
                 "info": "",
                 "real_time_refresh": true,
@@ -786,7 +786,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 634
+          "height": 509
         },
         "dragging": false
       },
@@ -1121,7 +1121,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "system_prompt",
-                "value": "# Loan Underwriting Assistant Chatbot\n\n## Role Description\nYou are an intelligent AI Assistant specializing in loan underwriting for a Bank/Fintech company. Your primary role is to assist users in analyzing loan applications by:\n1. Understanding and interpreting user queries about loan applications\n2. Retrieving relevant loan data\n3. Providing accurate, data-driven responses\n4. Supporting loan underwriting decisions\n\n## Input Processing\n\n### Query Components\n- `query`: User's question or request about loan data\n- `loan_id`: Unique identifier for the loan application\n  - Must be extracted from user input\n  - Format validation required\n\n### Data Retrieval\n1. API Endpoint Construction:\n```\nhttps://colend-qa-api.go-yubi.in/colending/internal/loan_ai_agents/{loan_id}/unify_all_loan_apis\n```\n2. Use API Request tool to fetch data\n3. Store response as `loan_application_data`\n\n## Response Guidelines\n\n### Data Context\n- Strictly use only `loan_application_data` for responses\n- Do not incorporate external data or knowledge\n- Clearly indicate if requested information is not available in the data\n\n### Response Structure\n1. Data Confirmation\n   - Acknowledge the loan ID being referenced\n   - Confirm data availability\n\n2. Query Analysis\n   - Parse user query for specific data points\n   - Identify relevant sections in loan data\n\n3. Response Formation\n   - Provide direct answers based on available data\n   - Structure response logically\n   - Use appropriate formatting for different data types\n\n### Response Types\n\n#### Factual Queries\n- Provide exact values from data\n- Include relevant context\n- Specify data source within loan application\n\n#### Analysis Queries\n- Present structured analysis\n- Support conclusions with specific data points\n- Highlight key metrics and trends\n\n#### Summary Queries\n- Organize information hierarchically\n- Focus on most relevant details\n- Provide clear overview\n\n## Data Handling\n\n### Security Guidelines\n- Never expose sensitive data fields\n- Mask personal identifiable information\n- Limit detailed financial information display\n\n### Data Validation\n- Verify data completeness\n- Check for data consistency\n- Flag any data anomalies\n\n### Error Handling\n1. Missing Data\n   - Clearly indicate missing information\n   - Suggest alternative data points if available\n\n2. Invalid Queries\n   - Request clarification\n   - Suggest related valid queries\n\n3. API Issues\n   - Provide clear error messages\n   - Suggest troubleshooting steps\n\n## Communication Style\n\n### Language\n- Professional and clear\n- Technical when appropriate\n- Explain financial terms when used\n\n### Format\n- Use bullet points for lists\n- Tables for comparative data\n- Bold for key metrics\n- Citations for specific data points\n\n## Domain Knowledge\n\n### Key Areas\n1. Loan Details\n   - Application status\n   - Loan terms\n   - Payment information\n   - Risk metrics\n\n2. Borrower Information\n   - Financial status\n   - Credit history\n   - Employment details\n   - Banking relationships\n\n3. Document Verification\n   - KYC status\n   - Document completeness\n   - Verification results\n\n4. Risk Assessment\n   - Credit scores\n   - Risk indicators\n   - Default probability\n   - Security details\n\n## Example Interactions\n\n### Sample Query Types\n1. Basic Information\n   ```\n   \"What is the loan amount for loan ID 12345?\"\n   \"What is the current status of this loan application?\"\n   ```\n\n2. Analysis Requests\n   ```\n   \"Can you analyze the borrower's credit history?\"\n   \"What are the risk factors in this application?\"\n   ```\n\n3. Summary Requests\n   ```\n   \"Give me an overview of this loan application\"\n   \"Summarize the borrower's financial status\"\n   ```\n\n## Performance Guidelines\n\n### Response Time\n- Process queries efficiently\n- Prioritize critical information\n- Structure complex responses clearly\n\n### Accuracy\n- Double-check numerical values\n- Verify calculations\n- Confirm data relationships\n\n### Consistency\n- Maintain consistent terminology\n- Use standard formats\n- Follow established response patterns\n\n## Important Notes\n1. Always verify loan ID before providing information\n2. Maintain focus on underwriting context\n3. Highlight critical risk factors\n4. Flag any unusual patterns\n5. Maintain professional tone\n6. Stay within data boundaries",
+                "value": "# Loan Underwriting Assistant\n\n## Core Purpose\nYou are an intelligent AI Assistant specializing in loan underwriting for a Bank/Fintech company. Your role is to assist users in analyzing loan applications by providing accurate, context-aware responses based solely on the loan application data provided through the API.\n\n## Technical Configuration\n\n### Data Sources\n1. Primary API Endpoint:\n```\nhttps://colend-qa-api.go-yubi.in/colending/internal/loan_ai_agents/{loan_id}/unify_all_loan_apis\n```\n\n### Available Tools\n- API Request Tool: For fetching loan application data\n- Message Store: For maintaining conversation context\n\n### Data Structures\n\n#### Message Store Format\n```json\n{\n    \"messages\": [\n        {\n            \"role\": \"user\" | \"assistant\",\n            \"content\": string,\n            \"timestamp\": string,\n            \"loan_id\": string | null,\n            \"context\": {\n                \"topic\": string,\n                \"related_queries\": array\n            }\n        }\n    ],\n    \"current_loan_id\": string | null,\n    \"session_start\": string\n}\n```\n\n#### API Response Format\n- `loan_application_data`: Nested JSON containing complete loan information\n\n## Operational Flow\n\n### 1. Input Processing\n1. Extract from user input:\n   - Query content\n   - Loan ID (if present)\n   - Context indicators\n\n2. Context Resolution:\n   - Check message store for existing loan_id\n   - Verify context continuity\n   - Handle context switches\n\n3. Data Retrieval:\n   - Construct API URL using loan_id\n   - Fetch loan_application_data\n   - Validate data completeness\n\n### 2. Context Management\n\n#### Context Retention Rules\n1. Maintain within session:\n   - Current loan_id\n   - Topic thread\n   - Related queries\n   - Previous responses\n\n2. Context Reset Triggers:\n   - Explicit new loan_id\n   - User request\n   - Session timeout\n   - Error conditions\n\n#### Context Priority\n1. Current query parameters\n2. Explicit recent context\n3. Implicit historical context\n4. Default settings\n\n### 3. Response Generation\n\n#### Response Structure\n1. Acknowledgment\n   - Confirm understanding of query\n   - Reference relevant context\n\n2. Data Presentation\n   - Direct answer to query\n   - Supporting data points\n   - Relevant metrics\n\n3. Context Integration\n   - Reference previous discussions\n   - Link related information\n   - Progress conversation naturally\n\n#### Response Types\n\n1. Factual Responses\n```json\n{\n    \"type\": \"fact\",\n    \"data\": {\n        \"value\": any,\n        \"source\": string,\n        \"context\": string\n    }\n}\n```\n\n2. Analysis Responses\n```json\n{\n    \"type\": \"analysis\",\n    \"data\": {\n        \"findings\": array,\n        \"metrics\": object,\n        \"recommendations\": array\n    }\n}\n```\n\n3. Summary Responses\n```json\n{\n    \"type\": \"summary\",\n    \"data\": {\n        \"key_points\": array,\n        \"highlights\": object,\n        \"concerns\": array\n    }\n}\n```\n\n### 4. Domain-Specific Processing\n\n#### Key Information Categories\n1. Loan Details\n   - Application status\n   - Loan terms\n   - Purpose\n   - Amount\n   - Duration\n\n2. Borrower Information\n   - Personal details\n   - Financial status\n   - Credit history\n   - Employment details\n\n3. Risk Metrics\n   - Credit scores\n   - Risk indicators\n   - Default probability\n   - Security details\n\n4. Compliance Data\n   - KYC status\n   - Document verification\n   - Regulatory checks\n\n#### Analysis Parameters\n1. Credit Assessment\n   - Score interpretation\n   - History analysis\n   - Risk evaluation\n\n2. Financial Analysis\n   - Income verification\n   - Expense analysis\n   - Debt service ratio\n\n3. Document Verification\n   - Completeness check\n   - Consistency verification\n   - Anomaly detection\n\n### 5. Communication Guidelines\n\n#### Language Usage\n1. Professional Tone\n   - Clear and concise\n   - Technical when appropriate\n   - Explain financial terms\n\n2. Response Formatting\n   - Use structured layouts\n   - Highlight key information\n   - Maintain consistency\n\n3. Error Communication\n   - Clear error messages\n   - Suggested resolutions\n   - Next steps\n\n#### Security Protocols\n1. Data Protection\n   - Mask sensitive information\n   - Limit detailed financial data\n   - Secure transmission\n\n2. Authentication\n   - Verify access rights\n   - Validate loan_id\n   - Track session status\n\n### 6. Example Interactions\n\n#### Basic Queries\n```\nUser: \"What is the loan amount for ID 12345?\"\nAssistant: \"For loan #12345, the approved amount is ₹500,000 with a tenure of 24 months.\"\n\nUser: \"What's the interest rate?\"\nAssistant: \"Based on our previous discussion of loan #12345, the interest rate is 12% per annum.\"\n```\n\n#### Analysis Queries\n```\nUser: \"Analyze the credit risk for loan 12345\"\nAssistant: [Provides structured risk analysis]\n\nUser: \"What about their payment capacity?\"\nAssistant: [References previous risk analysis and adds payment capacity details]\n```\n\n#### Summary Requests\n```\nUser: \"Give me an overview of loan 12345\"\nAssistant: [Provides comprehensive summary]\n\nUser: \"What are the red flags?\"\nAssistant: [References summary and highlights specific concerns]\n```\n\n### 7. Error Handling\n\n#### Error Types\n1. Data Errors\n   - Missing information\n   - Incomplete data\n   - Invalid values\n\n2. Context Errors\n   - Invalid loan_id\n   - Context mismatch\n   - Session expiry\n\n3. Processing Errors\n   - API failures\n   - Parsing errors\n   - Timeout issues\n\n#### Error Responses\n1. Clear error message\n2. Impact on request\n3. Suggested actions\n4. Alternative solutions\n\n## Performance Requirements\n\n### Response Times\n- Query processing: < 1 second\n- API data retrieval: < 3 seconds\n- Complete response: < 5 seconds\n\n### Accuracy Metrics\n- Data accuracy: 100%\n- Context retention: 95%\n- Query understanding: 90%\n\n### Quality Standards\n1. Response completeness\n2. Context accuracy\n3. Information relevance\n4. Security compliance\n\n## Operational Notes\n1. Always verify loan_id before providing information\n2. Maintain conversation continuity\n3. Prioritize data accuracy\n4. Follow security protocols\n5. Handle errors gracefully\n6. Keep responses focused and relevant",
                 "display_name": "Agent Instructions",
                 "advanced": false,
                 "input_types": [
@@ -1424,7 +1424,7 @@
           "type": "Agent",
           "id": "Agent-kC2sf"
         },
-        "selected": true,
+        "selected": false,
         "measured": {
           "width": 320,
           "height": 624
@@ -1744,6 +1744,518 @@
           "height": 324
         },
         "dragging": false
+      },
+      {
+        "id": "StoreMessage-kxRmF",
+        "type": "genericNode",
+        "position": {
+          "x": 527.5822282661369,
+          "y": 225.34545871923444
+        },
+        "data": {
+          "node": {
+            "template": {
+              "_type": "Component",
+              "memory": {
+                "trace_as_metadata": true,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "memory",
+                "value": "",
+                "display_name": "External Memory",
+                "advanced": false,
+                "input_types": [
+                  "Memory"
+                ],
+                "dynamic": false,
+                "info": "The external memory to store the message. If empty, it will use the Langflow tables.",
+                "title_case": false,
+                "type": "other",
+                "_input_type": "HandleInput"
+              },
+              "code": {
+                "type": "code",
+                "required": true,
+                "placeholder": "",
+                "list": false,
+                "show": true,
+                "multiline": true,
+                "value": "from langflow.custom import Component\nfrom langflow.inputs import HandleInput\nfrom langflow.inputs.inputs import MessageTextInput\nfrom langflow.memory import aget_messages, astore_message\nfrom langflow.schema.message import Message\nfrom langflow.template import Output\nfrom langflow.utils.constants import MESSAGE_SENDER_AI, MESSAGE_SENDER_NAME_AI\n\n\nclass MessageStoreComponent(Component):\n    display_name = \"Message Store\"\n    description = \"Stores a chat message or text into Langflow tables or an external memory.\"\n    icon = \"message-square-text\"\n    name = \"StoreMessage\"\n\n    inputs = [\n        MessageTextInput(\n            name=\"message\", display_name=\"Message\", info=\"The chat message to be stored.\", required=True, tool_mode=True\n        ),\n        HandleInput(\n            name=\"memory\",\n            display_name=\"External Memory\",\n            input_types=[\"Memory\"],\n            info=\"The external memory to store the message. If empty, it will use the Langflow tables.\",\n        ),\n        MessageTextInput(\n            name=\"sender\",\n            display_name=\"Sender\",\n            info=\"The sender of the message. Might be Machine or User. \"\n            \"If empty, the current sender parameter will be used.\",\n            advanced=True,\n        ),\n        MessageTextInput(\n            name=\"sender_name\",\n            display_name=\"Sender Name\",\n            info=\"The name of the sender. Might be AI or User. If empty, the current sender parameter will be used.\",\n            advanced=True,\n        ),\n        MessageTextInput(\n            name=\"session_id\",\n            display_name=\"Session ID\",\n            info=\"The session ID of the chat. If empty, the current session ID parameter will be used.\",\n            value=\"\",\n            advanced=True,\n        ),\n    ]\n\n    outputs = [\n        Output(display_name=\"Stored Messages\", name=\"stored_messages\", method=\"store_message\", hidden=True),\n    ]\n\n    async def store_message(self) -> Message:\n        message = Message(text=self.message) if isinstance(self.message, str) else self.message\n\n        message.session_id = self.session_id or message.session_id\n        message.sender = self.sender or message.sender or MESSAGE_SENDER_AI\n        message.sender_name = self.sender_name or message.sender_name or MESSAGE_SENDER_NAME_AI\n\n        if self.memory:\n            # override session_id\n            self.memory.session_id = message.session_id\n            lc_message = message.to_lc_message()\n            await self.memory.aadd_messages([lc_message])\n            stored_message = await self.memory.aget_messages()\n            stored_message = [Message.from_lc_message(m) for m in stored_message]\n            if message.sender:\n                stored_message = [m for m in stored_message if m.sender == message.sender]\n        else:\n            await astore_message(message, flow_id=self.graph.flow_id)\n            stored_messages = await aget_messages(\n                session_id=message.session_id, sender_name=message.sender_name, sender=message.sender\n            )\n        if not stored_messages:\n            msg = \"No messages were stored. Please ensure that the session ID and sender are properly set.\"\n            raise ValueError(msg)\n        stored_message = stored_messages[0]\n\n        self.status = stored_message\n        return stored_message\n",
+                "fileTypes": [],
+                "file_path": "",
+                "password": false,
+                "name": "code",
+                "advanced": true,
+                "dynamic": true,
+                "info": "",
+                "load_from_db": false,
+                "title_case": false
+              },
+              "message": {
+                "tool_mode": true,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": true,
+                "placeholder": "",
+                "show": true,
+                "name": "message",
+                "value": "",
+                "display_name": "Message",
+                "advanced": false,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "The chat message to be stored.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              },
+              "sender": {
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "sender",
+                "value": "",
+                "display_name": "Sender",
+                "advanced": true,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "The sender of the message. Might be Machine or User. If empty, the current sender parameter will be used.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              },
+              "sender_name": {
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "sender_name",
+                "value": "",
+                "display_name": "Sender Name",
+                "advanced": true,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "The name of the sender. Might be AI or User. If empty, the current sender parameter will be used.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              },
+              "session_id": {
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "session_id",
+                "value": "",
+                "display_name": "Session ID",
+                "advanced": true,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "The session ID of the chat. If empty, the current session ID parameter will be used.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              },
+              "tools_metadata": {
+                "tool_mode": false,
+                "is_list": true,
+                "list_add_label": "Add More",
+                "table_schema": {
+                  "columns": [
+                    {
+                      "name": "name",
+                      "display_name": "Tool Name",
+                      "sortable": false,
+                      "filterable": false,
+                      "type": "text",
+                      "description": "Specify the name of the tool.",
+                      "disable_edit": false,
+                      "edit_mode": "inline",
+                      "formatter": "text"
+                    },
+                    {
+                      "name": "description",
+                      "display_name": "Tool Description",
+                      "sortable": false,
+                      "filterable": false,
+                      "type": "text",
+                      "description": "Describe the purpose of the tool.",
+                      "disable_edit": false,
+                      "edit_mode": "popover",
+                      "formatter": "text"
+                    },
+                    {
+                      "name": "tags",
+                      "display_name": "Tool Identifiers",
+                      "sortable": false,
+                      "filterable": false,
+                      "type": "text",
+                      "description": "The default identifiers for the tools and cannot be changed.",
+                      "disable_edit": true,
+                      "edit_mode": "inline",
+                      "formatter": "text"
+                    }
+                  ]
+                },
+                "trigger_text": "",
+                "trigger_icon": "Hammer",
+                "table_icon": "Hammer",
+                "table_options": {
+                  "block_add": true,
+                  "block_delete": true,
+                  "block_edit": true,
+                  "block_sort": true,
+                  "block_filter": true,
+                  "block_hide": true,
+                  "block_select": true,
+                  "hide_options": true,
+                  "field_parsers": {
+                    "name": [
+                      "snake_case",
+                      "no_blank"
+                    ],
+                    "commands": "commands"
+                  },
+                  "description": "Modify tool names and descriptions to help agents understand when to use each tool."
+                },
+                "trace_as_metadata": true,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "tools_metadata",
+                "value": [
+                  {
+                    "name": "StoreMessage-store_message",
+                    "description": "store_message(message: Message) - Stores a chat message or text into Langflow tables or an external memory.",
+                    "tags": [
+                      "StoreMessage-store_message"
+                    ]
+                  }
+                ],
+                "display_name": "Edit tools",
+                "advanced": false,
+                "dynamic": false,
+                "info": "",
+                "real_time_refresh": true,
+                "title_case": false,
+                "type": "table",
+                "_input_type": "TableInput"
+              }
+            },
+            "description": "Stores a chat message or text into Langflow tables or an external memory.",
+            "icon": "message-square-text",
+            "base_classes": [
+              "Message"
+            ],
+            "display_name": "Message Store",
+            "documentation": "",
+            "minimized": false,
+            "custom_fields": {},
+            "output_types": [],
+            "pinned": false,
+            "conditional_paths": [],
+            "frozen": false,
+            "outputs": [
+              {
+                "types": [
+                  "Tool"
+                ],
+                "selected": "Tool",
+                "name": "component_as_tool",
+                "hidden": null,
+                "display_name": "Toolset",
+                "method": "to_toolkit",
+                "value": "__UNDEFINED__",
+                "cache": true,
+                "required_inputs": null,
+                "allows_loop": false,
+                "tool_mode": true
+              }
+            ],
+            "field_order": [
+              "message",
+              "memory",
+              "sender",
+              "sender_name",
+              "session_id"
+            ],
+            "beta": false,
+            "legacy": false,
+            "edited": false,
+            "metadata": {},
+            "tool_mode": true,
+            "lf_version": "1.1.4.post1"
+          },
+          "showNode": true,
+          "type": "StoreMessage",
+          "id": "StoreMessage-kxRmF"
+        },
+        "selected": false,
+        "measured": {
+          "width": 320,
+          "height": 379
+        },
+        "dragging": false
+      },
+      {
+        "id": "RedisChatMemory-FI3FB",
+        "type": "genericNode",
+        "position": {
+          "x": -25.059238957119078,
+          "y": 202.65245161103311
+        },
+        "data": {
+          "node": {
+            "template": {
+              "_type": "Component",
+              "code": {
+                "type": "code",
+                "required": true,
+                "placeholder": "",
+                "list": false,
+                "show": true,
+                "multiline": true,
+                "value": "from urllib import parse\n\nfrom langchain_community.chat_message_histories.redis import RedisChatMessageHistory\n\nfrom langflow.base.memory.model import LCChatMemoryComponent\nfrom langflow.field_typing.constants import Memory\nfrom langflow.inputs import IntInput, MessageTextInput, SecretStrInput, StrInput\n\n\nclass RedisIndexChatMemory(LCChatMemoryComponent):\n    display_name = \"Redis Chat Memory\"\n    description = \"Retrieves and store chat messages from Redis.\"\n    name = \"RedisChatMemory\"\n    icon = \"Redis\"\n\n    inputs = [\n        StrInput(\n            name=\"host\", display_name=\"hostname\", required=True, value=\"localhost\", info=\"IP address or hostname.\"\n        ),\n        IntInput(name=\"port\", display_name=\"port\", required=True, value=6379, info=\"Redis Port Number.\"),\n        StrInput(name=\"database\", display_name=\"database\", required=True, value=\"0\", info=\"Redis database.\"),\n        MessageTextInput(\n            name=\"username\", display_name=\"Username\", value=\"\", info=\"The Redis user name.\", advanced=True\n        ),\n        SecretStrInput(\n            name=\"password\", display_name=\"Password\", value=\"\", info=\"The password for username.\", advanced=True\n        ),\n        StrInput(name=\"key_prefix\", display_name=\"Key prefix\", info=\"Key prefix.\", advanced=True),\n        MessageTextInput(\n            name=\"session_id\", display_name=\"Session ID\", info=\"Session ID for the message.\", advanced=True\n        ),\n    ]\n\n    def build_message_history(self) -> Memory:\n        kwargs = {}\n        password: str | None = self.password\n        if self.key_prefix:\n            kwargs[\"key_prefix\"] = self.key_prefix\n        if password:\n            password = parse.quote_plus(password)\n\n        url = f\"redis://{self.username}:{self.password}@{self.host}:{self.port}/{self.database}\"\n        return RedisChatMessageHistory(session_id=self.session_id, url=url, **kwargs)\n",
+                "fileTypes": [],
+                "file_path": "",
+                "password": false,
+                "name": "code",
+                "advanced": true,
+                "dynamic": true,
+                "info": "",
+                "load_from_db": false,
+                "title_case": false
+              },
+              "database": {
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": true,
+                "placeholder": "",
+                "show": true,
+                "name": "database",
+                "value": "12",
+                "display_name": "database",
+                "advanced": false,
+                "dynamic": false,
+                "info": "Redis database.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "StrInput"
+              },
+              "host": {
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": true,
+                "placeholder": "",
+                "show": true,
+                "name": "host",
+                "value": "int-credavenue-common-cluster.lk3dmv.0001.aps1.cache.amazonaws.com",
+                "display_name": "hostname",
+                "advanced": false,
+                "dynamic": false,
+                "info": "IP address or hostname.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "StrInput"
+              },
+              "key_prefix": {
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "key_prefix",
+                "value": "",
+                "display_name": "Key prefix",
+                "advanced": true,
+                "dynamic": false,
+                "info": "Key prefix.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "StrInput"
+              },
+              "password": {
+                "load_from_db": false,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "password",
+                "value": "",
+                "display_name": "Password",
+                "advanced": true,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "The password for username.",
+                "title_case": false,
+                "password": true,
+                "type": "str",
+                "_input_type": "SecretStrInput"
+              },
+              "port": {
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": true,
+                "placeholder": "",
+                "show": true,
+                "name": "port",
+                "value": 6379,
+                "display_name": "port",
+                "advanced": false,
+                "dynamic": false,
+                "info": "Redis Port Number.",
+                "title_case": false,
+                "type": "int",
+                "_input_type": "IntInput"
+              },
+              "session_id": {
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "session_id",
+                "value": "",
+                "display_name": "Session ID",
+                "advanced": true,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "Session ID for the message.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              },
+              "username": {
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "username",
+                "value": "",
+                "display_name": "Username",
+                "advanced": true,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "The Redis user name.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              }
+            },
+            "description": "Retrieves and store chat messages from Redis.",
+            "icon": "Redis",
+            "base_classes": [
+              "Memory"
+            ],
+            "display_name": "Redis Chat Memory",
+            "documentation": "",
+            "minimized": false,
+            "custom_fields": {},
+            "output_types": [],
+            "pinned": false,
+            "conditional_paths": [],
+            "frozen": false,
+            "outputs": [
+              {
+                "types": [
+                  "Memory"
+                ],
+                "selected": "Memory",
+                "name": "memory",
+                "display_name": "Memory",
+                "method": "build_message_history",
+                "value": "__UNDEFINED__",
+                "cache": true,
+                "required_inputs": [
+                  "database",
+                  "host",
+                  "port"
+                ],
+                "allows_loop": false,
+                "tool_mode": true
+              }
+            ],
+            "field_order": [
+              "host",
+              "port",
+              "database",
+              "username",
+              "password",
+              "key_prefix",
+              "session_id"
+            ],
+            "beta": false,
+            "legacy": false,
+            "edited": false,
+            "metadata": {},
+            "tool_mode": false,
+            "lf_version": "1.1.4.post1"
+          },
+          "showNode": true,
+          "type": "RedisChatMemory",
+          "id": "RedisChatMemory-FI3FB"
+        },
+        "selected": false,
+        "measured": {
+          "width": 320,
+          "height": 415
+        },
+        "dragging": false
       }
     ],
     "edges": [
@@ -1830,12 +2342,66 @@
         "selected": false,
         "className": "",
         "animated": false
+      },
+      {
+        "source": "StoreMessage-kxRmF",
+        "sourceHandle": "{œdataTypeœ:œStoreMessageœ,œidœ:œStoreMessage-kxRmFœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
+        "target": "Agent-kC2sf",
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-kC2sfœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "data": {
+          "targetHandle": {
+            "fieldName": "tools",
+            "id": "Agent-kC2sf",
+            "inputTypes": [
+              "Tool"
+            ],
+            "type": "other"
+          },
+          "sourceHandle": {
+            "dataType": "StoreMessage",
+            "id": "StoreMessage-kxRmF",
+            "name": "component_as_tool",
+            "output_types": [
+              "Tool"
+            ]
+          }
+        },
+        "id": "xy-edge__StoreMessage-kxRmF{œdataTypeœ:œStoreMessageœ,œidœ:œStoreMessage-kxRmFœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-kC2sf{œfieldNameœ:œtoolsœ,œidœ:œAgent-kC2sfœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "animated": false,
+        "className": ""
+      },
+      {
+        "source": "RedisChatMemory-FI3FB",
+        "sourceHandle": "{œdataTypeœ:œRedisChatMemoryœ,œidœ:œRedisChatMemory-FI3FBœ,œnameœ:œmemoryœ,œoutput_typesœ:[œMemoryœ]}",
+        "target": "StoreMessage-kxRmF",
+        "targetHandle": "{œfieldNameœ:œmemoryœ,œidœ:œStoreMessage-kxRmFœ,œinputTypesœ:[œMemoryœ],œtypeœ:œotherœ}",
+        "data": {
+          "targetHandle": {
+            "fieldName": "memory",
+            "id": "StoreMessage-kxRmF",
+            "inputTypes": [
+              "Memory"
+            ],
+            "type": "other"
+          },
+          "sourceHandle": {
+            "dataType": "RedisChatMemory",
+            "id": "RedisChatMemory-FI3FB",
+            "name": "memory",
+            "output_types": [
+              "Memory"
+            ]
+          }
+        },
+        "id": "xy-edge__RedisChatMemory-FI3FB{œdataTypeœ:œRedisChatMemoryœ,œidœ:œRedisChatMemory-FI3FBœ,œnameœ:œmemoryœ,œoutput_typesœ:[œMemoryœ]}-StoreMessage-kxRmF{œfieldNameœ:œmemoryœ,œidœ:œStoreMessage-kxRmFœ,œinputTypesœ:[œMemoryœ],œtypeœ:œotherœ}",
+        "animated": false,
+        "className": ""
       }
     ],
     "viewport": {
-      "x": 82.03844535744338,
-      "y": 269.2707772618263,
-      "zoom": 0.5627006262275343
+      "x": 118.14450541978204,
+      "y": 140.62291542277546,
+      "zoom": 0.7429685892185771
     }
   },
   "icon_bg_color": null,
