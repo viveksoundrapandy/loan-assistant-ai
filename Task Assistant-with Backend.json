@@ -1,9 +1,16 @@
 {
-  "id": "a24be7e3-bcca-4e7b-89ce-b99f2953067c",
+  "updated_at": "2025-02-23T16:45:30+00:00",
+  "locked": false,
+  "webhook": false,
+  "folder_id": "0b3dc7d8-44b9-44fe-9997-a560fdcbf9d1",
+  "endpoint_name": null,
+  "description": "Promptly Ingenious!",
+  "id": "765ed24b-0a29-4472-a7c3-a950b5dec057",
+  "name": "Task Assistant-with Backend",
   "data": {
     "nodes": [
       {
-        "id": "ChatInput-ZmMCF",
+        "id": "ChatInput-SWBIn",
         "type": "genericNode",
         "position": {
           "x": 472.973898796596,
@@ -12,7 +19,7 @@
         "data": {
           "description": "Get chat inputs from the Playground.",
           "display_name": "Chat Input",
-          "id": "ChatInput-ZmMCF",
+          "id": "ChatInput-SWBIn",
           "node": {
             "base_classes": [
               "Message"
@@ -35,7 +42,7 @@
             "frozen": false,
             "icon": "MessagesSquare",
             "legacy": false,
-            "lf_version": "1.1.4",
+            "lf_version": "1.1.4.post1",
             "metadata": {},
             "output_types": [],
             "outputs": [
@@ -173,7 +180,7 @@
                 "trace_as_input": true,
                 "trace_as_metadata": true,
                 "type": "str",
-                "value": "Hello"
+                "value": "verify aadhar for loan 248270"
               },
               "sender": {
                 "advanced": true,
@@ -281,7 +288,7 @@
         }
       },
       {
-        "id": "Prompt-8mQOK",
+        "id": "Prompt-12JAA",
         "type": "genericNode",
         "position": {
           "x": 438.1545581594793,
@@ -290,7 +297,7 @@
         "data": {
           "description": "Create a prompt template with dynamic variables.",
           "display_name": "Prompt",
-          "id": "Prompt-8mQOK",
+          "id": "Prompt-12JAA",
           "node": {
             "template": {
               "_type": "Component",
@@ -542,7 +549,7 @@
         }
       },
       {
-        "id": "StructuredOutput-q3Fr0",
+        "id": "StructuredOutput-OPbVL",
         "type": "genericNode",
         "position": {
           "x": 2531.8523946548416,
@@ -787,20 +794,21 @@
             "category": "helpers",
             "key": "StructuredOutput",
             "score": 0.007568328950209746,
-            "lf_version": "1.1.4"
+            "lf_version": "1.1.4.post1"
           },
           "showNode": true,
           "type": "StructuredOutput",
-          "id": "StructuredOutput-q3Fr0"
+          "id": "StructuredOutput-OPbVL"
         },
         "selected": false,
         "measured": {
           "width": 320,
           "height": 399
-        }
+        },
+        "dragging": false
       },
       {
-        "id": "OpenAIModel-C9Eyu",
+        "id": "OpenAIModel-KIf6m",
         "type": "genericNode",
         "position": {
           "x": 2142.2450668331767,
@@ -816,7 +824,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "api_key",
-                "value": "",
+                "value": "OpenAPI key",
                 "display_name": "OpenAI API Key",
                 "advanced": false,
                 "input_types": [
@@ -1131,11 +1139,11 @@
             "category": "models",
             "key": "OpenAIModel",
             "score": 0.001,
-            "lf_version": "1.1.4"
+            "lf_version": "1.1.4.post1"
           },
           "showNode": true,
           "type": "OpenAIModel",
-          "id": "OpenAIModel-C9Eyu"
+          "id": "OpenAIModel-KIf6m"
         },
         "selected": false,
         "measured": {
@@ -1144,7 +1152,7 @@
         }
       },
       {
-        "id": "ChatOutput-g7deR",
+        "id": "ChatOutput-S03jx",
         "type": "genericNode",
         "position": {
           "x": 4972.733411768047,
@@ -1422,7 +1430,7 @@
           },
           "showNode": false,
           "type": "ChatOutput",
-          "id": "ChatOutput-g7deR"
+          "id": "ChatOutput-S03jx"
         },
         "selected": false,
         "measured": {
@@ -1431,7 +1439,7 @@
         }
       },
       {
-        "id": "CategoryRouterComponent-Umg8n",
+        "id": "CategoryRouterComponent-xlQ00",
         "type": "genericNode",
         "position": {
           "x": 410.01672477630814,
@@ -1523,7 +1531,7 @@
           },
           "showNode": true,
           "type": "CategoryRouterComponent",
-          "id": "CategoryRouterComponent-Umg8n"
+          "id": "CategoryRouterComponent-xlQ00"
         },
         "selected": false,
         "measured": {
@@ -1532,7 +1540,7 @@
         }
       },
       {
-        "id": "OpenAIModel-CYC6V",
+        "id": "OpenAIModel-LkbzH",
         "type": "genericNode",
         "position": {
           "x": 4231.2091789943825,
@@ -1548,7 +1556,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "api_key",
-                "value": "",
+                "value": "YubiGPT",
                 "display_name": "OpenAI API Key",
                 "advanced": false,
                 "input_types": [
@@ -1867,7 +1875,7 @@
           },
           "showNode": true,
           "type": "OpenAIModel",
-          "id": "OpenAIModel-CYC6V"
+          "id": "OpenAIModel-LkbzH"
         },
         "selected": false,
         "measured": {
@@ -1876,14 +1884,14 @@
         }
       },
       {
-        "id": "note-lPSG1",
+        "id": "note-QgtLN",
         "type": "noteNode",
         "position": {
           "x": 466.4082502168924,
           "y": 1360.9246466104673
         },
         "data": {
-          "id": "note-lPSG1",
+          "id": "note-QgtLN",
           "node": {
             "description": "# Stage 1\n\n### task name is pushed as input ",
             "display_name": "",
@@ -1901,14 +1909,14 @@
         }
       },
       {
-        "id": "note-Nzm82",
+        "id": "note-2Mbvb",
         "type": "noteNode",
         "position": {
           "x": 1375.3346484750764,
           "y": 1199.0427937668173
         },
         "data": {
-          "id": "note-Nzm82",
+          "id": "note-2Mbvb",
           "node": {
             "description": "# Stage 2\n\n### Agent classifies the task to a broad category",
             "display_name": "",
@@ -1926,14 +1934,14 @@
         }
       },
       {
-        "id": "note-CTKmB",
+        "id": "note-6ludN",
         "type": "noteNode",
         "position": {
           "x": 2138.3007959250217,
           "y": 744.2638972034034
         },
         "data": {
-          "id": "note-CTKmB",
+          "id": "note-6ludN",
           "node": {
             "description": "# Stage 3\n\n### LLM response is structured to a tabular format using another LLM",
             "display_name": "",
@@ -1951,14 +1959,14 @@
         }
       },
       {
-        "id": "note-jmYxi",
+        "id": "note-GFw4c",
         "type": "noteNode",
         "position": {
           "x": 3218.0126480436547,
           "y": 1323.8206604148313
         },
         "data": {
-          "id": "note-jmYxi",
+          "id": "note-GFw4c",
           "node": {
             "description": "# Stage 4\n\n### Custom router to to read the structured output and route to corresponding agent\n\n- THis is not needed. An experimental attempt to write custom componenet",
             "display_name": "",
@@ -1976,14 +1984,14 @@
         }
       },
       {
-        "id": "note-WBA3k",
+        "id": "note-KrEAh",
         "type": "noteNode",
         "position": {
           "x": 4323.955984414458,
           "y": 45
         },
         "data": {
-          "id": "note-WBA3k",
+          "id": "note-KrEAh",
           "node": {
             "description": "# Stage 5\n\n### Agents only pick tasks that fall under their dedicated category for further processing",
             "display_name": "",
@@ -2001,7 +2009,7 @@
         }
       },
       {
-        "id": "ChatOutput-X3bTn",
+        "id": "ChatOutput-U9uK9",
         "type": "genericNode",
         "position": {
           "x": 4882.749461971247,
@@ -2279,7 +2287,7 @@
           },
           "showNode": false,
           "type": "ChatOutput",
-          "id": "ChatOutput-X3bTn"
+          "id": "ChatOutput-U9uK9"
         },
         "selected": false,
         "measured": {
@@ -2288,7 +2296,7 @@
         }
       },
       {
-        "id": "Agent-jo7w1",
+        "id": "Agent-yTNHb",
         "type": "genericNode",
         "position": {
           "x": 1386.1491513083429,
@@ -2417,7 +2425,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "api_key",
-                "value": "",
+                "value": "YubiGPT",
                 "display_name": "OpenAI API Key",
                 "advanced": false,
                 "input_types": [
@@ -2900,11 +2908,11 @@
             "edited": true,
             "metadata": {},
             "tool_mode": false,
-            "lf_version": "1.1.4"
+            "lf_version": "1.1.4.post1"
           },
           "showNode": true,
           "type": "Agent",
-          "id": "Agent-jo7w1",
+          "id": "Agent-yTNHb",
           "description": "Define the agent's instructions, then enter a task to complete using tools.",
           "display_name": "Agent"
         },
@@ -2915,7 +2923,7 @@
         }
       },
       {
-        "id": "ConditionalRouter-67rgw",
+        "id": "ConditionalRouter-ZxmIG",
         "type": "genericNode",
         "position": {
           "x": 420.17752680940157,
@@ -3164,7 +3172,7 @@
           },
           "showNode": true,
           "type": "ConditionalRouter",
-          "id": "ConditionalRouter-67rgw"
+          "id": "ConditionalRouter-ZxmIG"
         },
         "selected": false,
         "measured": {
@@ -3173,7 +3181,7 @@
         }
       },
       {
-        "id": "CategoryRouter-vn8bM",
+        "id": "CategoryRouter-GM62A",
         "type": "genericNode",
         "position": {
           "x": 3210.362209669812,
@@ -3292,11 +3300,11 @@
             "edited": true,
             "metadata": {},
             "tool_mode": false,
-            "lf_version": "1.1.4"
+            "lf_version": "1.1.4.post1"
           },
           "showNode": true,
           "type": "CategoryRouter",
-          "id": "CategoryRouter-vn8bM"
+          "id": "CategoryRouter-GM62A"
         },
         "selected": false,
         "measured": {
@@ -3305,14 +3313,14 @@
         }
       },
       {
-        "id": "note-UrSNd",
+        "id": "note-nUw7B",
         "type": "noteNode",
         "position": {
           "x": 15,
           "y": 2088.850950620006
         },
         "data": {
-          "id": "note-UrSNd",
+          "id": "note-nUw7B",
           "node": {
             "description": "# Used but deprecated\n\n### 1. prompt component was used to give the LLM a prompt. THis is not needed for openAI based agents\n\n### 2. if-else router component was used to route the category agent manually, but we need a switch case to route to multiple agents, hence deprecated\n\n### 3. Agent router component was used to create a standard input msg for an LLM to decide the agent. Removed this as it was routing to all agenes. Currently, the custom switch case based router which is more reliable  is used for testing. if not we need to do routing via LLM by adding all agents as tools",
             "display_name": "",
@@ -3330,7 +3338,7 @@
         }
       },
       {
-        "id": "Agent-jTSED",
+        "id": "Agent-nIV1Z",
         "type": "genericNode",
         "position": {
           "x": 4286.773420796638,
@@ -3459,7 +3467,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "api_key",
-                "value": "",
+                "value": "YubiGPT",
                 "display_name": "OpenAI API Key",
                 "advanced": false,
                 "input_types": [
@@ -3942,11 +3950,11 @@
             "edited": true,
             "metadata": {},
             "tool_mode": false,
-            "lf_version": "1.1.4"
+            "lf_version": "1.1.4.post1"
           },
           "showNode": true,
           "type": "Agent",
-          "id": "Agent-jTSED"
+          "id": "Agent-nIV1Z"
         },
         "selected": false,
         "measured": {
@@ -3955,7 +3963,7 @@
         }
       },
       {
-        "id": "Agent-vXE9o",
+        "id": "Agent-XnReG",
         "type": "genericNode",
         "position": {
           "x": 4312.1932949110815,
@@ -4084,7 +4092,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "api_key",
-                "value": "",
+                "value": "YubiGPT",
                 "display_name": "OpenAI API Key",
                 "advanced": false,
                 "input_types": [
@@ -4570,7 +4578,7 @@
           },
           "showNode": true,
           "type": "Agent",
-          "id": "Agent-vXE9o"
+          "id": "Agent-XnReG"
         },
         "selected": false,
         "measured": {
@@ -4579,11 +4587,11 @@
         }
       },
       {
-        "id": "StructuredOutput-dqGgt",
+        "id": "StructuredOutput-hgMMn",
         "type": "genericNode",
         "position": {
-          "x": 5154.755134766032,
-          "y": 2208.3790824318057
+          "x": 5323.034932622587,
+          "y": 1767.7517169916175
         },
         "data": {
           "node": {
@@ -4828,16 +4836,17 @@
           },
           "showNode": true,
           "type": "StructuredOutput",
-          "id": "StructuredOutput-dqGgt"
+          "id": "StructuredOutput-hgMMn"
         },
         "selected": false,
         "measured": {
           "width": 320,
           "height": 399
-        }
+        },
+        "dragging": false
       },
       {
-        "id": "OpenAIModel-NiA5A",
+        "id": "OpenAIModel-YHUKu",
         "type": "genericNode",
         "position": {
           "x": 4820.872565664136,
@@ -4853,7 +4862,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "api_key",
-                "value": "",
+                "value": "OpenAPI key",
                 "display_name": "OpenAI API Key",
                 "advanced": false,
                 "input_types": [
@@ -5168,11 +5177,11 @@
             "category": "models",
             "key": "OpenAIModel",
             "score": 0.001,
-            "lf_version": "1.1.4"
+            "lf_version": "1.1.4.post1"
           },
           "showNode": true,
           "type": "OpenAIModel",
-          "id": "OpenAIModel-NiA5A"
+          "id": "OpenAIModel-YHUKu"
         },
         "selected": false,
         "measured": {
@@ -5181,11 +5190,11 @@
         }
       },
       {
-        "id": "DocumentRouter-jt1Dl",
+        "id": "DocumentRouter-JHvts",
         "type": "genericNode",
         "position": {
-          "x": 5834.814054366876,
-          "y": 2229.791111334124
+          "x": 5916.739745428619,
+          "y": 2006.156116814229
         },
         "data": {
           "node": {
@@ -5334,20 +5343,21 @@
           },
           "showNode": true,
           "type": "DocumentRouter",
-          "id": "DocumentRouter-jt1Dl"
+          "id": "DocumentRouter-JHvts"
         },
         "selected": false,
         "measured": {
           "width": 320,
           "height": 404
-        }
+        },
+        "dragging": false
       },
       {
-        "id": "ChatOutput-ywVSm",
+        "id": "ChatOutput-HccbL",
         "type": "genericNode",
         "position": {
-          "x": 6309.852229466797,
-          "y": 2886.9071422454986
+          "x": 6464.8467801241495,
+          "y": 2191.645872153945
         },
         "data": {
           "node": {
@@ -5624,20 +5634,21 @@
           },
           "showNode": false,
           "type": "ChatOutput",
-          "id": "ChatOutput-ywVSm"
+          "id": "ChatOutput-HccbL"
         },
         "selected": false,
         "measured": {
           "width": 192,
           "height": 66
-        }
+        },
+        "dragging": false
       },
       {
-        "id": "ChatOutput-g0oXS",
+        "id": "ChatOutput-PePzA",
         "type": "genericNode",
         "position": {
-          "x": 6330.411416446945,
-          "y": 2451.0304644697335
+          "x": 6463.263888438961,
+          "y": 2273.8938351470447
         },
         "data": {
           "node": {
@@ -5914,20 +5925,21 @@
           },
           "showNode": false,
           "type": "ChatOutput",
-          "id": "ChatOutput-g0oXS"
+          "id": "ChatOutput-PePzA"
         },
         "selected": false,
         "measured": {
           "width": 192,
           "height": 66
-        }
+        },
+        "dragging": false
       },
       {
-        "id": "ChatOutput-mo6e4",
+        "id": "ChatOutput-CCPsV",
         "type": "genericNode",
         "position": {
-          "x": 6333.184322455241,
-          "y": 2321.6863749527593
+          "x": 6470.465210180325,
+          "y": 2106.908211898999
         },
         "data": {
           "node": {
@@ -6204,20 +6216,21 @@
           },
           "showNode": false,
           "type": "ChatOutput",
-          "id": "ChatOutput-mo6e4"
+          "id": "ChatOutput-CCPsV"
         },
         "selected": false,
         "measured": {
           "width": 192,
           "height": 66
-        }
+        },
+        "dragging": false
       },
       {
-        "id": "ChatOutput-qFP0L",
+        "id": "ChatOutput-Ue85T",
         "type": "genericNode",
         "position": {
-          "x": 6305.538328388746,
-          "y": 2666.145685029498
+          "x": 6458.318671179565,
+          "y": 2367.227623047461
         },
         "data": {
           "node": {
@@ -6494,16 +6507,17 @@
           },
           "showNode": false,
           "type": "ChatOutput",
-          "id": "ChatOutput-qFP0L"
+          "id": "ChatOutput-Ue85T"
         },
         "selected": false,
         "measured": {
           "width": 192,
           "height": 66
-        }
+        },
+        "dragging": false
       },
       {
-        "id": "ChatOutput-mvarx",
+        "id": "ChatOutput-C9U8T",
         "type": "genericNode",
         "position": {
           "x": 6425.811937663029,
@@ -6777,11 +6791,11 @@
             "edited": false,
             "metadata": {},
             "tool_mode": false,
-            "lf_version": "1.1.4"
+            "lf_version": "1.1.4.post1"
           },
           "showNode": false,
           "type": "ChatOutput",
-          "id": "ChatOutput-mvarx"
+          "id": "ChatOutput-C9U8T"
         },
         "selected": false,
         "measured": {
@@ -6790,11 +6804,11 @@
         }
       },
       {
-        "id": "APIRequest-4PxtN",
+        "id": "APIRequest-ro7BO",
         "type": "genericNode",
         "position": {
-          "x": 4245.960179273081,
-          "y": 2743.8649356662045
+          "x": 4252.114061910504,
+          "y": 3217.7138987477456
         },
         "data": {
           "node": {
@@ -6836,7 +6850,8 @@
                       "type": "text",
                       "description": "Parameter name",
                       "disable_edit": false,
-                      "edit_mode": "modal"
+                      "edit_mode": "modal",
+                      "formatter": "text"
                     },
                     {
                       "name": "value",
@@ -6845,7 +6860,8 @@
                       "filterable": true,
                       "description": "Parameter value",
                       "disable_edit": false,
-                      "edit_mode": "modal"
+                      "edit_mode": "modal",
+                      "formatter": "text"
                     }
                   ]
                 },
@@ -6944,7 +6960,8 @@
                       "type": "text",
                       "description": "Header name",
                       "disable_edit": false,
-                      "edit_mode": "modal"
+                      "edit_mode": "modal",
+                      "formatter": "text"
                     },
                     {
                       "name": "value",
@@ -6954,7 +6971,8 @@
                       "type": "text",
                       "description": "Header value",
                       "disable_edit": false,
-                      "edit_mode": "modal"
+                      "edit_mode": "modal",
+                      "formatter": "text"
                     }
                   ]
                 },
@@ -6966,9 +6984,14 @@
                 "placeholder": "",
                 "show": true,
                 "name": "headers",
-                "value": [],
+                "value": [
+                  {
+                    "key": "Api-Key",
+                    "value": "phwotcqe500it4sv76yiz2u63wwcgk16ob5b5iwt693joifpzvx4fmg6djpr4zh15zkcbrv1487qhjhnh6mmu6xvvu32lbyuv5b565p0byb67bwfu5pvhotq"
+                  }
+                ],
                 "display_name": "Headers",
-                "advanced": true,
+                "advanced": false,
                 "input_types": [
                   "Data"
                 ],
@@ -7238,21 +7261,21 @@
             "category": "data",
             "key": "APIRequest",
             "score": 0.007568328950209746,
-            "lf_version": "1.1.4"
+            "lf_version": "1.1.4.post1"
           },
           "showNode": true,
           "type": "APIRequest",
-          "id": "APIRequest-4PxtN"
+          "id": "APIRequest-ro7BO"
         },
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 467
+          "height": 552
         },
         "dragging": false
       },
       {
-        "id": "Agent-qr9JD",
+        "id": "DocAgent-ms531",
         "type": "genericNode",
         "position": {
           "x": 5481.370656289654,
@@ -7381,7 +7404,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "api_key",
-                "value": "",
+                "value": "YubiGPT",
                 "display_name": "OpenAI API Key",
                 "advanced": false,
                 "input_types": [
@@ -7720,7 +7743,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "system_prompt",
-                "value": "You are an helpful assistant capable of using the given tools to extract information from an API and pass on to the comparison agent\n\n## instructions\n1. Extract `{loanid}` and `{category}` and '`{task}' from the message\n   - Example input:\n        verify aadhar category for loan Drona_40 translates to :\ntask=\"verify aadhar\"\ncategory=\"aadhar\"\nloanid=\"Drona_40\"\n\n2. construct the url using the loanid\nhttp://127.0.0.1:3000/colending/internal/loan_ai_agents/`{loanid}`/document_attachment_links\n\n3. Pass on to API tool to fetch the data as json\n\n4. Pass on the received json and convert to message format\n5. pass the message to comparison agent\n\n6. receive the response from comparison agent and relay\n\n## Available tools:\nAPI agent - call an API given a URL\nComparisonAgent - provide a comparison json given an input json\n\nDo not respond to any other message , except for delegating and relaying the message received from tools",
+                "value": "You are an helpful assistant capable of using the given tools to extract information from an API and pass on to the comparison agent\n\n## instructions\n1. Extract `{loanid}` and `{category}` and '`{task}' from the message\n   - Example input:\n        verify aadhar category for loan Drona_40 translates to :\ntask=\"verify aadhar\"\ncategory=\"aadhar\"\nloanid=\"Drona_40\"\n\n2. construct the url using the loanid\nhttps://colend-qa-api.go-yubi.in/colending/internal/loan_ai_agents/`{loanid}`/document_attachment_links/`{category}`\n\n3. Pass on to API tool to fetch the data as json\n\n4. Pass on the received json and convert to message format\n5. pass the message to comparison agent\n\n6. receive the response from comparison agent and relay\n\n## Available tools:\nAPI agent - call an API given a URL\nComparisonAgent - provide a comparison json given an input json\n\nDo not respond to any other message , except for delegating and relaying the message received from tools",
                 "display_name": "Agent Instructions",
                 "advanced": false,
                 "input_types": [
@@ -7864,11 +7887,11 @@
             "edited": true,
             "metadata": {},
             "tool_mode": false,
-            "lf_version": "1.1.4"
+            "lf_version": "1.1.4.post1"
           },
           "showNode": true,
           "type": "DocAgent",
-          "id": "Agent-qr9JD"
+          "id": "DocAgent-ms531"
         },
         "selected": false,
         "measured": {
@@ -7878,11 +7901,11 @@
         "dragging": false
       },
       {
-        "id": "DocAgent-tHU7g",
+        "id": "Agent-EDI1N",
         "type": "genericNode",
         "position": {
-          "x": 4458.091270672119,
-          "y": 3325.1915697873196
+          "x": 4775.996259721669,
+          "y": 3254.3741546212173
         },
         "data": {
           "node": {
@@ -7944,7 +7967,8 @@
                 "info": "If true, will add a tool to the agent that returns the current date.",
                 "title_case": false,
                 "type": "bool",
-                "_input_type": "BoolInput"
+                "_input_type": "BoolInput",
+                "input_types": []
               },
               "agent_description": {
                 "tool_mode": false,
@@ -7990,7 +8014,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "agent_llm",
-                "value": "OpenAI",
+                "value": "Anthropic",
                 "display_name": "Model Provider",
                 "advanced": false,
                 "input_types": [],
@@ -8001,25 +8025,6 @@
                 "type": "str",
                 "_input_type": "DropdownInput"
               },
-              "api_key": {
-                "load_from_db": true,
-                "required": true,
-                "placeholder": "",
-                "show": true,
-                "name": "api_key",
-                "value": "",
-                "display_name": "OpenAI API Key",
-                "advanced": false,
-                "input_types": [
-                  "Message"
-                ],
-                "dynamic": false,
-                "info": "The OpenAI API Key to use for the OpenAI model.",
-                "title_case": false,
-                "password": true,
-                "type": "str",
-                "_input_type": "SecretStrInput"
-              },
               "code": {
                 "type": "code",
                 "required": true,
@@ -8027,7 +8032,7 @@
                 "list": false,
                 "show": true,
                 "multiline": true,
-                "value": "from langchain_core.tools import StructuredTool\n\nfrom langflow.base.agents.agent import LCToolsAgentComponent\nfrom langflow.base.models.model_input_constants import (\n    ALL_PROVIDER_FIELDS,\n    MODEL_DYNAMIC_UPDATE_FIELDS,\n    MODEL_PROVIDERS_DICT,\n)\nfrom langflow.base.models.model_utils import get_model_name\nfrom langflow.components.helpers import CurrentDateComponent\nfrom langflow.components.helpers.memory import MemoryComponent\nfrom langflow.components.langchain_utilities.tool_calling import ToolCallingAgentComponent\nfrom langflow.custom.custom_component.component import _get_component_toolkit\nfrom langflow.custom.utils import update_component_build_config\nfrom langflow.field_typing import Tool\nfrom langflow.io import BoolInput, DropdownInput, MultilineInput, Output\nfrom langflow.logging import logger\nfrom langflow.schema.dotdict import dotdict\nfrom langflow.schema.message import Message\n\n\ndef set_advanced_true(component_input):\n    component_input.advanced = True\n    return component_input\n\n\nclass AgentComponent(ToolCallingAgentComponent):\n    display_name: str = \"ComparisonAgent\"\n    description: str = \"Capable of comparing data.\"\n    icon = \"bot\"\n    beta = False\n    name = \"ComparisonAgent\"\n\n    memory_inputs = [set_advanced_true(component_input) for component_input in MemoryComponent().inputs]\n\n    inputs = [\n        DropdownInput(\n            name=\"agent_llm\",\n            display_name=\"Model Provider\",\n            info=\"The provider of the language model that the agent will use to generate responses.\",\n            options=[*sorted(MODEL_PROVIDERS_DICT.keys()), \"Custom\"],\n            value=\"OpenAI\",\n            real_time_refresh=True,\n            input_types=[],\n        ),\n        *MODEL_PROVIDERS_DICT[\"OpenAI\"][\"inputs\"],\n        MultilineInput(\n            name=\"system_prompt\",\n            display_name=\"Agent Instructions\",\n            info=\"System Prompt: Initial instructions and context provided to guide the agent's behavior.\",\n            value=\"You are a helpful assistant that can use tools to answer questions and perform tasks.\",\n            advanced=False,\n        ),\n        *LCToolsAgentComponent._base_inputs,\n        *memory_inputs,\n        BoolInput(\n            name=\"add_current_date_tool\",\n            display_name=\"Current Date\",\n            advanced=True,\n            info=\"If true, will add a tool to the agent that returns the current date.\",\n            value=True,\n        ),\n    ]\n    outputs = [Output(name=\"response\", display_name=\"Response\", method=\"message_response\")]\n\n    async def message_response(self) -> Message:\n        try:\n            self.model_name = \"gpt-4o-(US)\"\n            llm_model, display_name = self.get_llm()\n            if llm_model is None:\n                msg = \"No language model selected\"\n                raise ValueError(msg)\n            self.model_name = get_model_name(llm_model, display_name=display_name)\n        except Exception as e:\n            # Log the error for debugging purposes\n            logger.error(f\"Error retrieving language model: {e}\")\n            raise\n\n        try:\n            self.chat_history = await self.get_memory_data()\n        except Exception as e:\n            logger.error(f\"Error retrieving chat history: {e}\")\n            raise\n\n        if self.add_current_date_tool:\n            try:\n                if not isinstance(self.tools, list):  # type: ignore[has-type]\n                    self.tools = []\n                # Convert CurrentDateComponent to a StructuredTool\n                current_date_tool = (await CurrentDateComponent(**self.get_base_args()).to_toolkit()).pop(0)\n                if isinstance(current_date_tool, StructuredTool):\n                    self.tools.append(current_date_tool)\n                else:\n                    msg = \"CurrentDateComponent must be converted to a StructuredTool\"\n                    raise TypeError(msg)\n            except Exception as e:\n                logger.error(f\"Error adding current date tool: {e}\")\n                raise\n\n        if not self.tools:\n            msg = \"Tools are required to run the agent.\"\n            logger.error(msg)\n            raise ValueError(msg)\n\n        try:\n            self.set(\n                llm=llm_model,\n                tools=self.tools,\n                chat_history=self.chat_history,\n                input_value=self.input_value,\n                system_prompt=self.system_prompt,\n            )\n            agent = self.create_agent_runnable()\n        except Exception as e:\n            logger.error(f\"Error setting up the agent: {e}\")\n            raise\n\n        return await self.run_agent(agent)\n\n    async def get_memory_data(self):\n        memory_kwargs = {\n            component_input.name: getattr(self, f\"{component_input.name}\") for component_input in self.memory_inputs\n        }\n        # filter out empty values\n        memory_kwargs = {k: v for k, v in memory_kwargs.items() if v}\n\n        return await MemoryComponent(**self.get_base_args()).set(**memory_kwargs).retrieve_messages()\n\n    def get_llm(self):\n        if isinstance(self.agent_llm, str):\n            try:\n                provider_info = MODEL_PROVIDERS_DICT.get(self.agent_llm)\n                if provider_info:\n                    component_class = provider_info.get(\"component_class\")\n                    display_name = component_class.display_name\n                    inputs = provider_info.get(\"inputs\")\n                    prefix = provider_info.get(\"prefix\", \"\")\n                    return (\n                        self._build_llm_model(component_class, inputs, prefix),\n                        display_name,\n                    )\n            except Exception as e:\n                msg = f\"Error building {self.agent_llm} language model\"\n                raise ValueError(msg) from e\n        return self.agent_llm, None\n\n    def _build_llm_model(self, component, inputs, prefix=\"\"):\n        model_kwargs = {input_.name: getattr(self, f\"{prefix}{input_.name}\") for input_ in inputs}\n        return component.set(**model_kwargs).build_model()\n\n    def set_component_params(self, component):\n        provider_info = MODEL_PROVIDERS_DICT.get(self.agent_llm)\n        if provider_info:\n            inputs = provider_info.get(\"inputs\")\n            prefix = provider_info.get(\"prefix\")\n            model_kwargs = {input_.name: getattr(self, f\"{prefix}{input_.name}\") for input_ in inputs}\n\n            return component.set(**model_kwargs)\n        return component\n\n    def delete_fields(self, build_config: dotdict, fields: dict | list[str]) -> None:\n        \"\"\"Delete specified fields from build_config.\"\"\"\n        for field in fields:\n            build_config.pop(field, None)\n\n    def update_input_types(self, build_config: dotdict) -> dotdict:\n        \"\"\"Update input types for all fields in build_config.\"\"\"\n        for key, value in build_config.items():\n            if isinstance(value, dict):\n                if value.get(\"input_types\") is None:\n                    build_config[key][\"input_types\"] = []\n            elif hasattr(value, \"input_types\") and value.input_types is None:\n                value.input_types = []\n        return build_config\n\n    async def update_build_config(\n        self, build_config: dotdict, field_value: str, field_name: str | None = None\n    ) -> dotdict:\n        # Iterate over all providers in the MODEL_PROVIDERS_DICT\n        # Existing logic for updating build_config\n        if field_name in (\"agent_llm\",):\n            build_config[\"agent_llm\"][\"value\"] = field_value\n            provider_info = MODEL_PROVIDERS_DICT.get(field_value)\n            if provider_info:\n                component_class = provider_info.get(\"component_class\")\n                if component_class and hasattr(component_class, \"update_build_config\"):\n                    # Call the component class's update_build_config method\n                    build_config = await update_component_build_config(\n                        component_class, build_config, field_value, \"model_name\"\n                    )\n\n            provider_configs: dict[str, tuple[dict, list[dict]]] = {\n                provider: (\n                    MODEL_PROVIDERS_DICT[provider][\"fields\"],\n                    [\n                        MODEL_PROVIDERS_DICT[other_provider][\"fields\"]\n                        for other_provider in MODEL_PROVIDERS_DICT\n                        if other_provider != provider\n                    ],\n                )\n                for provider in MODEL_PROVIDERS_DICT\n            }\n            if field_value in provider_configs:\n                fields_to_add, fields_to_delete = provider_configs[field_value]\n\n                # Delete fields from other providers\n                for fields in fields_to_delete:\n                    self.delete_fields(build_config, fields)\n\n                # Add provider-specific fields\n                if field_value == \"OpenAI\" and not any(field in build_config for field in fields_to_add):\n                    build_config.update(fields_to_add)\n                else:\n                    build_config.update(fields_to_add)\n                # Reset input types for agent_llm\n                build_config[\"agent_llm\"][\"input_types\"] = []\n            elif field_value == \"Custom\":\n                # Delete all provider fields\n                self.delete_fields(build_config, ALL_PROVIDER_FIELDS)\n                # Update with custom component\n                custom_component = DropdownInput(\n                    name=\"agent_llm\",\n                    display_name=\"Language Model\",\n                    options=[*sorted(MODEL_PROVIDERS_DICT.keys()), \"Custom\"],\n                    value=\"Custom\",\n                    real_time_refresh=True,\n                    input_types=[\"LanguageModel\"],\n                )\n                build_config.update({\"agent_llm\": custom_component.to_dict()})\n            # Update input types for all fields\n            build_config = self.update_input_types(build_config)\n\n            # Validate required keys\n            default_keys = [\n                \"code\",\n                \"_type\",\n                \"agent_llm\",\n                \"tools\",\n                \"input_value\",\n                \"add_current_date_tool\",\n                \"system_prompt\",\n                \"agent_description\",\n                \"max_iterations\",\n                \"handle_parsing_errors\",\n                \"verbose\",\n            ]\n            missing_keys = [key for key in default_keys if key not in build_config]\n            if missing_keys:\n                msg = f\"Missing required keys in build_config: {missing_keys}\"\n                raise ValueError(msg)\n        if (\n            isinstance(self.agent_llm, str)\n            and self.agent_llm in MODEL_PROVIDERS_DICT\n            and field_name in MODEL_DYNAMIC_UPDATE_FIELDS\n        ):\n            provider_info = MODEL_PROVIDERS_DICT.get(self.agent_llm)\n            if provider_info:\n                component_class = provider_info.get(\"component_class\")\n                component_class = self.set_component_params(component_class)\n                prefix = provider_info.get(\"prefix\")\n                if component_class and hasattr(component_class, \"update_build_config\"):\n                    # Call each component class's update_build_config method\n                    # remove the prefix from the field_name\n                    if isinstance(field_name, str) and isinstance(prefix, str):\n                        field_name = field_name.replace(prefix, \"\")\n                    build_config = await update_component_build_config(\n                        component_class, build_config, field_value, \"model_name\"\n                    )\n        return dotdict({k: v.to_dict() if hasattr(v, \"to_dict\") else v for k, v in build_config.items()})\n\n    async def to_toolkit(self) -> list[Tool]:\n        component_toolkit = _get_component_toolkit()\n        tools_names = self._build_tools_names()\n        agent_description = self.get_tool_description()\n        # TODO: Agent Description Depreciated Feature to be removed\n        description = f\"{agent_description}{tools_names}\"\n        tools = component_toolkit(component=self).get_tools(\n            tool_name=self.get_tool_name(), tool_description=description, callbacks=self.get_langchain_callbacks()\n        )\n        if hasattr(self, \"tools_metadata\"):\n            tools = component_toolkit(component=self, metadata=self.tools_metadata).update_tools_metadata(tools=tools)\n        return tools\n",
+                "value": "from langchain_core.tools import StructuredTool\n\nfrom langflow.base.agents.agent import LCToolsAgentComponent\nfrom langflow.base.models.model_input_constants import (\n    ALL_PROVIDER_FIELDS,\n    MODEL_DYNAMIC_UPDATE_FIELDS,\n    MODEL_PROVIDERS_DICT,\n)\nfrom langflow.base.models.model_utils import get_model_name\nfrom langflow.components.helpers import CurrentDateComponent\nfrom langflow.components.helpers.memory import MemoryComponent\nfrom langflow.components.langchain_utilities.tool_calling import ToolCallingAgentComponent\nfrom langflow.custom.utils import update_component_build_config\nfrom langflow.io import BoolInput, DropdownInput, MultilineInput, Output\nfrom langflow.logging import logger\nfrom langflow.schema.dotdict import dotdict\nfrom langflow.schema.message import Message\n\n\ndef set_advanced_true(component_input):\n    component_input.advanced = True\n    return component_input\n\n\nclass AgentComponent(ToolCallingAgentComponent):\n    display_name: str = \"Comparison Agent\"\n    description: str = \"*Comparison Agent** to verify extracted data against official reference records\"\n    icon = \"bot\"\n    beta = False\n    name = \"Agent\"\n\n    memory_inputs = [set_advanced_true(component_input) for component_input in MemoryComponent().inputs]\n\n    inputs = [\n        DropdownInput(\n            name=\"agent_llm\",\n            display_name=\"Model Provider\",\n            info=\"The provider of the language model that the agent will use to generate responses.\",\n            options=[*sorted(MODEL_PROVIDERS_DICT.keys()), \"Custom\"],\n            value=\"OpenAI\",\n            real_time_refresh=True,\n            input_types=[],\n        ),\n        *MODEL_PROVIDERS_DICT[\"OpenAI\"][\"inputs\"],\n        MultilineInput(\n            name=\"system_prompt\",\n            display_name=\"Agent Instructions\",\n            info=\"System Prompt: Initial instructions and context provided to guide the agent's behavior.\",\n            value=\"You are a helpful assistant that can use tools to answer questions and perform tasks.\",\n            advanced=False,\n        ),\n        *LCToolsAgentComponent._base_inputs,\n        *memory_inputs,\n        BoolInput(\n            name=\"add_current_date_tool\",\n            display_name=\"Current Date\",\n            advanced=True,\n            info=\"If true, will add a tool to the agent that returns the current date.\",\n            value=True,\n        ),\n    ]\n    outputs = [Output(name=\"response\", display_name=\"Response\", method=\"message_response\")]\n\n    async def message_response(self) -> Message:\n        try:\n            self.model_name = \"gpt-4o-(US)\"\n            llm_model, display_name = self.get_llm()\n            if llm_model is None:\n                msg = \"No language model selected\"\n                raise ValueError(msg)\n            self.model_name = get_model_name(llm_model, display_name=display_name)\n        except Exception as e:\n            # Log the error for debugging purposes\n            logger.error(f\"Error retrieving language model: {e}\")\n            raise\n\n        try:\n            self.chat_history = await self.get_memory_data()\n        except Exception as e:\n            logger.error(f\"Error retrieving chat history: {e}\")\n            raise\n\n        if self.add_current_date_tool:\n            try:\n                if not isinstance(self.tools, list):  # type: ignore[has-type]\n                    self.tools = []\n                # Convert CurrentDateComponent to a StructuredTool\n                current_date_tool = (await CurrentDateComponent().to_toolkit()).pop(0)\n                # current_date_tool = CurrentDateComponent().to_toolkit()[0]\n                if isinstance(current_date_tool, StructuredTool):\n                    self.tools.append(current_date_tool)\n                else:\n                    msg = \"CurrentDateComponent must be converted to a StructuredTool\"\n                    raise TypeError(msg)\n            except Exception as e:\n                logger.error(f\"Error adding current date tool: {e}\")\n                raise\n\n        if not self.tools:\n            msg = \"Tools are required to run the agent.\"\n            logger.error(msg)\n            raise ValueError(msg)\n\n        try:\n            self.set(\n                llm=llm_model,\n                tools=self.tools,\n                chat_history=self.chat_history,\n                input_value=self.input_value,\n                system_prompt=self.system_prompt,\n            )\n            agent = self.create_agent_runnable()\n        except Exception as e:\n            logger.error(f\"Error setting up the agent: {e}\")\n            raise\n\n        return await self.run_agent(agent)\n\n    async def get_memory_data(self):\n        memory_kwargs = {\n            component_input.name: getattr(self, f\"{component_input.name}\") for component_input in self.memory_inputs\n        }\n        # filter out empty values\n        memory_kwargs = {k: v for k, v in memory_kwargs.items() if v}\n\n        return await MemoryComponent().set(**memory_kwargs).retrieve_messages()\n\n    def get_llm(self):\n        if isinstance(self.agent_llm, str):\n            try:\n                provider_info = MODEL_PROVIDERS_DICT.get(self.agent_llm)\n                if provider_info:\n                    component_class = provider_info.get(\"component_class\")\n                    display_name = component_class.display_name\n                    inputs = provider_info.get(\"inputs\")\n                    prefix = provider_info.get(\"prefix\", \"\")\n                    return (\n                        self._build_llm_model(component_class, inputs, prefix),\n                        display_name,\n                    )\n            except Exception as e:\n                msg = f\"Error building {self.agent_llm} language model\"\n                raise ValueError(msg) from e\n        return self.agent_llm, None\n\n    def _build_llm_model(self, component, inputs, prefix=\"\"):\n        model_kwargs = {input_.name: getattr(self, f\"{prefix}{input_.name}\") for input_ in inputs}\n        return component.set(**model_kwargs).build_model()\n\n    def set_component_params(self, component):\n        provider_info = MODEL_PROVIDERS_DICT.get(self.agent_llm)\n        if provider_info:\n            inputs = provider_info.get(\"inputs\")\n            prefix = provider_info.get(\"prefix\")\n            model_kwargs = {input_.name: getattr(self, f\"{prefix}{input_.name}\") for input_ in inputs}\n\n            return component.set(**model_kwargs)\n        return component\n\n    def delete_fields(self, build_config: dotdict, fields: dict | list[str]) -> None:\n        \"\"\"Delete specified fields from build_config.\"\"\"\n        for field in fields:\n            build_config.pop(field, None)\n\n    def update_input_types(self, build_config: dotdict) -> dotdict:\n        \"\"\"Update input types for all fields in build_config.\"\"\"\n        for key, value in build_config.items():\n            if isinstance(value, dict):\n                if value.get(\"input_types\") is None:\n                    build_config[key][\"input_types\"] = []\n            elif hasattr(value, \"input_types\") and value.input_types is None:\n                value.input_types = []\n        return build_config\n\n    async def update_build_config(\n        self, build_config: dotdict, field_value: str, field_name: str | None = None\n    ) -> dotdict:\n        # Iterate over all providers in the MODEL_PROVIDERS_DICT\n        # Existing logic for updating build_config\n        if field_name in (\"agent_llm\",):\n            build_config[\"agent_llm\"][\"value\"] = field_value\n            provider_info = MODEL_PROVIDERS_DICT.get(field_value)\n            if provider_info:\n                component_class = provider_info.get(\"component_class\")\n                if component_class and hasattr(component_class, \"update_build_config\"):\n                    # Call the component class's update_build_config method\n                    build_config = await update_component_build_config(\n                        component_class, build_config, field_value, \"model_name\"\n                    )\n\n            provider_configs: dict[str, tuple[dict, list[dict]]] = {\n                provider: (\n                    MODEL_PROVIDERS_DICT[provider][\"fields\"],\n                    [\n                        MODEL_PROVIDERS_DICT[other_provider][\"fields\"]\n                        for other_provider in MODEL_PROVIDERS_DICT\n                        if other_provider != provider\n                    ],\n                )\n                for provider in MODEL_PROVIDERS_DICT\n            }\n            if field_value in provider_configs:\n                fields_to_add, fields_to_delete = provider_configs[field_value]\n\n                # Delete fields from other providers\n                for fields in fields_to_delete:\n                    self.delete_fields(build_config, fields)\n\n                # Add provider-specific fields\n                if field_value == \"OpenAI\" and not any(field in build_config for field in fields_to_add):\n                    build_config.update(fields_to_add)\n                else:\n                    build_config.update(fields_to_add)\n                # Reset input types for agent_llm\n                build_config[\"agent_llm\"][\"input_types\"] = []\n            elif field_value == \"Custom\":\n                # Delete all provider fields\n                self.delete_fields(build_config, ALL_PROVIDER_FIELDS)\n                # Update with custom component\n                custom_component = DropdownInput(\n                    name=\"agent_llm\",\n                    display_name=\"Language Model\",\n                    options=[*sorted(MODEL_PROVIDERS_DICT.keys()), \"Custom\"],\n                    value=\"Custom\",\n                    real_time_refresh=True,\n                    input_types=[\"LanguageModel\"],\n                )\n                build_config.update({\"agent_llm\": custom_component.to_dict()})\n            # Update input types for all fields\n            build_config = self.update_input_types(build_config)\n\n            # Validate required keys\n            default_keys = [\n                \"code\",\n                \"_type\",\n                \"agent_llm\",\n                \"tools\",\n                \"input_value\",\n                \"add_current_date_tool\",\n                \"system_prompt\",\n                \"agent_description\",\n                \"max_iterations\",\n                \"handle_parsing_errors\",\n                \"verbose\",\n            ]\n            missing_keys = [key for key in default_keys if key not in build_config]\n            if missing_keys:\n                msg = f\"Missing required keys in build_config: {missing_keys}\"\n                raise ValueError(msg)\n        if (\n            isinstance(self.agent_llm, str)\n            and self.agent_llm in MODEL_PROVIDERS_DICT\n            and field_name in MODEL_DYNAMIC_UPDATE_FIELDS\n        ):\n            provider_info = MODEL_PROVIDERS_DICT.get(self.agent_llm)\n            if provider_info:\n                component_class = provider_info.get(\"component_class\")\n                component_class = self.set_component_params(component_class)\n                prefix = provider_info.get(\"prefix\")\n                if component_class and hasattr(component_class, \"update_build_config\"):\n                    # Call each component class's update_build_config method\n                    # remove the prefix from the field_name\n                    if isinstance(field_name, str) and isinstance(prefix, str):\n                        field_name = field_name.replace(prefix, \"\")\n                    build_config = await update_component_build_config(\n                        component_class, build_config, field_value, \"model_name\"\n                    )\n        return dotdict({k: v.to_dict() if hasattr(v, \"to_dict\") else v for k, v in build_config.items()})\n",
                 "fileTypes": [],
                 "file_path": "",
                 "password": false,
@@ -8036,7 +8041,8 @@
                 "dynamic": true,
                 "info": "",
                 "load_from_db": false,
-                "title_case": false
+                "title_case": false,
+                "input_types": []
               },
               "handle_parsing_errors": {
                 "tool_mode": false,
@@ -8054,7 +8060,8 @@
                 "info": "Should the Agent fix errors when reading user input for better processing?",
                 "title_case": false,
                 "type": "bool",
-                "_input_type": "BoolInput"
+                "_input_type": "BoolInput",
+                "input_types": []
               },
               "input_value": {
                 "tool_mode": true,
@@ -8079,24 +8086,6 @@
                 "type": "str",
                 "_input_type": "MessageTextInput"
               },
-              "json_mode": {
-                "tool_mode": false,
-                "trace_as_metadata": true,
-                "list": false,
-                "list_add_label": "Add More",
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "json_mode",
-                "value": false,
-                "display_name": "JSON Mode",
-                "advanced": true,
-                "dynamic": false,
-                "info": "If True, it will output JSON regardless of passing a schema.",
-                "title_case": false,
-                "type": "bool",
-                "_input_type": "BoolInput"
-              },
               "max_iterations": {
                 "tool_mode": false,
                 "trace_as_metadata": true,
@@ -8113,78 +8102,8 @@
                 "info": "The maximum number of attempts the agent can make to complete its task before it stops.",
                 "title_case": false,
                 "type": "int",
-                "_input_type": "IntInput"
-              },
-              "max_tokens": {
-                "tool_mode": false,
-                "trace_as_metadata": true,
-                "range_spec": {
-                  "step_type": "float",
-                  "min": 0,
-                  "max": 128000,
-                  "step": 0.1
-                },
-                "list": false,
-                "list_add_label": "Add More",
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "max_tokens",
-                "value": "",
-                "display_name": "Max Tokens",
-                "advanced": true,
-                "dynamic": false,
-                "info": "The maximum number of tokens to generate. Set to 0 for unlimited tokens.",
-                "title_case": false,
-                "type": "int",
-                "_input_type": "IntInput"
-              },
-              "model_kwargs": {
-                "tool_mode": false,
-                "trace_as_input": true,
-                "list": false,
-                "list_add_label": "Add More",
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "model_kwargs",
-                "value": {},
-                "display_name": "Model Kwargs",
-                "advanced": true,
-                "dynamic": false,
-                "info": "Additional keyword arguments to pass to the model.",
-                "title_case": false,
-                "type": "dict",
-                "_input_type": "DictInput"
-              },
-              "model_name": {
-                "tool_mode": false,
-                "trace_as_metadata": true,
-                "options": [
-                  "gpt-4o-mini",
-                  "gpt-4o",
-                  "gpt-4-turbo",
-                  "gpt-4-turbo-preview",
-                  "gpt-4",
-                  "gpt-3.5-turbo",
-                  "gpt-3.5-turbo-0125"
-                ],
-                "options_metadata": [],
-                "combobox": true,
-                "dialog_inputs": {},
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "model_name",
-                "value": "gpt-4o-mini",
-                "display_name": "Model Name",
-                "advanced": false,
-                "dynamic": false,
-                "info": "To see the model names, first choose a provider. Then, enter your API key and click the refresh button next to the model name.",
-                "real_time_refresh": false,
-                "title_case": false,
-                "type": "str",
-                "_input_type": "DropdownInput"
+                "_input_type": "IntInput",
+                "input_types": []
               },
               "n_messages": {
                 "tool_mode": false,
@@ -8202,26 +8121,8 @@
                 "info": "Number of messages to retrieve.",
                 "title_case": false,
                 "type": "int",
-                "_input_type": "IntInput"
-              },
-              "openai_api_base": {
-                "tool_mode": false,
-                "trace_as_metadata": true,
-                "load_from_db": false,
-                "list": false,
-                "list_add_label": "Add More",
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "openai_api_base",
-                "value": "https://llmproxy.go-yubi.in/",
-                "display_name": "OpenAI API Base",
-                "advanced": true,
-                "dynamic": false,
-                "info": "The base URL of the OpenAI API. Defaults to https://api.openai.com/v1. You can change this to use other APIs like JinaChat, LocalAI and Prem.",
-                "title_case": false,
-                "type": "str",
-                "_input_type": "StrInput"
+                "_input_type": "IntInput",
+                "input_types": []
               },
               "order": {
                 "tool_mode": true,
@@ -8244,25 +8145,8 @@
                 "info": "Order of the messages.",
                 "title_case": false,
                 "type": "str",
-                "_input_type": "DropdownInput"
-              },
-              "seed": {
-                "tool_mode": false,
-                "trace_as_metadata": true,
-                "list": false,
-                "list_add_label": "Add More",
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "seed",
-                "value": 1,
-                "display_name": "Seed",
-                "advanced": true,
-                "dynamic": false,
-                "info": "The seed controls the reproducibility of the job.",
-                "title_case": false,
-                "type": "int",
-                "_input_type": "IntInput"
+                "_input_type": "DropdownInput",
+                "input_types": []
               },
               "sender": {
                 "tool_mode": false,
@@ -8286,7 +8170,8 @@
                 "info": "Filter by sender type.",
                 "title_case": false,
                 "type": "str",
-                "_input_type": "DropdownInput"
+                "_input_type": "DropdownInput",
+                "input_types": []
               },
               "sender_name": {
                 "tool_mode": false,
@@ -8346,7 +8231,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "system_prompt",
-                "value": "respond that you are not yet trained to compare data",
+                "value": "# Comparison Agent - Loan Document Verification\n\n## Role Description\nYou are a Data Comparison Agent in the Loan Processing Division of a Finance Company. Your primary responsibility is to:\n1. Compare extracted document data against loan application data\n2. Generate match scores for individual data points\n3. Calculate an overall confidence score\n4. Identify potential discrepancies\n\n## Input Parameters\n- `extracted_data`: JSON object containing data extracted from document images\n- `loan_id`: Unique identifier for the loan application\n- `document_category`: Document type (Accepted values: \"Aadhar\", \"VoterID\", \"PAN Card\")\n\n## Process Flow\n\n### 1. Data Validation\n- Validate that all required input parameters are present\n- Verify `document_category` is one of the accepted values\n- Ensure `extracted_data` is in valid JSON format\n\n### 2. Loan Application Data Retrieval\n- Construct API endpoint URL:\n  ```\n  https://colend-qa-api.go-yubi.in/colending/internal/loan_ai_agents/{loan_id}/document_attachment_links/{document_category}\n  ```\n- Make API request using the API Request tool\n- Store response as `loan_application_data`\n- Handle potential API errors gracefully\n\n### 3. Data Comparison Logic\n\n#### Text Field Comparison\n- Apply the following sequence of comparisons:\n  1. Exact Match (after normalization): 100 points\n  2. Phonetic Match (using Soundex): 90 points\n  3. Levenshtein Distance Based:\n     - Distance ≤ 1: 95 points\n     - Distance = 2: 85 points\n     - Distance = 3: 75 points\n     - Distance > 3: Calculate as: max(0, (100 - (distance * 15)))\n\n#### Name Field Comparison\n- Split names into parts (first, middle, last)\n- Compare each part separately\n- Calculate average of part scores\n- Special handling:\n  - Initials vs. Full names (e.g., \"R.\" vs \"Raj\"): 90 points if matching\n  - Name order variations: Consider highest scoring combination\n  - Missing middle names: Don't penalize if missing in either source\n\n#### Address Field Comparison\n- Break down into components with weights:\n  - PIN code (30%): Exact match required\n  - House number (25%): Exact match required\n  - Street name (20%): Levenshtein distance based\n  - City (15%): Exact match after normalization\n  - State (10%): Exact match after normalization\n\n#### Date Field Comparison\n- Convert all dates to standard format (YYYY-MM-DD)\n- Compare:\n  - Exact match: 100 points\n  - Year and month match only: 90 points\n  - Year match only: 70 points\n  - No match: 0 points\n\n#### Number Field Comparison\n- For IDs and unique numbers:\n  - Exact match required: 100 or 0 points\n- For other numeric values:\n  - Exact match: 100 points\n  - Within 1% difference: 95 points\n  - Within 5% difference: 85 points\n  - Within 10% difference: 70 points\n  - Beyond 10%: 0 points\n\n### 4. Field Importance Weights\n\n#### Critical Fields (Weight: 2.0)\n- Document number (Aadhar/PAN/Voter ID)\n- Name\n- Date of Birth\n\n#### High Priority Fields (Weight: 1.5)\n- Gender\n- Address\n- Father's/Spouse's Name\n\n#### Standard Fields (Weight: 1.0)\n- All other fields\n\n### 5. Confidence Score Calculation\n\nThe final confidence score is calculated using this formula:\n\n```python\nconfidence_score = (\n    (sum(field_score * field_weight) / sum(field_weights)) *\n    (1 - penalty_factor)\n)\n```\n\nWhere:\n- field_score: Individual field match score (0-100)\n- field_weight: Importance weight of the field\n- penalty_factor: Calculated based on critical field mismatches\n\n#### Penalty Factor Calculation\n- Start with penalty_factor = 0\n- For each critical field mismatch:\n  - If score < 70: Add 0.3 to penalty_factor\n  - If score < 85: Add 0.15 to penalty_factor\n- For each high priority field mismatch:\n  - If score < 70: Add 0.15 to penalty_factor\n  - If score < 85: Add 0.07 to penalty_factor\n- Cap penalty_factor at 0.9\n\n### 6. Document-Specific Thresholds\n\n#### Aadhar Card\n- Minimum acceptable confidence: 85\n- Critical field minimum score: 90\n- Required fields: Number, Name, DOB, Gender, Address\n\n#### PAN Card\n- Minimum acceptable confidence: 80\n- Critical field minimum score: 85\n- Required fields: Number, Name, DOB, Father's Name\n\n#### Voter ID\n- Minimum acceptable confidence: 75\n- Critical field minimum score: 80\n- Required fields: Number, Name, Father's/Husband's Name, Address\n\n### 7. Special Cases\n\n#### Missing Data Handling\n- If field is optional: No penalty\n- If field is required: Score as 0 and apply weight\n- If field is critical: Apply maximum penalty\n\n#### Multiple Value Matching\n- For fields with multiple valid values:\n  - Take highest match score among all valid values\n  - Apply 5-point penalty for using alternate value\n\n#### Data Quality Adjustments\n- OCR confidence < 90%: Apply 0.95 multiplier to field score\n- OCR confidence < 80%: Apply 0.90 multiplier to field score\n- Image quality issues: Flag for manual review if confidence < threshold\n\n### 8. Response Format\nReturn JSON response with:\n```json\n{\n    \"document_category\": string,\n    \"field_scores\": {\n        \"field_name\": {\n            \"extracted_value\": any,\n            \"application_value\": any,\n            \"match_score\": number\n        }\n    },\n    \"confidence_score\": number,\n    \"comparison_timestamp\": string,\n    \"status\": string,\n    \"warnings\": array\n}\n```\n\n## Error Handling\n- Handle missing or invalid input parameters\n- Manage API connection failures\n- Process incomplete or malformed data\n- Log validation errors and warnings\n\n## Available Tools\n- API Request Tool: For fetching loan application data\n\n## Performance Requirements\n- Response time: < 5 seconds\n- Match score precision: 2 decimal places\n- Confidence score range: 0-100\n\n## Notes\n- All comparisons are case-insensitive\n- Special characters and extra spaces should be normalized before comparison\n- Document-specific validation rules apply based on `document_category`",
                 "display_name": "Agent Instructions",
                 "advanced": false,
                 "input_types": [
@@ -8357,34 +8242,6 @@
                 "title_case": false,
                 "type": "str",
                 "_input_type": "MultilineInput"
-              },
-              "temperature": {
-                "tool_mode": false,
-                "min_label": "",
-                "max_label": "",
-                "min_label_icon": "",
-                "max_label_icon": "",
-                "slider_buttons": false,
-                "slider_buttons_options": [],
-                "slider_input": false,
-                "range_spec": {
-                  "step_type": "float",
-                  "min": 0,
-                  "max": 2,
-                  "step": 0.01
-                },
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "temperature",
-                "value": 0.1,
-                "display_name": "Temperature",
-                "advanced": true,
-                "dynamic": false,
-                "info": "",
-                "title_case": false,
-                "type": "slider",
-                "_input_type": "SliderInput"
               },
               "template": {
                 "tool_mode": false,
@@ -8426,7 +8283,8 @@
                 "info": "",
                 "title_case": false,
                 "type": "bool",
-                "_input_type": "BoolInput"
+                "_input_type": "BoolInput",
+                "input_types": []
               },
               "tools_metadata": {
                 "tool_mode": false,
@@ -8497,10 +8355,10 @@
                 "name": "tools_metadata",
                 "value": [
                   {
-                    "name": "ComparisonAgent",
-                    "description": "A helpful assistant with access to the following tools:",
+                    "name": "ComparisonAgent-message_response",
+                    "description": "message_response() - **Comparison Agent** to verify extracted data against Loan Application Data extracted through API Request",
                     "tags": [
-                      "ComparisonAgent"
+                      "Agent-message_response"
                     ]
                   }
                 ],
@@ -8512,14 +8370,181 @@
                 "title_case": false,
                 "type": "table",
                 "_input_type": "TableInput"
+              },
+              "max_tokens": {
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "max_tokens",
+                "value": 4096,
+                "display_name": "Max Tokens",
+                "advanced": true,
+                "dynamic": false,
+                "info": "The maximum number of tokens to generate. Set to 0 for unlimited tokens.",
+                "title_case": false,
+                "type": "int",
+                "_input_type": "IntInput",
+                "input_types": []
+              },
+              "model_name": {
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "options": [
+                  "claude-3-5-sonnet-latest",
+                  "claude-3-5-haiku-latest",
+                  "claude-3-opus-latest",
+                  "claude-3-5-sonnet-20240620",
+                  "claude-3-5-sonnet-20241022",
+                  "claude-3-5-haiku-20241022",
+                  "claude-3-sonnet-20240229",
+                  "claude-3-haiku-20240307"
+                ],
+                "options_metadata": [],
+                "combobox": true,
+                "dialog_inputs": {},
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "model_name",
+                "value": "claude-3-5-sonnet-latest",
+                "display_name": "Model Name",
+                "advanced": false,
+                "dynamic": false,
+                "info": "To see the model names, first choose a provider. Then, enter your API key and click the refresh button next to the model name.",
+                "real_time_refresh": false,
+                "refresh_button": true,
+                "title_case": false,
+                "type": "str",
+                "_input_type": "DropdownInput",
+                "input_types": []
+              },
+              "api_key": {
+                "load_from_db": true,
+                "required": true,
+                "placeholder": "",
+                "show": true,
+                "name": "api_key",
+                "value": "YubiGPT",
+                "display_name": "Anthropic API Key",
+                "advanced": false,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "Your Anthropic API key.",
+                "real_time_refresh": true,
+                "title_case": false,
+                "password": true,
+                "type": "str",
+                "_input_type": "SecretStrInput"
+              },
+              "temperature": {
+                "tool_mode": false,
+                "min_label": "",
+                "max_label": "",
+                "min_label_icon": "",
+                "max_label_icon": "",
+                "slider_buttons": false,
+                "slider_buttons_options": [],
+                "slider_input": false,
+                "range_spec": {
+                  "step_type": "float",
+                  "min": 0,
+                  "max": 1,
+                  "step": 0.01
+                },
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "temperature",
+                "value": 0.1,
+                "display_name": "Temperature",
+                "advanced": true,
+                "dynamic": false,
+                "info": "Run inference with this temperature. Must by in the closed interval [0.0, 1.0].",
+                "title_case": false,
+                "type": "slider",
+                "_input_type": "SliderInput",
+                "input_types": []
+              },
+              "base_url": {
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "base_url",
+                "value": "https://llmproxy.go-yubi.in/",
+                "display_name": "Anthropic API URL",
+                "advanced": true,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "Endpoint of the Anthropic API. Defaults to 'https://api.anthropic.com' if not specified.",
+                "real_time_refresh": true,
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              },
+              "tool_model_enabled": {
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "tool_model_enabled",
+                "value": false,
+                "display_name": "Enable Tool Models",
+                "advanced": true,
+                "dynamic": false,
+                "info": "Select if you want to use models that can work with tools. If yes, only those models will be shown.",
+                "real_time_refresh": true,
+                "title_case": false,
+                "type": "bool",
+                "_input_type": "BoolInput",
+                "input_types": []
+              },
+              "prefill": {
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "prefill",
+                "value": "",
+                "display_name": "Prefill",
+                "advanced": true,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "Prefill text to guide the model's response.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
               }
             },
-            "description": "Capable of comparing data.",
+            "description": "*Comparison Agent** to verify extracted data against Loan Application Data extracted through API Request",
             "icon": "bot",
             "base_classes": [
               "Message"
             ],
-            "display_name": "ComparisonAgent",
+            "display_name": "Comparison Agent",
             "documentation": "",
             "minimized": false,
             "custom_fields": {},
@@ -8575,31 +8600,31 @@
             "edited": true,
             "metadata": {},
             "tool_mode": true,
-            "lf_version": "1.1.4"
+            "lf_version": "1.1.4.post1"
           },
           "showNode": true,
-          "type": "ComparisonAgent",
-          "id": "DocAgent-tHU7g"
+          "type": "Agent",
+          "id": "Agent-EDI1N"
         },
         "selected": true,
         "measured": {
           "width": 320,
-          "height": 689
+          "height": 729
         },
         "dragging": false
       }
     ],
     "edges": [
       {
-        "source": "OpenAIModel-C9Eyu",
-        "target": "StructuredOutput-q3Fr0",
-        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-C9Eyuœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}",
-        "targetHandle": "{œfieldNameœ:œllmœ,œidœ:œStructuredOutput-q3Fr0œ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
-        "id": "reactflow__edge-OpenAIModel-C9Eyu{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-C9Eyuœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}-StructuredOutput-q3Fr0{œfieldNameœ:œllmœ,œidœ:œStructuredOutput-q3Fr0œ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
+        "source": "OpenAIModel-KIf6m",
+        "target": "StructuredOutput-OPbVL",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-KIf6mœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}",
+        "targetHandle": "{œfieldNameœ:œllmœ,œidœ:œStructuredOutput-OPbVLœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-OpenAIModel-KIf6m{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-KIf6mœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}-StructuredOutput-OPbVL{œfieldNameœ:œllmœ,œidœ:œStructuredOutput-OPbVLœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
         "data": {
           "sourceHandle": {
             "dataType": "OpenAIModel",
-            "id": "OpenAIModel-C9Eyu",
+            "id": "OpenAIModel-KIf6m",
             "name": "model_output",
             "output_types": [
               "LanguageModel"
@@ -8607,7 +8632,7 @@
           },
           "targetHandle": {
             "fieldName": "llm",
-            "id": "StructuredOutput-q3Fr0",
+            "id": "StructuredOutput-OPbVL",
             "inputTypes": [
               "LanguageModel"
             ],
@@ -8619,15 +8644,15 @@
         "className": ""
       },
       {
-        "source": "OpenAIModel-CYC6V",
-        "target": "ChatOutput-g7deR",
-        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-CYC6Vœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-g7deRœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "id": "reactflow__edge-OpenAIModel-CYC6V{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-CYC6Vœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-g7deR{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-g7deRœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "OpenAIModel-LkbzH",
+        "target": "ChatOutput-S03jx",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-LkbzHœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-S03jxœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-OpenAIModel-LkbzH{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-LkbzHœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-S03jx{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-S03jxœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "data": {
           "sourceHandle": {
             "dataType": "OpenAIModel",
-            "id": "OpenAIModel-CYC6V",
+            "id": "OpenAIModel-LkbzH",
             "name": "text_output",
             "output_types": [
               "Message"
@@ -8635,7 +8660,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "ChatOutput-g7deR",
+            "id": "ChatOutput-S03jx",
             "inputTypes": [
               "Message"
             ],
@@ -8647,15 +8672,15 @@
         "className": ""
       },
       {
-        "source": "StructuredOutput-q3Fr0",
-        "target": "CategoryRouter-vn8bM",
-        "sourceHandle": "{œdataTypeœ:œStructuredOutputœ,œidœ:œStructuredOutput-q3Fr0œ,œnameœ:œstructured_outputœ,œoutput_typesœ:[œDataœ]}",
-        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œCategoryRouter-vn8bMœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
-        "id": "reactflow__edge-StructuredOutput-q3Fr0{œdataTypeœ:œStructuredOutputœ,œidœ:œStructuredOutput-q3Fr0œ,œnameœ:œstructured_outputœ,œoutput_typesœ:[œDataœ]}-CategoryRouter-vn8bM{œfieldNameœ:œdataœ,œidœ:œCategoryRouter-vn8bMœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "source": "StructuredOutput-OPbVL",
+        "target": "CategoryRouter-GM62A",
+        "sourceHandle": "{œdataTypeœ:œStructuredOutputœ,œidœ:œStructuredOutput-OPbVLœ,œnameœ:œstructured_outputœ,œoutput_typesœ:[œDataœ]}",
+        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œCategoryRouter-GM62Aœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-StructuredOutput-OPbVL{œdataTypeœ:œStructuredOutputœ,œidœ:œStructuredOutput-OPbVLœ,œnameœ:œstructured_outputœ,œoutput_typesœ:[œDataœ]}-CategoryRouter-GM62A{œfieldNameœ:œdataœ,œidœ:œCategoryRouter-GM62Aœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "data": {
           "sourceHandle": {
             "dataType": "StructuredOutput",
-            "id": "StructuredOutput-q3Fr0",
+            "id": "StructuredOutput-OPbVL",
             "name": "structured_output",
             "output_types": [
               "Data"
@@ -8663,7 +8688,7 @@
           },
           "targetHandle": {
             "fieldName": "data",
-            "id": "CategoryRouter-vn8bM",
+            "id": "CategoryRouter-GM62A",
             "inputTypes": [
               "Data"
             ],
@@ -8675,15 +8700,15 @@
         "className": ""
       },
       {
-        "source": "Agent-jo7w1",
-        "target": "StructuredOutput-q3Fr0",
-        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-jo7w1œ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œStructuredOutput-q3Fr0œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "id": "reactflow__edge-Agent-jo7w1{œdataTypeœ:œAgentœ,œidœ:œAgent-jo7w1œ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-StructuredOutput-q3Fr0{œfieldNameœ:œinput_valueœ,œidœ:œStructuredOutput-q3Fr0œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "Agent-yTNHb",
+        "target": "StructuredOutput-OPbVL",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-yTNHbœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œStructuredOutput-OPbVLœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-Agent-yTNHb{œdataTypeœ:œAgentœ,œidœ:œAgent-yTNHbœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-StructuredOutput-OPbVL{œfieldNameœ:œinput_valueœ,œidœ:œStructuredOutput-OPbVLœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "data": {
           "sourceHandle": {
             "dataType": "Agent",
-            "id": "Agent-jo7w1",
+            "id": "Agent-yTNHb",
             "name": "response",
             "output_types": [
               "Message"
@@ -8691,7 +8716,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "StructuredOutput-q3Fr0",
+            "id": "StructuredOutput-OPbVL",
             "inputTypes": [
               "Message"
             ],
@@ -8703,15 +8728,15 @@
         "className": ""
       },
       {
-        "source": "CategoryRouter-vn8bM",
-        "target": "Agent-jTSED",
-        "sourceHandle": "{œdataTypeœ:œCategoryRouterœ,œidœ:œCategoryRouter-vn8bMœ,œnameœ:œocrœ,œoutput_typesœ:[œMessageœ]}",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-jTSEDœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "id": "reactflow__edge-CategoryRouter-vn8bM{œdataTypeœ:œCategoryRouterœ,œidœ:œCategoryRouter-vn8bMœ,œnameœ:œocrœ,œoutput_typesœ:[œMessageœ]}-Agent-jTSED{œfieldNameœ:œinput_valueœ,œidœ:œAgent-jTSEDœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "CategoryRouter-GM62A",
+        "target": "Agent-nIV1Z",
+        "sourceHandle": "{œdataTypeœ:œCategoryRouterœ,œidœ:œCategoryRouter-GM62Aœ,œnameœ:œocrœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-nIV1Zœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-CategoryRouter-GM62A{œdataTypeœ:œCategoryRouterœ,œidœ:œCategoryRouter-GM62Aœ,œnameœ:œocrœ,œoutput_typesœ:[œMessageœ]}-Agent-nIV1Z{œfieldNameœ:œinput_valueœ,œidœ:œAgent-nIV1Zœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "data": {
           "sourceHandle": {
             "dataType": "CategoryRouter",
-            "id": "CategoryRouter-vn8bM",
+            "id": "CategoryRouter-GM62A",
             "name": "ocr",
             "output_types": [
               "Message"
@@ -8719,7 +8744,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "Agent-jTSED",
+            "id": "Agent-nIV1Z",
             "inputTypes": [
               "Message"
             ],
@@ -8731,15 +8756,15 @@
         "className": ""
       },
       {
-        "source": "CategoryRouter-vn8bM",
-        "target": "Agent-vXE9o",
-        "sourceHandle": "{œdataTypeœ:œCategoryRouterœ,œidœ:œCategoryRouter-vn8bMœ,œnameœ:œfact_checkœ,œoutput_typesœ:[œMessageœ]}",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-vXE9oœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "id": "reactflow__edge-CategoryRouter-vn8bM{œdataTypeœ:œCategoryRouterœ,œidœ:œCategoryRouter-vn8bMœ,œnameœ:œfact_checkœ,œoutput_typesœ:[œMessageœ]}-Agent-vXE9o{œfieldNameœ:œinput_valueœ,œidœ:œAgent-vXE9oœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "CategoryRouter-GM62A",
+        "target": "Agent-XnReG",
+        "sourceHandle": "{œdataTypeœ:œCategoryRouterœ,œidœ:œCategoryRouter-GM62Aœ,œnameœ:œfact_checkœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-XnReGœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-CategoryRouter-GM62A{œdataTypeœ:œCategoryRouterœ,œidœ:œCategoryRouter-GM62Aœ,œnameœ:œfact_checkœ,œoutput_typesœ:[œMessageœ]}-Agent-XnReG{œfieldNameœ:œinput_valueœ,œidœ:œAgent-XnReGœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "data": {
           "sourceHandle": {
             "dataType": "CategoryRouter",
-            "id": "CategoryRouter-vn8bM",
+            "id": "CategoryRouter-GM62A",
             "name": "fact_check",
             "output_types": [
               "Message"
@@ -8747,7 +8772,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "Agent-vXE9o",
+            "id": "Agent-XnReG",
             "inputTypes": [
               "Message"
             ],
@@ -8759,15 +8784,15 @@
         "className": ""
       },
       {
-        "source": "Agent-vXE9o",
-        "target": "ChatOutput-X3bTn",
-        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-vXE9oœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-X3bTnœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "id": "reactflow__edge-Agent-vXE9o{œdataTypeœ:œAgentœ,œidœ:œAgent-vXE9oœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-X3bTn{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-X3bTnœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "Agent-XnReG",
+        "target": "ChatOutput-U9uK9",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-XnReGœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-U9uK9œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-Agent-XnReG{œdataTypeœ:œAgentœ,œidœ:œAgent-XnReGœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-U9uK9{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-U9uK9œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "data": {
           "sourceHandle": {
             "dataType": "Agent",
-            "id": "Agent-vXE9o",
+            "id": "Agent-XnReG",
             "name": "response",
             "output_types": [
               "Message"
@@ -8775,7 +8800,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "ChatOutput-X3bTn",
+            "id": "ChatOutput-U9uK9",
             "inputTypes": [
               "Message"
             ],
@@ -8787,15 +8812,15 @@
         "className": ""
       },
       {
-        "source": "OpenAIModel-NiA5A",
-        "target": "StructuredOutput-dqGgt",
-        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-NiA5Aœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}",
-        "targetHandle": "{œfieldNameœ:œllmœ,œidœ:œStructuredOutput-dqGgtœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
-        "id": "reactflow__edge-OpenAIModel-NiA5A{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-NiA5Aœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}-StructuredOutput-dqGgt{œfieldNameœ:œllmœ,œidœ:œStructuredOutput-dqGgtœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
+        "source": "OpenAIModel-YHUKu",
+        "target": "StructuredOutput-hgMMn",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-YHUKuœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}",
+        "targetHandle": "{œfieldNameœ:œllmœ,œidœ:œStructuredOutput-hgMMnœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-OpenAIModel-YHUKu{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-YHUKuœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}-StructuredOutput-hgMMn{œfieldNameœ:œllmœ,œidœ:œStructuredOutput-hgMMnœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
         "data": {
           "sourceHandle": {
             "dataType": "OpenAIModel",
-            "id": "OpenAIModel-NiA5A",
+            "id": "OpenAIModel-YHUKu",
             "name": "model_output",
             "output_types": [
               "LanguageModel"
@@ -8803,7 +8828,7 @@
           },
           "targetHandle": {
             "fieldName": "llm",
-            "id": "StructuredOutput-dqGgt",
+            "id": "StructuredOutput-hgMMn",
             "inputTypes": [
               "LanguageModel"
             ],
@@ -8815,15 +8840,15 @@
         "className": ""
       },
       {
-        "source": "StructuredOutput-dqGgt",
-        "target": "DocumentRouter-jt1Dl",
-        "sourceHandle": "{œdataTypeœ:œStructuredOutputœ,œidœ:œStructuredOutput-dqGgtœ,œnameœ:œstructured_outputœ,œoutput_typesœ:[œDataœ]}",
-        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œDocumentRouter-jt1Dlœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
-        "id": "reactflow__edge-StructuredOutput-dqGgt{œdataTypeœ:œStructuredOutputœ,œidœ:œStructuredOutput-dqGgtœ,œnameœ:œstructured_outputœ,œoutput_typesœ:[œDataœ]}-DocumentRouter-jt1Dl{œfieldNameœ:œdataœ,œidœ:œDocumentRouter-jt1Dlœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "source": "StructuredOutput-hgMMn",
+        "target": "DocumentRouter-JHvts",
+        "sourceHandle": "{œdataTypeœ:œStructuredOutputœ,œidœ:œStructuredOutput-hgMMnœ,œnameœ:œstructured_outputœ,œoutput_typesœ:[œDataœ]}",
+        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œDocumentRouter-JHvtsœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-StructuredOutput-hgMMn{œdataTypeœ:œStructuredOutputœ,œidœ:œStructuredOutput-hgMMnœ,œnameœ:œstructured_outputœ,œoutput_typesœ:[œDataœ]}-DocumentRouter-JHvts{œfieldNameœ:œdataœ,œidœ:œDocumentRouter-JHvtsœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "data": {
           "sourceHandle": {
             "dataType": "StructuredOutput",
-            "id": "StructuredOutput-dqGgt",
+            "id": "StructuredOutput-hgMMn",
             "name": "structured_output",
             "output_types": [
               "Data"
@@ -8831,7 +8856,7 @@
           },
           "targetHandle": {
             "fieldName": "data",
-            "id": "DocumentRouter-jt1Dl",
+            "id": "DocumentRouter-JHvts",
             "inputTypes": [
               "Data"
             ],
@@ -8843,15 +8868,15 @@
         "className": ""
       },
       {
-        "source": "DocumentRouter-jt1Dl",
-        "target": "ChatOutput-ywVSm",
-        "sourceHandle": "{œdataTypeœ:œDocumentRouterœ,œidœ:œDocumentRouter-jt1Dlœ,œnameœ:œlegalœ,œoutput_typesœ:[œMessageœ]}",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-ywVSmœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "id": "reactflow__edge-DocumentRouter-jt1Dl{œdataTypeœ:œDocumentRouterœ,œidœ:œDocumentRouter-jt1Dlœ,œnameœ:œlegalœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-ywVSm{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-ywVSmœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "DocumentRouter-JHvts",
+        "target": "ChatOutput-HccbL",
+        "sourceHandle": "{œdataTypeœ:œDocumentRouterœ,œidœ:œDocumentRouter-JHvtsœ,œnameœ:œlegalœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-HccbLœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-DocumentRouter-JHvts{œdataTypeœ:œDocumentRouterœ,œidœ:œDocumentRouter-JHvtsœ,œnameœ:œlegalœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-HccbL{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-HccbLœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "data": {
           "sourceHandle": {
             "dataType": "DocumentRouter",
-            "id": "DocumentRouter-jt1Dl",
+            "id": "DocumentRouter-JHvts",
             "name": "legal",
             "output_types": [
               "Message"
@@ -8859,7 +8884,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "ChatOutput-ywVSm",
+            "id": "ChatOutput-HccbL",
             "inputTypes": [
               "Message"
             ],
@@ -8871,15 +8896,15 @@
         "className": ""
       },
       {
-        "source": "DocumentRouter-jt1Dl",
-        "target": "ChatOutput-g0oXS",
-        "sourceHandle": "{œdataTypeœ:œDocumentRouterœ,œidœ:œDocumentRouter-jt1Dlœ,œnameœ:œfinanceœ,œoutput_typesœ:[œMessageœ]}",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-g0oXSœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "id": "reactflow__edge-DocumentRouter-jt1Dl{œdataTypeœ:œDocumentRouterœ,œidœ:œDocumentRouter-jt1Dlœ,œnameœ:œfinanceœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-g0oXS{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-g0oXSœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "DocumentRouter-JHvts",
+        "target": "ChatOutput-PePzA",
+        "sourceHandle": "{œdataTypeœ:œDocumentRouterœ,œidœ:œDocumentRouter-JHvtsœ,œnameœ:œfinanceœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-PePzAœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-DocumentRouter-JHvts{œdataTypeœ:œDocumentRouterœ,œidœ:œDocumentRouter-JHvtsœ,œnameœ:œfinanceœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-PePzA{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-PePzAœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "data": {
           "sourceHandle": {
             "dataType": "DocumentRouter",
-            "id": "DocumentRouter-jt1Dl",
+            "id": "DocumentRouter-JHvts",
             "name": "finance",
             "output_types": [
               "Message"
@@ -8887,7 +8912,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "ChatOutput-g0oXS",
+            "id": "ChatOutput-PePzA",
             "inputTypes": [
               "Message"
             ],
@@ -8899,15 +8924,15 @@
         "className": ""
       },
       {
-        "source": "DocumentRouter-jt1Dl",
-        "target": "ChatOutput-mo6e4",
-        "sourceHandle": "{œdataTypeœ:œDocumentRouterœ,œidœ:œDocumentRouter-jt1Dlœ,œnameœ:œignoredœ,œoutput_typesœ:[œMessageœ]}",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-mo6e4œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "id": "reactflow__edge-DocumentRouter-jt1Dl{œdataTypeœ:œDocumentRouterœ,œidœ:œDocumentRouter-jt1Dlœ,œnameœ:œignoredœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-mo6e4{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-mo6e4œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "DocumentRouter-JHvts",
+        "target": "ChatOutput-CCPsV",
+        "sourceHandle": "{œdataTypeœ:œDocumentRouterœ,œidœ:œDocumentRouter-JHvtsœ,œnameœ:œignoredœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-CCPsVœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-DocumentRouter-JHvts{œdataTypeœ:œDocumentRouterœ,œidœ:œDocumentRouter-JHvtsœ,œnameœ:œignoredœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-CCPsV{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-CCPsVœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "data": {
           "sourceHandle": {
             "dataType": "DocumentRouter",
-            "id": "DocumentRouter-jt1Dl",
+            "id": "DocumentRouter-JHvts",
             "name": "ignored",
             "output_types": [
               "Message"
@@ -8915,7 +8940,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "ChatOutput-mo6e4",
+            "id": "ChatOutput-CCPsV",
             "inputTypes": [
               "Message"
             ],
@@ -8927,15 +8952,15 @@
         "className": ""
       },
       {
-        "source": "DocumentRouter-jt1Dl",
-        "target": "ChatOutput-qFP0L",
-        "sourceHandle": "{œdataTypeœ:œDocumentRouterœ,œidœ:œDocumentRouter-jt1Dlœ,œnameœ:œidentityœ,œoutput_typesœ:[œMessageœ]}",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-qFP0Lœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "id": "reactflow__edge-DocumentRouter-jt1Dl{œdataTypeœ:œDocumentRouterœ,œidœ:œDocumentRouter-jt1Dlœ,œnameœ:œidentityœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-qFP0L{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-qFP0Lœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "DocumentRouter-JHvts",
+        "target": "ChatOutput-Ue85T",
+        "sourceHandle": "{œdataTypeœ:œDocumentRouterœ,œidœ:œDocumentRouter-JHvtsœ,œnameœ:œidentityœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-Ue85Tœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-DocumentRouter-JHvts{œdataTypeœ:œDocumentRouterœ,œidœ:œDocumentRouter-JHvtsœ,œnameœ:œidentityœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-Ue85T{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-Ue85Tœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "data": {
           "sourceHandle": {
             "dataType": "DocumentRouter",
-            "id": "DocumentRouter-jt1Dl",
+            "id": "DocumentRouter-JHvts",
             "name": "identity",
             "output_types": [
               "Message"
@@ -8943,7 +8968,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "ChatOutput-qFP0L",
+            "id": "ChatOutput-Ue85T",
             "inputTypes": [
               "Message"
             ],
@@ -8955,14 +8980,14 @@
         "className": ""
       },
       {
-        "source": "ChatInput-ZmMCF",
-        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-ZmMCFœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "Agent-jo7w1",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-jo7w1œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "ChatInput-SWBIn",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-SWBInœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "Agent-yTNHb",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-yTNHbœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "data": {
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "Agent-jo7w1",
+            "id": "Agent-yTNHb",
             "inputTypes": [
               "Message"
             ],
@@ -8970,26 +8995,26 @@
           },
           "sourceHandle": {
             "dataType": "ChatInput",
-            "id": "ChatInput-ZmMCF",
+            "id": "ChatInput-SWBIn",
             "name": "message",
             "output_types": [
               "Message"
             ]
           }
         },
-        "id": "xy-edge__ChatInput-ZmMCF{œdataTypeœ:œChatInputœ,œidœ:œChatInput-ZmMCFœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-jo7w1{œfieldNameœ:œinput_valueœ,œidœ:œAgent-jo7w1œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-ChatInput-SWBIn{œdataTypeœ:œChatInputœ,œidœ:œChatInput-SWBInœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-yTNHb{œfieldNameœ:œinput_valueœ,œidœ:œAgent-yTNHbœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
         "className": ""
       },
       {
-        "source": "Agent-jTSED",
-        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-jTSEDœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "Agent-qr9JD",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-qr9JDœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "Agent-nIV1Z",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-nIV1Zœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "DocAgent-ms531",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œDocAgent-ms531œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "data": {
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "Agent-qr9JD",
+            "id": "DocAgent-ms531",
             "inputTypes": [
               "Message"
             ],
@@ -8997,26 +9022,26 @@
           },
           "sourceHandle": {
             "dataType": "Agent",
-            "id": "Agent-jTSED",
+            "id": "Agent-nIV1Z",
             "name": "response",
             "output_types": [
               "Message"
             ]
           }
         },
-        "id": "xy-edge__Agent-jTSED{œdataTypeœ:œAgentœ,œidœ:œAgent-jTSEDœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-Agent-qr9JD{œfieldNameœ:œinput_valueœ,œidœ:œAgent-qr9JDœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-Agent-nIV1Z{œdataTypeœ:œAgentœ,œidœ:œAgent-nIV1Zœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-DocAgent-ms531{œfieldNameœ:œinput_valueœ,œidœ:œDocAgent-ms531œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
         "className": ""
       },
       {
-        "source": "Agent-qr9JD",
-        "sourceHandle": "{œdataTypeœ:œDocAgentœ,œidœ:œAgent-qr9JDœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "ChatOutput-mvarx",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-mvarxœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "DocAgent-ms531",
+        "sourceHandle": "{œdataTypeœ:œDocAgentœ,œidœ:œDocAgent-ms531œ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "ChatOutput-C9U8T",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-C9U8Tœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "data": {
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "ChatOutput-mvarx",
+            "id": "ChatOutput-C9U8T",
             "inputTypes": [
               "Message"
             ],
@@ -9024,26 +9049,26 @@
           },
           "sourceHandle": {
             "dataType": "DocAgent",
-            "id": "Agent-qr9JD",
+            "id": "DocAgent-ms531",
             "name": "response",
             "output_types": [
               "Message"
             ]
           }
         },
-        "id": "xy-edge__Agent-qr9JD{œdataTypeœ:œDocAgentœ,œidœ:œAgent-qr9JDœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-mvarx{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-mvarxœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-DocAgent-ms531{œdataTypeœ:œDocAgentœ,œidœ:œDocAgent-ms531œ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-C9U8T{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-C9U8Tœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
         "className": ""
       },
       {
-        "source": "APIRequest-4PxtN",
-        "sourceHandle": "{œdataTypeœ:œAPIRequestœ,œidœ:œAPIRequest-4PxtNœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
-        "target": "Agent-qr9JD",
-        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-qr9JDœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "source": "APIRequest-ro7BO",
+        "sourceHandle": "{œdataTypeœ:œAPIRequestœ,œidœ:œAPIRequest-ro7BOœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
+        "target": "DocAgent-ms531",
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œDocAgent-ms531œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "data": {
           "targetHandle": {
             "fieldName": "tools",
-            "id": "Agent-qr9JD",
+            "id": "DocAgent-ms531",
             "inputTypes": [
               "Tool"
             ],
@@ -9051,54 +9076,109 @@
           },
           "sourceHandle": {
             "dataType": "APIRequest",
-            "id": "APIRequest-4PxtN",
+            "id": "APIRequest-ro7BO",
             "name": "component_as_tool",
             "output_types": [
               "Tool"
             ]
           }
         },
-        "id": "xy-edge__APIRequest-4PxtN{œdataTypeœ:œAPIRequestœ,œidœ:œAPIRequest-4PxtNœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-qr9JD{œfieldNameœ:œtoolsœ,œidœ:œAgent-qr9JDœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-APIRequest-ro7BO{œdataTypeœ:œAPIRequestœ,œidœ:œAPIRequest-ro7BOœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-DocAgent-ms531{œfieldNameœ:œtoolsœ,œidœ:œDocAgent-ms531œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "animated": false,
         "className": ""
       },
       {
-        "source": "DocAgent-tHU7g",
-        "sourceHandle": "{œdataTypeœ:œComparisonAgentœ,œidœ:œDocAgent-tHU7gœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
-        "target": "Agent-qr9JD",
-        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-qr9JDœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "source": "Agent-EDI1N",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-EDI1Nœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
+        "target": "DocAgent-ms531",
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œDocAgent-ms531œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "data": {
           "targetHandle": {
             "fieldName": "tools",
-            "id": "Agent-qr9JD",
+            "id": "DocAgent-ms531",
             "inputTypes": [
               "Tool"
             ],
             "type": "other"
           },
           "sourceHandle": {
-            "dataType": "ComparisonAgent",
-            "id": "DocAgent-tHU7g",
+            "dataType": "Agent",
+            "id": "Agent-EDI1N",
             "name": "component_as_tool",
             "output_types": [
               "Tool"
             ]
           }
         },
-        "id": "xy-edge__DocAgent-tHU7g{œdataTypeœ:œComparisonAgentœ,œidœ:œDocAgent-tHU7gœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-qr9JD{œfieldNameœ:œtoolsœ,œidœ:œAgent-qr9JDœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "id": "xy-edge__Agent-EDI1N{œdataTypeœ:œAgentœ,œidœ:œAgent-EDI1Nœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-DocAgent-ms531{œfieldNameœ:œtoolsœ,œidœ:œDocAgent-ms531œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "animated": false,
+        "className": ""
+      },
+      {
+        "source": "APIRequest-ro7BO",
+        "sourceHandle": "{œdataTypeœ:œAPIRequestœ,œidœ:œAPIRequest-ro7BOœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
+        "target": "Agent-EDI1N",
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-EDI1Nœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "data": {
+          "targetHandle": {
+            "fieldName": "tools",
+            "id": "Agent-EDI1N",
+            "inputTypes": [
+              "Tool"
+            ],
+            "type": "other"
+          },
+          "sourceHandle": {
+            "dataType": "APIRequest",
+            "id": "APIRequest-ro7BO",
+            "name": "component_as_tool",
+            "output_types": [
+              "Tool"
+            ]
+          }
+        },
+        "id": "xy-edge__APIRequest-ro7BO{œdataTypeœ:œAPIRequestœ,œidœ:œAPIRequest-ro7BOœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-EDI1N{œfieldNameœ:œtoolsœ,œidœ:œAgent-EDI1Nœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "animated": false,
+        "className": ""
+      },
+      {
+        "source": "CategoryRouter-GM62A",
+        "sourceHandle": "{œdataTypeœ:œCategoryRouterœ,œidœ:œCategoryRouter-GM62Aœ,œnameœ:œignoredœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "OpenAIModel-LkbzH",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-LkbzHœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "data": {
+          "targetHandle": {
+            "fieldName": "input_value",
+            "id": "OpenAIModel-LkbzH",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          },
+          "sourceHandle": {
+            "dataType": "CategoryRouter",
+            "id": "CategoryRouter-GM62A",
+            "name": "ignored",
+            "output_types": [
+              "Message"
+            ]
+          }
+        },
+        "id": "xy-edge__CategoryRouter-GM62A{œdataTypeœ:œCategoryRouterœ,œidœ:œCategoryRouter-GM62Aœ,œnameœ:œignoredœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-LkbzH{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-LkbzHœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
         "className": ""
       }
     ],
     "viewport": {
-      "x": -2544.777349704633,
-      "y": -1606.7872919761064,
-      "zoom": 0.5918989120360229
+      "x": -2777.6778603401053,
+      "y": -1710.2931399893391,
+      "zoom": 0.667427249682671
     }
   },
-  "description": "Promptly Ingenious!",
-  "name": "Task Assistant-with Backend",
-  "last_tested_version": "1.1.4",
-  "endpoint_name": null,
-  "is_component": false
+  "icon_bg_color": null,
+  "user_id": "7a90f280-4908-4f7c-854e-16cd1f87eba1",
+  "gradient": null,
+  "icon": null,
+  "is_component": false,
+  "tags": null
 }
