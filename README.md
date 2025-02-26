@@ -6,17 +6,18 @@ Ensure you follow the steps below to set up and run the project using Python 3.1
 
 ## Prerequisites
 
-1. **Install pyenv**  
+1. **Install pyenv**
    Use `pyenv` to manage multiple Python versions on your local machine. If you don't have `pyenv` installed, follow the installation guide for your operating system from [here](https://github.com/pyenv/pyenv).
 
 2. **Install Python 3.10**:
    Ensure you have Python 3.10 installed on your system. You can use `pyenv` to manage Python versions locally:
+
    ```sh
    pyenv install 3.10.0
    pyenv local 3.10.0
    ```
 
-3. **Install virtualenv**  
+3. **Install virtualenv**
    Ensure that `virtualenv` is installed on your system. You can install it using pip:
    ```bash
    pip install virtualenv
@@ -24,7 +25,6 @@ Ensure you follow the steps below to set up and run the project using Python 3.1
 
 - Install dependencies from `requirements.txt`
 - Run `python testai.py` to validate the flow
-
 
 ## Install Langflow
 
@@ -34,9 +34,10 @@ To install Langflow, follow the steps provided in the official documentation: [L
 
 Once Langflow is installed, you can start your Langflow project by running the following command:
 
-   ```bash
-   python -m langflow run
-   ```
+```bash
+python -m langflow run
+```
+
 - Install dependencies from `requirements.txt`
 
 ## Import Project File
@@ -44,17 +45,34 @@ Once Langflow is installed, you can start your Langflow project by running the f
 After starting the project, import the project file `Loan Assistant.json` into Langflow to begin using the pre-configured project.
 
 ## Troubleshooting
+
 ## SSL Certificate Errors
 
 If you encounter SSL certificate errors, you can export the system certificates from KeyChain Access as a CA.pem file and add the following to your shell configuration file (e.g., .zshrc or .bashrc):
 
-   ```sh
-   export SSL_CERT_FILE=/Users/dharmesh.r/Downloads/CA.pem
-   export REQUESTS_CA_BUNDLE=/Users/dharmesh.r/Downloads/CA.pem
-   ```
+```sh
+export SSL_CERT_FILE=/Users/dharmesh.r/Downloads/CA.pem
+export REQUESTS_CA_BUNDLE=/Users/dharmesh.r/Downloads/CA.pem
+```
 
 After adding these lines, source your shell configuration file to apply the changes:
 
-   ```sh
-   source ~/.zshrc  # or source ~/.bashrc
-   ```
+```sh
+source ~/.zshrc  # or source ~/.bashrc
+```
+
+## SSL Certificate errors running in virtual env
+
+If you running the langflow inside the virtual environment, we have to make sure that virtual environment get exposed with proper env variables to maintain the path for SSL certificates. We have to add the export statements inside the virtual environment by making edit in activate file
+
+```sh
+code langflowenv/bin/activate
+```
+
+```sh
+export SSL_CERT_FILE=$(python -m certifi)
+export SSL_CERT_DIR=""
+export REQUESTS_CA_BUNDLE=$(python -m certifi)
+```
+
+The above command will set the proper path for SSL resolution.

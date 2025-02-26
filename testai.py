@@ -4,6 +4,7 @@ from crewai import Agent, Task, Crew
 from crewai.tools import BaseTool
 from pydantic import Field
 from langchain_community.utilities import GoogleSerperAPIWrapper
+import certifi
 import pdb
 import openai
 # Set up your SERPER_API_KEY key in an .env file, eg:
@@ -42,15 +43,15 @@ def document_from_web_tool():
     from langchain.chains import ConversationalRetrievalChain
     from langchain.memory import ConversationBufferMemory
     from langchain.embeddings import OpenAIEmbeddings
-    from langchain.vectorstores import Chroma 
+    from langchain.vectorstores import Chroma
     loader = WebBaseLoader("https://www.example.com/")
     docs = loader.load()
-    #Use OpenAI embeddings  
+    #Use OpenAI embeddings
     embeddings = OpenAIEmbeddings()
 
-    # create a vector database using the sample document 
+    # create a vector database using the sample document
     # and the OpenAI embeddings
-    vectordb = Chroma.from_documents( 
+    vectordb = Chroma.from_documents(
         documents=docs, embedding=embeddings, persist_directory="chromadb"
     )
     # persist the database to disk for later use
@@ -63,8 +64,8 @@ def document_from_web_tool():
         if line == "":
             break
         result = pdf_chat({"question": line})
-        print(f"Answer: {result['answer']}")        
-    
+        print(f"Answer: {result['answer']}")
+
 def custom_llm():
     import requests
 
@@ -74,7 +75,7 @@ def custom_llm():
     # Define the headers
     headers = {
         "Content-Type": "application/json",
-        "Authorization": "Bearer sk-UVnE7nIrQ5_Zsx8odMBqng"
+        "Authorization": "Bearer sk-2mEkJzmQkToFbmpcmmkL2w"
     }
 
     # Define the JSON payload
@@ -106,3 +107,4 @@ def custom_llm():
         print("Response:", response)
 # document_from_web_tool()
 custom_llm()
+
