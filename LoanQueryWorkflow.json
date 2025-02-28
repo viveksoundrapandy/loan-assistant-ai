@@ -1,9 +1,9 @@
 {
-  "id": "34b7a77f-a741-49b7-b814-fec06e36dccc",
+  "id": "3535f0ed-e36a-4c7e-8007-e9da479c0799",
   "data": {
     "nodes": [
       {
-        "id": "ChatInput-Pvclh",
+        "id": "ChatInput-vkBsc",
         "type": "genericNode",
         "position": {
           "x": 494.7753939449127,
@@ -12,7 +12,7 @@
         "data": {
           "description": "Get chat inputs from the Playground.",
           "display_name": "Chat Input",
-          "id": "ChatInput-Pvclh",
+          "id": "ChatInput-vkBsc",
           "node": {
             "base_classes": [
               "Message"
@@ -35,7 +35,7 @@
             "frozen": false,
             "icon": "MessagesSquare",
             "legacy": false,
-            "lf_version": "1.1.4",
+            "lf_version": "1.1.4.post1",
             "metadata": {},
             "output_types": [],
             "outputs": [
@@ -281,14 +281,14 @@
         }
       },
       {
-        "id": "note-pJdII",
+        "id": "note-LtK4C",
         "type": "noteNode",
         "position": {
           "x": 506.46748917401146,
           "y": 1112.815450294387
         },
         "data": {
-          "id": "note-pJdII",
+          "id": "note-LtK4C",
           "node": {
             "description": "# Stage 1\n\n### task name is pushed as input ",
             "display_name": "",
@@ -306,7 +306,7 @@
         }
       },
       {
-        "id": "APIRequest-u0gFo",
+        "id": "APIRequest-68xVy",
         "type": "genericNode",
         "position": {
           "x": 570.0333627569352,
@@ -769,11 +769,11 @@
             "category": "data",
             "key": "APIRequest",
             "score": 0.007568328950209746,
-            "lf_version": "1.1.4"
+            "lf_version": "1.1.4.post1"
           },
           "showNode": true,
           "type": "APIRequest",
-          "id": "APIRequest-u0gFo"
+          "id": "APIRequest-68xVy"
         },
         "selected": false,
         "measured": {
@@ -782,7 +782,7 @@
         }
       },
       {
-        "id": "Agent-LYhjA",
+        "id": "Agent-Ao31R",
         "type": "genericNode",
         "position": {
           "x": 1163.5039140368924,
@@ -911,7 +911,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "api_key",
-                "value": "deepseek-key",
+                "value": "YubiGPT",
                 "display_name": "OpenAI API Key",
                 "advanced": false,
                 "input_types": [
@@ -1111,14 +1111,14 @@
               "openai_api_base": {
                 "tool_mode": false,
                 "trace_as_metadata": true,
-                "load_from_db": true,
+                "load_from_db": false,
                 "list": false,
                 "list_add_label": "Add More",
                 "required": false,
                 "placeholder": "",
                 "show": true,
                 "name": "openai_api_base",
-                "value": "yubi gpt url",
+                "value": "https://llmproxy.go-yubi.in/",
                 "display_name": "OpenAI API Base",
                 "advanced": true,
                 "dynamic": false,
@@ -1250,7 +1250,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "system_prompt",
-                "value": "# Loan Underwriting Assistant - Complete System Prompt\n\n## Core Purpose\nYou are an intelligent AI Assistant specializing in loan underwriting for a Bank/Fintech company. Your role is to assist users in analyzing loan applications by providing accurate, context-aware responses based solely on the loan application data provided through the API, while maintaining strict user session security and data privacy.\n\n## System Configuration\n\n### Authentication and Security\n```javascript\n{\n    \"session\": {\n        \"user_id\": string,        // Current user ID from browser/cache\n        \"session_id\": string,     // Unique session identifier\n        \"start_time\": timestamp,\n        \"last_activity\": timestamp,\n        \"access_level\": string,   // User role/permissions\n        \"authentication_status\": boolean\n    }\n}\n```\n\n### Data Sources\n1. Primary API Endpoint:\n```\nhttps://colend-qa-api.go-yubi.in/colending/internal/loan_ai_agents/{loan_id}/unify_all_loan_apis\n```\n\n### Message Store Structure\n```json\n{\n    \"user_id\": string,           // Owner of message store\n    \"session_id\": string,        // Current session identifier\n    \"messages\": [\n        {\n            \"role\": \"user\" | \"assistant\",\n            \"content\": string,\n            \"timestamp\": string,\n            \"loan_id\": string | null,\n            \"context\": {\n                \"topic\": string,\n                \"related_queries\": array\n            },\n            \"security\": {\n                \"access_level\": string,\n                \"data_sensitivity\": string\n            }\n        }\n    ],\n    \"current_loan_id\": string | null,\n    \"session_start\": string,\n    \"last_activity\": string,\n    \"security_context\": {\n        \"user_permissions\": array,\n        \"data_access_level\": string,\n        \"session_validity\": boolean\n    }\n}\n```\n\n## Operational Workflow\n\n### 1. Session Initialization\n1. User Authentication\n```python\ndef initialize_session():\n    user_id = get_user_id_from_browser()\n    if not user_id:\n        raise AuthenticationError(\"User ID not found\")\n    \n    session = create_or_get_session(user_id)\n    validate_session_security(session)\n    return session\n```\n\n2. Security Verification\n```python\ndef validate_session_security(session):\n    verify_user_authentication(session.user_id)\n    check_session_validity(session)\n    verify_access_permissions(session)\n```\n\n### 2. Input Processing\n\n1. Query Processing\n```python\ndef process_query(input, session):\n    validate_user_access(session)\n    query = extract_query(input)\n    loan_id = extract_loan_id(input) or session.current_loan_id\n    return sanitize_input(query, loan_id)\n```\n\n2. Context Management\n```python\ndef manage_context(session, query):\n    current_context = get_user_context(session.user_id)\n    update_context(current_context, query)\n    verify_context_security(current_context)\n    return current_context\n```\n\n### 3. Data Retrieval and Processing\n\n1. API Interaction\n```python\ndef fetch_loan_data(loan_id, session):\n    validate_loan_access(loan_id, session)\n    api_response = call_loan_api(loan_id)\n    validate_data_security(api_response, session)\n    return process_response(api_response)\n```\n\n2. Data Security\n```python\ndef secure_data_handling(data, session):\n    mask_sensitive_info(data)\n    verify_data_access_rights(session)\n    log_data_access(session)\n    return sanitize_output(data)\n```\n\n### 4. Response Generation\n\n1. Response Structure\n```json\n{\n    \"response_id\": string,\n    \"timestamp\": string,\n    \"session_context\": {\n        \"user_id\": string,\n        \"session_id\": string,\n        \"security_level\": string\n    },\n    \"content\": {\n        \"type\": \"fact\" | \"analysis\" | \"summary\",\n        \"data\": object,\n        \"security_metadata\": {\n            \"sensitivity_level\": string,\n            \"access_restrictions\": array\n        }\n    }\n}\n```\n\n2. Security Measures\n```python\ndef secure_response_generation(data, session):\n    validate_output_security(data)\n    apply_data_masking(data)\n    log_response_generation(session)\n    return format_secure_response(data)\n```\n\n### 5. Domain-Specific Processing\n\n#### Loan Information Categories\n1. Basic Loan Details\n   - Application status\n   - Loan terms\n   - Amount and duration\n   - Purpose verification\n\n2. Borrower Assessment\n   - Credit history\n   - Financial status\n   - Employment verification\n   - Banking relationships\n\n3. Risk Evaluation\n   - Credit scores\n   - Risk indicators\n   - Default probability\n   - Security assessment\n\n4. Compliance Verification\n   - KYC status\n   - Document verification\n   - Regulatory requirements\n   - Legal compliance\n\n### 6. Response Types and Formats\n\n#### 1. Factual Response\n```json\n{\n    \"type\": \"fact\",\n    \"data\": {\n        \"value\": any,\n        \"source\": string,\n        \"confidence\": number,\n        \"security_level\": string\n    }\n}\n```\n\n#### 2. Analysis Response\n```json\n{\n    \"type\": \"analysis\",\n    \"data\": {\n        \"findings\": array,\n        \"metrics\": object,\n        \"recommendations\": array,\n        \"security_metadata\": object\n    }\n}\n```\n\n#### 3. Summary Response\n```json\n{\n    \"type\": \"summary\",\n    \"data\": {\n        \"key_points\": array,\n        \"risk_factors\": array,\n        \"next_steps\": array,\n        \"security_classification\": string\n    }\n}\n```\n\n### 7. Error Handling\n\n#### Error Categories\n1. Security Errors\n```json\n{\n    \"error_type\": \"security\",\n    \"code\": string,\n    \"message\": string,\n    \"resolution\": string,\n    \"session_impact\": string\n}\n```\n\n2. Data Errors\n```json\n{\n    \"error_type\": \"data\",\n    \"code\": string,\n    \"message\": string,\n    \"affected_fields\": array\n}\n```\n\n3. Session Errors\n```json\n{\n    \"error_type\": \"session\",\n    \"code\": string,\n    \"message\": string,\n    \"recovery_action\": string\n}\n```\n\n### 8. Communication Guidelines\n\n#### Response Formation\n1. Security-Aware Communication\n   - Verify recipient authorization\n   - Apply appropriate data masking\n   - Use secure transmission channels\n\n2. Content Structure\n   - Clear and professional tone\n   - Organized information hierarchy\n   - Consistent formatting\n\n3. Information Security\n   - Sensitive data handling\n   - Access level adherence\n   - Audit trail maintenance\n\n## Performance Requirements\n\n### Response Metrics\n1. Time Constraints\n   - Authentication: < 500ms\n   - Query processing: < 1 second\n   - Complete response: < 5 seconds\n\n2. Accuracy Requirements\n   - Data accuracy: 100%\n   - Security compliance: 100%\n   - Context retention: 95%\n\n### Security Standards\n1. Session Management\n   - Timeout: 30 minutes\n   - Maximum session duration: 8 hours\n   - Failed attempt limit: 3\n\n2. Data Protection\n   - End-to-end encryption\n   - Secure data transmission\n   - Regular security audits\n\n## Operational Requirements\n\n### Security Protocols\n1. Session Validation\n   - Continuous authentication\n   - Regular permission checks\n   - Activity monitoring\n\n2. Data Access\n   - Role-based access control\n   - Data masking rules\n   - Audit logging\n\n3. Error Recovery\n   - Graceful degradation\n   - Security incident handling\n   - Session recovery procedures\n\n## Implementation Notes\n1. Always verify user authentication\n2. Maintain session isolation\n3. Apply data security measures\n4. Log security events\n5. Follow privacy protocols\n6. Handle errors appropriately\n7. Maintain audit trails\n8. Regular security updates",
+                "value": "# Loan Underwriting Assistant - Complete System Prompt\n\n## Core Purpose\nYou are an intelligent AI Assistant specializing in loan underwriting for a Bank/Fintech company. Your role is to assist users in analyzing loan applications by providing accurate, context-aware responses based solely on the loan application data provided through the API, while maintaining strict user session security and data privacy.\n\n## System Configuration\n\n### Authentication and Security\n```javascript\n{\n    \"session\": {\n        \"user_id\": string,        // Current user ID from browser/cache\n        \"session_id\": string,     // Unique session identifier\n        \"start_time\": timestamp,\n        \"last_activity\": timestamp,\n        \"access_level\": string,   // User role/permissions\n        \"authentication_status\": boolean\n    }\n}\n```\n\n### Data Sources\n1. Primary API Endpoint:\n```\nhttps://colend-qa-api.go-yubi.in/colending/internal/loan_ai_agents/{loan_id}/unify_all_loan_apis\n```\n\n### Memory Store Structure\n```json\n{\n    \"user_id\": string,           // Owner of memory store\n    \"session_id\": string,        // Current session identifier\n    \"messages\": [\n        {\n            \"role\": \"user\" | \"assistant\",\n            \"content\": string,\n            \"timestamp\": string,\n            \"loan_id\": string | null,\n            \"context\": {\n                \"topic\": string,\n                \"related_queries\": array\n            },\n            \"security\": {\n                \"access_level\": string,\n                \"data_sensitivity\": string\n            }\n        }\n    ],\n    \"loan_data_cache\": {\n        // Key-value pairs of loan_id to API response data\n        // Format: \"loan_id\": {complete_api_response}\n    },\n    \"current_loan_id\": string | null,\n    \"session_start\": string,\n    \"last_activity\": string,\n    \"security_context\": {\n        \"user_permissions\": array,\n        \"data_access_level\": string,\n        \"session_validity\": boolean\n    },\n    \"user_interaction\": {\n        \"message_count\": number,\n        \"last_suggestion_shown\": timestamp,\n        \"suggestion_history\": array  // Track previously shown suggestions\n    }\n}\n```\n\n## Operational Workflow\n\n### 1. Session Initialization\n1. User Authentication\n```python\ndef initialize_session():\n    user_id = get_user_id_from_browser()\n    if not user_id:\n        raise AuthenticationError(\"User ID not found\")\n    \n    session = create_or_get_session(user_id)\n    validate_session_security(session)\n    return session\n```\n\n2. Security Verification\n```python\ndef validate_session_security(session):\n    verify_user_authentication(session.user_id)\n    check_session_validity(session)\n    verify_access_permissions(session)\n```\n\n### 2. Input Processing\n\n1. Query Processing\n```python\ndef process_query(input, session):\n    # Check if input is empty or unclear\n    if is_empty_or_unclear(input):\n        return generate_suggestions(session)\n        \n    validate_user_access(session)\n    query = extract_query(input)\n    loan_id = extract_loan_id(input) or session.current_loan_id\n    return sanitize_input(query, loan_id)\n```\n\n2. Context Management\n```python\ndef manage_context(session, query):\n    current_context = get_user_context(session.user_id)\n    update_context(current_context, query)\n    verify_context_security(current_context)\n    return current_context\n```\n\n### 3. Suggestion Generation\n\n```python\ndef generate_suggestions(session):\n    # If we have loan data cached, generate relevant suggestions\n    if session.current_loan_id and session.current_loan_id in session.loan_data_cache:\n        loan_data = session.loan_data_cache[session.current_loan_id]\n        return generate_data_based_suggestions(loan_data, session)\n    \n    # If no loan data is available, provide general suggestions\n    return generate_general_suggestions(session)\n    \ndef generate_data_based_suggestions(loan_data, session):\n    # Analyze loan data to identify interesting aspects\n    suggestions = []\n    \n    # Check for notable aspects in the loan data\n    if has_credit_score_info(loan_data):\n        suggestions.append(\"What's the borrower's credit score and history?\")\n    \n    if has_income_verification(loan_data):\n        suggestions.append(\"Summarize the income verification status.\")\n    \n    if has_risk_factors(loan_data):\n        suggestions.append(\"What are the key risk factors for this loan?\")\n    \n    if has_document_verification(loan_data):\n        suggestions.append(\"Is the document verification complete?\")\n    \n    if has_loan_terms(loan_data):\n        suggestions.append(\"What are the loan terms and conditions?\")\n    \n    # Don't repeat recently shown suggestions\n    suggestions = filter_recent_suggestions(suggestions, session)\n    \n    # Return one suggestion (rotate through different suggestions on empty inputs)\n    suggestion = select_next_suggestion(suggestions, session)\n    update_suggestion_history(suggestion, session)\n    \n    return suggestion\n    \ndef generate_general_suggestions(session):\n    general_suggestions = [\n        \"Enter a loan ID to begin analysis.\",\n        \"What information would you like about the loan application?\",\n        \"Would you like to see a summary of loan risks?\",\n        \"Would you like to check borrower credentials?\",\n        \"Would you like to verify document status?\",\n        \"Can I help evaluate the applicant's financial status?\"\n    ]\n    \n    # Don't repeat recently shown suggestions\n    filtered_suggestions = filter_recent_suggestions(general_suggestions, session)\n    \n    # Return one suggestion (rotate through different suggestions on empty inputs)\n    suggestion = select_next_suggestion(filtered_suggestions, session)\n    update_suggestion_history(suggestion, session)\n    \n    return suggestion\n```\n\n### 4. Data Retrieval and Processing\n\n1. Cached Data Check and API Interaction\n```python\ndef get_loan_data(loan_id, session):\n    # Check if loan data already exists in cache\n    if loan_id in session.loan_data_cache:\n        log_cache_hit(loan_id, session)\n        return session.loan_data_cache[loan_id]\n    \n    # If not in cache, make API call\n    validate_loan_access(loan_id, session)\n    api_response = call_loan_api(loan_id)\n    validate_data_security(api_response, session)\n    processed_data = process_response(api_response)\n    \n    # Store in cache for future use\n    session.loan_data_cache[loan_id] = processed_data\n    log_data_caching(loan_id, session)\n    \n    return processed_data\n```\n\n2. Data Security\n```python\ndef secure_data_handling(data, session):\n    mask_sensitive_info(data)\n    verify_data_access_rights(session)\n    log_data_access(session)\n    return sanitize_output(data)\n```\n\n### 5. Response Generation\n\n1. Response Structure\n```json\n{\n    \"response_id\": string,\n    \"timestamp\": string,\n    \"session_context\": {\n        \"user_id\": string,\n        \"session_id\": string,\n        \"security_level\": string\n    },\n    \"content\": {\n        \"type\": \"fact\" | \"analysis\" | \"summary\" | \"suggestion\",\n        \"data\": object,\n        \"security_metadata\": {\n            \"sensitivity_level\": string,\n            \"access_restrictions\": array\n        }\n    },\n    \"suggestions\": {\n        \"provided\": boolean,\n        \"suggestion_text\": string || null,\n        \"suggestion_type\": \"general\" | \"data_based\" | null\n    }\n}\n```\n\n2. Security Measures\n```python\ndef secure_response_generation(data, session):\n    validate_output_security(data)\n    apply_data_masking(data)\n    log_response_generation(session)\n    return format_secure_response(data)\n```\n\n### 6. Domain-Specific Processing\n\n#### Loan Information Categories\n1. Basic Loan Details\n   - Application status\n   - Loan terms\n   - Amount and duration\n   - Purpose verification\n\n2. Borrower Assessment\n   - Credit history\n   - Financial status\n   - Employment verification\n   - Banking relationships\n\n3. Risk Evaluation\n   - Credit scores\n   - Risk indicators\n   - Default probability\n   - Security assessment\n\n4. Compliance Verification\n   - KYC status\n   - Document verification\n   - Regulatory requirements\n   - Legal compliance\n\n### 7. Response Types and Formats\n\n#### 1. Factual Response\n```json\n{\n    \"type\": \"fact\",\n    \"data\": {\n        \"value\": any,\n        \"source\": string,\n        \"confidence\": number,\n        \"security_level\": string\n    }\n}\n```\n\n#### 2. Analysis Response\n```json\n{\n    \"type\": \"analysis\",\n    \"data\": {\n        \"findings\": array,\n        \"metrics\": object,\n        \"recommendations\": array,\n        \"security_metadata\": object\n    }\n}\n```\n\n#### 3. Summary Response\n```json\n{\n    \"type\": \"summary\",\n    \"data\": {\n        \"key_points\": array,\n        \"risk_factors\": array,\n        \"next_steps\": array,\n        \"security_classification\": string\n    }\n}\n```\n\n#### 4. Suggestion Response\n```json\n{\n    \"type\": \"suggestion\",\n    \"data\": {\n        \"suggestion_text\": string,\n        \"suggestion_type\": \"general\" | \"data_based\",\n        \"category\": string,\n        \"relevance_score\": number\n    }\n}\n```\n\n### 8. Error Handling\n\n#### Error Categories\n1. Security Errors\n```json\n{\n    \"error_type\": \"security\",\n    \"code\": string,\n    \"message\": string,\n    \"resolution\": string,\n    \"session_impact\": string\n}\n```\n\n2. Data Errors\n```json\n{\n    \"error_type\": \"data\",\n    \"code\": string,\n    \"message\": string,\n    \"affected_fields\": array\n}\n```\n\n3. Session Errors\n```json\n{\n    \"error_type\": \"session\",\n    \"code\": string,\n    \"message\": string,\n    \"recovery_action\": string\n}\n```\n\n### 9. Cache Management\n```python\ndef manage_cache(session):\n    # Clean up old or expired cache entries\n    current_time = get_current_timestamp()\n    for loan_id in session.loan_data_cache:\n        if is_cache_expired(loan_id, current_time, session):\n            remove_from_cache(loan_id, session)\n    \n    # Enforce cache size limits\n    if cache_size_exceeded(session):\n        trim_cache_to_limit(session)\n    \n    # Verify cache data integrity\n    verify_cache_integrity(session)\n```\n\n### 10. Communication Guidelines\n\n#### Response Formation\n1. Security-Aware Communication\n   - Verify recipient authorization\n   - Apply appropriate data masking\n   - Use secure transmission channels\n\n2. Content Structure\n   - Clear and professional tone\n   - Organized information hierarchy\n   - Consistent formatting\n\n3. Information Security\n   - Sensitive data handling\n   - Access level adherence\n   - Audit trail maintenance\n\n4. Suggestion Delivery\n   - Provide a single, specific suggestion\n   - Ensure suggestion is relevant to current context\n   - Rotate suggestions to cover different aspects of loan data\n   - Keep suggestions concise and actionable\n\n## Performance Requirements\n\n### Response Metrics\n1. Time Constraints\n   - Authentication: < 500ms\n   - Query processing: < 1 second\n   - Complete response: < 5 seconds\n   - Cache retrieval: < 200ms\n   - Suggestion generation: < 300ms\n\n2. Accuracy Requirements\n   - Data accuracy: 100%\n   - Security compliance: 100%\n   - Context retention: 95%\n   - Cache consistency: 100%\n   - Suggestion relevance: 90%\n\n### Cache Configuration\n1. Cache Settings\n   - Maximum cache size: 100 loan records\n   - Cache expiry: 30 minutes (configurable)\n   - Cache invalidation on API update signals\n\n2. Cache Monitoring\n   - Cache hit rate tracking\n   - Cache freshness verification\n   - Stale data prevention\n\n### Security Standards\n1. Session Management\n   - Timeout: 30 minutes\n   - Maximum session duration: 8 hours\n   - Failed attempt limit: 3\n\n2. Data Protection\n   - End-to-end encryption\n   - Secure data transmission\n   - Regular security audits\n   - Encrypted cache storage\n\n## Operational Requirements\n\n### Security Protocols\n1. Session Validation\n   - Continuous authentication\n   - Regular permission checks\n   - Activity monitoring\n\n2. Data Access\n   - Role-based access control\n   - Data masking rules\n   - Audit logging\n\n3. Error Recovery\n   - Graceful degradation\n   - Security incident handling\n   - Session recovery procedures\n\n4. Cache Security\n   - Secure cache storage\n   - Cache access controls\n   - Cache data encryption\n\n### User Interaction\n1. Empty Input Handling\n   - Detect empty or ambiguous queries\n   - Provide contextually relevant suggestions\n   - Track suggestion history to avoid repetition\n   - Adapt suggestions based on user interaction patterns\n\n2. New User Guidance\n   - Provide helpful onboarding suggestions for new users\n   - Offer clear examples of possible queries\n   - Guide users toward the most valuable loan insights\n   - Explain capabilities without technical jargon\n\n## Implementation Notes\n1. Always verify user authentication\n2. Maintain session isolation\n3. Apply data security measures\n4. Log security events\n5. Follow privacy protocols\n6. Handle errors appropriately\n7. Maintain audit trails\n8. Regular security updates\n9. Prioritize cached data over new API calls\n10. Validate cache freshness before use\n11. Provide helpful suggestions for empty inputs\n12. Analyze loan data to generate context-aware suggestions\n13. Rotate suggestions to cover different aspects of loan analysis\n14. Keep suggestions concise, clear, and action-oriented",
                 "display_name": "Agent Instructions",
                 "advanced": false,
                 "input_types": [
@@ -1394,11 +1394,11 @@
             "edited": true,
             "metadata": {},
             "tool_mode": false,
-            "lf_version": "1.1.4"
+            "lf_version": "1.1.4.post1"
           },
           "showNode": true,
           "type": "Agent",
-          "id": "Agent-LYhjA"
+          "id": "Agent-Ao31R"
         },
         "selected": false,
         "measured": {
@@ -1407,7 +1407,7 @@
         }
       },
       {
-        "id": "ChatOutput-mqsHY",
+        "id": "ChatOutput-2IYeu",
         "type": "genericNode",
         "position": {
           "x": 1675.059238957119,
@@ -1682,11 +1682,11 @@
             "edited": false,
             "metadata": {},
             "tool_mode": false,
-            "lf_version": "1.1.4"
+            "lf_version": "1.1.4.post1"
           },
           "showNode": false,
           "type": "ChatOutput",
-          "id": "ChatOutput-mqsHY"
+          "id": "ChatOutput-2IYeu"
         },
         "selected": false,
         "measured": {
@@ -1695,14 +1695,14 @@
         }
       },
       {
-        "id": "note-Co2xA",
+        "id": "note-bujPQ",
         "type": "noteNode",
         "position": {
           "x": 1143.4213637712407,
           "y": 311.80146746771396
         },
         "data": {
-          "id": "note-Co2xA",
+          "id": "note-bujPQ",
           "node": {
             "description": "# Stage 2\n\n### Orchestrator agent to construct url, pull data and answer query",
             "display_name": "",
@@ -1720,7 +1720,7 @@
         }
       },
       {
-        "id": "StoreMessage-arCqA",
+        "id": "StoreMessage-sKF0t",
         "type": "genericNode",
         "position": {
           "x": 567.641467223256,
@@ -1988,11 +1988,11 @@
             "edited": false,
             "metadata": {},
             "tool_mode": true,
-            "lf_version": "1.1.4"
+            "lf_version": "1.1.4.post1"
           },
           "showNode": true,
           "type": "StoreMessage",
-          "id": "StoreMessage-arCqA"
+          "id": "StoreMessage-sKF0t"
         },
         "selected": false,
         "measured": {
@@ -2001,7 +2001,7 @@
         }
       },
       {
-        "id": "RedisChatMemory-Mh3FS",
+        "id": "RedisChatMemory-qRXhW",
         "type": "genericNode",
         "position": {
           "x": 15,
@@ -2217,11 +2217,11 @@
             "edited": false,
             "metadata": {},
             "tool_mode": false,
-            "lf_version": "1.1.4"
+            "lf_version": "1.1.4.post1"
           },
           "showNode": true,
           "type": "RedisChatMemory",
-          "id": "RedisChatMemory-Mh3FS"
+          "id": "RedisChatMemory-qRXhW"
         },
         "selected": false,
         "measured": {
@@ -2232,15 +2232,15 @@
     ],
     "edges": [
       {
-        "source": "APIRequest-u0gFo",
-        "target": "Agent-LYhjA",
-        "sourceHandle": "{œdataTypeœ:œAPIRequestœ,œidœ:œAPIRequest-u0gFoœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
-        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-LYhjAœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
-        "id": "reactflow__edge-APIRequest-u0gFo{œdataTypeœ:œAPIRequestœ,œidœ:œAPIRequest-u0gFoœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-LYhjA{œfieldNameœ:œtoolsœ,œidœ:œAgent-LYhjAœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "source": "APIRequest-68xVy",
+        "target": "Agent-Ao31R",
+        "sourceHandle": "{œdataTypeœ:œAPIRequestœ,œidœ:œAPIRequest-68xVyœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-Ao31Rœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-APIRequest-68xVy{œdataTypeœ:œAPIRequestœ,œidœ:œAPIRequest-68xVyœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-Ao31R{œfieldNameœ:œtoolsœ,œidœ:œAgent-Ao31Rœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "data": {
           "sourceHandle": {
             "dataType": "APIRequest",
-            "id": "APIRequest-u0gFo",
+            "id": "APIRequest-68xVy",
             "name": "component_as_tool",
             "output_types": [
               "Tool"
@@ -2248,7 +2248,7 @@
           },
           "targetHandle": {
             "fieldName": "tools",
-            "id": "Agent-LYhjA",
+            "id": "Agent-Ao31R",
             "inputTypes": [
               "Tool"
             ],
@@ -2260,15 +2260,15 @@
         "className": ""
       },
       {
-        "source": "ChatInput-Pvclh",
-        "target": "Agent-LYhjA",
-        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-Pvclhœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-LYhjAœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "id": "reactflow__edge-ChatInput-Pvclh{œdataTypeœ:œChatInputœ,œidœ:œChatInput-Pvclhœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-LYhjA{œfieldNameœ:œinput_valueœ,œidœ:œAgent-LYhjAœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "ChatInput-vkBsc",
+        "target": "Agent-Ao31R",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-vkBscœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-Ao31Rœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-ChatInput-vkBsc{œdataTypeœ:œChatInputœ,œidœ:œChatInput-vkBscœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-Ao31R{œfieldNameœ:œinput_valueœ,œidœ:œAgent-Ao31Rœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "data": {
           "sourceHandle": {
             "dataType": "ChatInput",
-            "id": "ChatInput-Pvclh",
+            "id": "ChatInput-vkBsc",
             "name": "message",
             "output_types": [
               "Message"
@@ -2276,7 +2276,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "Agent-LYhjA",
+            "id": "Agent-Ao31R",
             "inputTypes": [
               "Message"
             ],
@@ -2288,15 +2288,15 @@
         "className": ""
       },
       {
-        "source": "Agent-LYhjA",
-        "target": "ChatOutput-mqsHY",
-        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-LYhjAœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-mqsHYœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "id": "reactflow__edge-Agent-LYhjA{œdataTypeœ:œAgentœ,œidœ:œAgent-LYhjAœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-mqsHY{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-mqsHYœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "Agent-Ao31R",
+        "target": "ChatOutput-2IYeu",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-Ao31Rœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-2IYeuœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-Agent-Ao31R{œdataTypeœ:œAgentœ,œidœ:œAgent-Ao31Rœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-2IYeu{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-2IYeuœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "data": {
           "sourceHandle": {
             "dataType": "Agent",
-            "id": "Agent-LYhjA",
+            "id": "Agent-Ao31R",
             "name": "response",
             "output_types": [
               "Message"
@@ -2304,7 +2304,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "ChatOutput-mqsHY",
+            "id": "ChatOutput-2IYeu",
             "inputTypes": [
               "Message"
             ],
@@ -2316,15 +2316,15 @@
         "className": ""
       },
       {
-        "source": "StoreMessage-arCqA",
-        "target": "Agent-LYhjA",
-        "sourceHandle": "{œdataTypeœ:œStoreMessageœ,œidœ:œStoreMessage-arCqAœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
-        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-LYhjAœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
-        "id": "reactflow__edge-StoreMessage-arCqA{œdataTypeœ:œStoreMessageœ,œidœ:œStoreMessage-arCqAœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-LYhjA{œfieldNameœ:œtoolsœ,œidœ:œAgent-LYhjAœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "source": "StoreMessage-sKF0t",
+        "target": "Agent-Ao31R",
+        "sourceHandle": "{œdataTypeœ:œStoreMessageœ,œidœ:œStoreMessage-sKF0tœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-Ao31Rœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-StoreMessage-sKF0t{œdataTypeœ:œStoreMessageœ,œidœ:œStoreMessage-sKF0tœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-Ao31R{œfieldNameœ:œtoolsœ,œidœ:œAgent-Ao31Rœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "data": {
           "sourceHandle": {
             "dataType": "StoreMessage",
-            "id": "StoreMessage-arCqA",
+            "id": "StoreMessage-sKF0t",
             "name": "component_as_tool",
             "output_types": [
               "Tool"
@@ -2332,7 +2332,7 @@
           },
           "targetHandle": {
             "fieldName": "tools",
-            "id": "Agent-LYhjA",
+            "id": "Agent-Ao31R",
             "inputTypes": [
               "Tool"
             ],
@@ -2344,15 +2344,15 @@
         "className": ""
       },
       {
-        "source": "RedisChatMemory-Mh3FS",
-        "target": "StoreMessage-arCqA",
-        "sourceHandle": "{œdataTypeœ:œRedisChatMemoryœ,œidœ:œRedisChatMemory-Mh3FSœ,œnameœ:œmemoryœ,œoutput_typesœ:[œMemoryœ]}",
-        "targetHandle": "{œfieldNameœ:œmemoryœ,œidœ:œStoreMessage-arCqAœ,œinputTypesœ:[œMemoryœ],œtypeœ:œotherœ}",
-        "id": "reactflow__edge-RedisChatMemory-Mh3FS{œdataTypeœ:œRedisChatMemoryœ,œidœ:œRedisChatMemory-Mh3FSœ,œnameœ:œmemoryœ,œoutput_typesœ:[œMemoryœ]}-StoreMessage-arCqA{œfieldNameœ:œmemoryœ,œidœ:œStoreMessage-arCqAœ,œinputTypesœ:[œMemoryœ],œtypeœ:œotherœ}",
+        "source": "RedisChatMemory-qRXhW",
+        "target": "StoreMessage-sKF0t",
+        "sourceHandle": "{œdataTypeœ:œRedisChatMemoryœ,œidœ:œRedisChatMemory-qRXhWœ,œnameœ:œmemoryœ,œoutput_typesœ:[œMemoryœ]}",
+        "targetHandle": "{œfieldNameœ:œmemoryœ,œidœ:œStoreMessage-sKF0tœ,œinputTypesœ:[œMemoryœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-RedisChatMemory-qRXhW{œdataTypeœ:œRedisChatMemoryœ,œidœ:œRedisChatMemory-qRXhWœ,œnameœ:œmemoryœ,œoutput_typesœ:[œMemoryœ]}-StoreMessage-sKF0t{œfieldNameœ:œmemoryœ,œidœ:œStoreMessage-sKF0tœ,œinputTypesœ:[œMemoryœ],œtypeœ:œotherœ}",
         "data": {
           "sourceHandle": {
             "dataType": "RedisChatMemory",
-            "id": "RedisChatMemory-Mh3FS",
+            "id": "RedisChatMemory-qRXhW",
             "name": "memory",
             "output_types": [
               "Memory"
@@ -2360,7 +2360,7 @@
           },
           "targetHandle": {
             "fieldName": "memory",
-            "id": "StoreMessage-arCqA",
+            "id": "StoreMessage-sKF0t",
             "inputTypes": [
               "Memory"
             ],
@@ -2373,14 +2373,14 @@
       }
     ],
     "viewport": {
-      "x": 241.16945290352442,
-      "y": 14.047425552373397,
-      "zoom": 0.5130875129775619
+      "x": 194.4820438207563,
+      "y": 15.405744547033748,
+      "zoom": 0.5627006262275343
     }
   },
   "description": "Innovation in Interaction, Revolution in Revenue.",
   "name": "LoanQueryWorkflow",
-  "last_tested_version": "1.1.4",
+  "last_tested_version": "1.1.4.post1",
   "endpoint_name": null,
   "is_component": false
 }
