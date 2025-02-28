@@ -4423,7 +4423,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "system_prompt",
-                "value": "process only if `{message}` has category as  FACTCHECK. if not donot respond\ninput message format:\nInput message has 3 data\n`{task}` - task to be performed that will be categorised as per the logic below\n`{loanid}' - unique identifier for the loan, its a numeric value\nExample:\nTask: check and verify DL, Category: OCR, loanid: `{loanid}`\n\n\n\n\nRespond with:\nI dont know how to do FACT CHECK yet\n\n##output format\nTask:`{task}`, loanid: `{loanid}`, category: `{category}`\n",
+                "value": "You are a helpful assistant that \n\n1. understands the given input\n   input will have a message, category and a '{loanid}'\n   Example input: verify principal outstanding is same as disbursement amount for loan 1234\n2. break it down into an elaborate '{question}' that needs to be asked against a `{loanid}' \n    Example: compare principal outstanding to disbursement amount for loan 1234\n3. Task: Construct the below URL\nhttp://127.0.0.1:3000/colending/internal/loan_ai_agents/trigger_loan_query_workflow/?message={question}\n4. Execute the API tool for the above URL\n5. respond the API response as chat output",
                 "display_name": "Agent Instructions",
                 "advanced": false,
                 "input_types": [
@@ -4566,7 +4566,8 @@
             "legacy": false,
             "edited": true,
             "metadata": {},
-            "tool_mode": false
+            "tool_mode": false,
+            "lf_version": "1.1.4"
           },
           "showNode": true,
           "type": "Agent",
@@ -4576,14 +4577,15 @@
         "measured": {
           "width": 320,
           "height": 624
-        }
+        },
+        "dragging": false
       },
       {
         "id": "StructuredOutput-dqGgt",
         "type": "genericNode",
         "position": {
-          "x": 5154.755134766032,
-          "y": 2208.3790824318057
+          "x": -123.47766729222576,
+          "y": 3622.317884310577
         },
         "data": {
           "node": {
@@ -4834,358 +4836,15 @@
         "measured": {
           "width": 320,
           "height": 399
-        }
-      },
-      {
-        "id": "OpenAIModel-NiA5A",
-        "type": "genericNode",
-        "position": {
-          "x": 4820.872565664136,
-          "y": 1206.616060943707
         },
-        "data": {
-          "node": {
-            "template": {
-              "_type": "Component",
-              "api_key": {
-                "load_from_db": true,
-                "required": true,
-                "placeholder": "",
-                "show": true,
-                "name": "api_key",
-                "value": "vivek-key",
-                "display_name": "OpenAI API Key",
-                "advanced": false,
-                "input_types": [
-                  "Message"
-                ],
-                "dynamic": false,
-                "info": "The OpenAI API Key to use for the OpenAI model.",
-                "title_case": false,
-                "password": true,
-                "type": "str",
-                "_input_type": "SecretStrInput"
-              },
-              "code": {
-                "type": "code",
-                "required": true,
-                "placeholder": "",
-                "list": false,
-                "show": true,
-                "multiline": true,
-                "value": "from langchain_openai import ChatOpenAI\nfrom pydantic.v1 import SecretStr\n\nfrom langflow.base.models.model import LCModelComponent\nfrom langflow.base.models.openai_constants import OPENAI_MODEL_NAMES\nfrom langflow.field_typing import LanguageModel\nfrom langflow.field_typing.range_spec import RangeSpec\nfrom langflow.inputs import BoolInput, DictInput, DropdownInput, IntInput, SecretStrInput, SliderInput, StrInput\n\n\nclass OpenAIModelComponent(LCModelComponent):\n    display_name = \"OpenAI\"\n    description = \"Generates text using OpenAI LLMs.\"\n    icon = \"OpenAI\"\n    name = \"OpenAIModel\"\n\n    inputs = [\n        *LCModelComponent._base_inputs,\n        IntInput(\n            name=\"max_tokens\",\n            display_name=\"Max Tokens\",\n            advanced=True,\n            info=\"The maximum number of tokens to generate. Set to 0 for unlimited tokens.\",\n            range_spec=RangeSpec(min=0, max=128000),\n        ),\n        DictInput(\n            name=\"model_kwargs\",\n            display_name=\"Model Kwargs\",\n            advanced=True,\n            info=\"Additional keyword arguments to pass to the model.\",\n        ),\n        BoolInput(\n            name=\"json_mode\",\n            display_name=\"JSON Mode\",\n            advanced=True,\n            info=\"If True, it will output JSON regardless of passing a schema.\",\n        ),\n        DropdownInput(\n            name=\"model_name\",\n            display_name=\"Model Name\",\n            advanced=False,\n            options=OPENAI_MODEL_NAMES,\n            value=OPENAI_MODEL_NAMES[0],\n        ),\n        StrInput(\n            name=\"openai_api_base\",\n            display_name=\"OpenAI API Base\",\n            advanced=True,\n            info=\"The base URL of the OpenAI API. \"\n            \"Defaults to https://api.openai.com/v1. \"\n            \"You can change this to use other APIs like JinaChat, LocalAI and Prem.\",\n        ),\n        SecretStrInput(\n            name=\"api_key\",\n            display_name=\"OpenAI API Key\",\n            info=\"The OpenAI API Key to use for the OpenAI model.\",\n            advanced=False,\n            value=\"OPENAI_API_KEY\",\n            required=True,\n        ),\n        SliderInput(\n            name=\"temperature\", display_name=\"Temperature\", value=0.1, range_spec=RangeSpec(min=0, max=2, step=0.01)\n        ),\n        IntInput(\n            name=\"seed\",\n            display_name=\"Seed\",\n            info=\"The seed controls the reproducibility of the job.\",\n            advanced=True,\n            value=1,\n        ),\n    ]\n\n    def build_model(self) -> LanguageModel:  # type: ignore[type-var]\n        openai_api_key = self.api_key\n        temperature = self.temperature\n        model_name: str = self.model_name\n        max_tokens = self.max_tokens\n        model_kwargs = self.model_kwargs or {}\n        openai_api_base = self.openai_api_base or \"https://api.openai.com/v1\"\n        json_mode = self.json_mode\n        seed = self.seed\n\n        api_key = SecretStr(openai_api_key).get_secret_value() if openai_api_key else None\n        output = ChatOpenAI(\n            max_tokens=max_tokens or None,\n            model_kwargs=model_kwargs,\n            model=model_name,\n            base_url=openai_api_base,\n            api_key=api_key,\n            temperature=temperature if temperature is not None else 0.1,\n            seed=seed,\n        )\n        if json_mode:\n            output = output.bind(response_format={\"type\": \"json_object\"})\n\n        return output\n\n    def _get_exception_message(self, e: Exception):\n        \"\"\"Get a message from an OpenAI exception.\n\n        Args:\n            e (Exception): The exception to get the message from.\n\n        Returns:\n            str: The message from the exception.\n        \"\"\"\n        try:\n            from openai import BadRequestError\n        except ImportError:\n            return None\n        if isinstance(e, BadRequestError):\n            message = e.body.get(\"message\")\n            if message:\n                return message\n        return None\n",
-                "fileTypes": [],
-                "file_path": "",
-                "password": false,
-                "name": "code",
-                "advanced": true,
-                "dynamic": true,
-                "info": "",
-                "load_from_db": false,
-                "title_case": false
-              },
-              "input_value": {
-                "trace_as_input": true,
-                "tool_mode": false,
-                "trace_as_metadata": true,
-                "load_from_db": false,
-                "list": false,
-                "list_add_label": "Add More",
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "input_value",
-                "value": "",
-                "display_name": "Input",
-                "advanced": false,
-                "input_types": [
-                  "Message"
-                ],
-                "dynamic": false,
-                "info": "",
-                "title_case": false,
-                "type": "str",
-                "_input_type": "MessageInput"
-              },
-              "json_mode": {
-                "tool_mode": false,
-                "trace_as_metadata": true,
-                "list": false,
-                "list_add_label": "Add More",
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "json_mode",
-                "value": false,
-                "display_name": "JSON Mode",
-                "advanced": true,
-                "dynamic": false,
-                "info": "If True, it will output JSON regardless of passing a schema.",
-                "title_case": false,
-                "type": "bool",
-                "_input_type": "BoolInput"
-              },
-              "max_tokens": {
-                "tool_mode": false,
-                "trace_as_metadata": true,
-                "range_spec": {
-                  "step_type": "float",
-                  "min": 0,
-                  "max": 128000,
-                  "step": 0.1
-                },
-                "list": false,
-                "list_add_label": "Add More",
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "max_tokens",
-                "value": "",
-                "display_name": "Max Tokens",
-                "advanced": true,
-                "dynamic": false,
-                "info": "The maximum number of tokens to generate. Set to 0 for unlimited tokens.",
-                "title_case": false,
-                "type": "int",
-                "_input_type": "IntInput"
-              },
-              "model_kwargs": {
-                "tool_mode": false,
-                "trace_as_input": true,
-                "list": false,
-                "list_add_label": "Add More",
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "model_kwargs",
-                "value": {},
-                "display_name": "Model Kwargs",
-                "advanced": true,
-                "dynamic": false,
-                "info": "Additional keyword arguments to pass to the model.",
-                "title_case": false,
-                "type": "dict",
-                "_input_type": "DictInput"
-              },
-              "model_name": {
-                "tool_mode": false,
-                "trace_as_metadata": true,
-                "options": [
-                  "gpt-4o-mini",
-                  "gpt-4o",
-                  "gpt-4-turbo",
-                  "gpt-4-turbo-preview",
-                  "gpt-4",
-                  "gpt-3.5-turbo",
-                  "gpt-3.5-turbo-0125"
-                ],
-                "options_metadata": [],
-                "combobox": false,
-                "dialog_inputs": {},
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "model_name",
-                "value": "gpt-4o-mini",
-                "display_name": "Model Name",
-                "advanced": false,
-                "dynamic": false,
-                "info": "",
-                "title_case": false,
-                "type": "str",
-                "_input_type": "DropdownInput"
-              },
-              "openai_api_base": {
-                "tool_mode": false,
-                "trace_as_metadata": true,
-                "load_from_db": false,
-                "list": false,
-                "list_add_label": "Add More",
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "openai_api_base",
-                "value": "",
-                "display_name": "OpenAI API Base",
-                "advanced": true,
-                "dynamic": false,
-                "info": "The base URL of the OpenAI API. Defaults to https://api.openai.com/v1. You can change this to use other APIs like JinaChat, LocalAI and Prem.",
-                "title_case": false,
-                "type": "str",
-                "_input_type": "StrInput"
-              },
-              "seed": {
-                "tool_mode": false,
-                "trace_as_metadata": true,
-                "list": false,
-                "list_add_label": "Add More",
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "seed",
-                "value": 1,
-                "display_name": "Seed",
-                "advanced": true,
-                "dynamic": false,
-                "info": "The seed controls the reproducibility of the job.",
-                "title_case": false,
-                "type": "int",
-                "_input_type": "IntInput"
-              },
-              "stream": {
-                "tool_mode": false,
-                "trace_as_metadata": true,
-                "list": false,
-                "list_add_label": "Add More",
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "stream",
-                "value": false,
-                "display_name": "Stream",
-                "advanced": false,
-                "dynamic": false,
-                "info": "Stream the response from the model. Streaming works only in Chat.",
-                "title_case": false,
-                "type": "bool",
-                "_input_type": "BoolInput"
-              },
-              "system_message": {
-                "tool_mode": false,
-                "trace_as_input": true,
-                "multiline": true,
-                "trace_as_metadata": true,
-                "load_from_db": false,
-                "list": false,
-                "list_add_label": "Add More",
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "system_message",
-                "value": "",
-                "display_name": "System Message",
-                "advanced": false,
-                "input_types": [
-                  "Message"
-                ],
-                "dynamic": false,
-                "info": "System message to pass to the model.",
-                "title_case": false,
-                "type": "str",
-                "_input_type": "MultilineInput"
-              },
-              "temperature": {
-                "tool_mode": false,
-                "min_label": "",
-                "max_label": "",
-                "min_label_icon": "",
-                "max_label_icon": "",
-                "slider_buttons": false,
-                "slider_buttons_options": [],
-                "slider_input": false,
-                "range_spec": {
-                  "step_type": "float",
-                  "min": 0,
-                  "max": 2,
-                  "step": 0.01
-                },
-                "required": false,
-                "placeholder": "",
-                "show": true,
-                "name": "temperature",
-                "value": 0.1,
-                "display_name": "Temperature",
-                "advanced": false,
-                "dynamic": false,
-                "info": "",
-                "title_case": false,
-                "type": "slider",
-                "_input_type": "SliderInput"
-              }
-            },
-            "description": "Generates text using OpenAI LLMs.",
-            "icon": "OpenAI",
-            "base_classes": [
-              "LanguageModel",
-              "Message"
-            ],
-            "display_name": "OpenAI",
-            "documentation": "",
-            "minimized": false,
-            "custom_fields": {},
-            "output_types": [],
-            "pinned": false,
-            "conditional_paths": [],
-            "frozen": false,
-            "outputs": [
-              {
-                "types": [
-                  "Message"
-                ],
-                "selected": "Message",
-                "name": "text_output",
-                "display_name": "Message",
-                "method": "text_response",
-                "value": "__UNDEFINED__",
-                "cache": true,
-                "required_inputs": [],
-                "allows_loop": false
-              },
-              {
-                "types": [
-                  "LanguageModel"
-                ],
-                "selected": "LanguageModel",
-                "name": "model_output",
-                "display_name": "Language Model",
-                "method": "build_model",
-                "value": "__UNDEFINED__",
-                "cache": true,
-                "required_inputs": [
-                  "api_key"
-                ],
-                "allows_loop": false
-              }
-            ],
-            "field_order": [
-              "input_value",
-              "system_message",
-              "stream",
-              "max_tokens",
-              "model_kwargs",
-              "json_mode",
-              "model_name",
-              "openai_api_base",
-              "api_key",
-              "temperature",
-              "seed"
-            ],
-            "beta": false,
-            "legacy": false,
-            "edited": false,
-            "metadata": {},
-            "tool_mode": false,
-            "category": "models",
-            "key": "OpenAIModel",
-            "score": 0.001,
-            "lf_version": "1.1.4"
-          },
-          "showNode": true,
-          "type": "OpenAIModel",
-          "id": "OpenAIModel-NiA5A"
-        },
-        "selected": false,
-        "measured": {
-          "width": 320,
-          "height": 656
-        }
+        "dragging": false
       },
       {
         "id": "DocumentRouter-jt1Dl",
         "type": "genericNode",
         "position": {
-          "x": 5834.814054366876,
-          "y": 2229.791111334124
+          "x": 556.5812523086183,
+          "y": 3643.729913212895
         },
         "data": {
           "node": {
@@ -5340,14 +4999,15 @@
         "measured": {
           "width": 320,
           "height": 404
-        }
+        },
+        "dragging": false
       },
       {
         "id": "ChatOutput-ywVSm",
         "type": "genericNode",
         "position": {
-          "x": 6309.852229466797,
-          "y": 2886.9071422454986
+          "x": 1031.6194274085397,
+          "y": 4300.84594412427
         },
         "data": {
           "node": {
@@ -5630,14 +5290,15 @@
         "measured": {
           "width": 192,
           "height": 66
-        }
+        },
+        "dragging": false
       },
       {
         "id": "ChatOutput-g0oXS",
         "type": "genericNode",
         "position": {
-          "x": 6330.411416446945,
-          "y": 2451.0304644697335
+          "x": 1052.178614388687,
+          "y": 3864.969266348505
         },
         "data": {
           "node": {
@@ -5920,14 +5581,15 @@
         "measured": {
           "width": 192,
           "height": 66
-        }
+        },
+        "dragging": false
       },
       {
         "id": "ChatOutput-mo6e4",
         "type": "genericNode",
         "position": {
-          "x": 6333.184322455241,
-          "y": 2321.6863749527593
+          "x": 1054.9515203969836,
+          "y": 3735.6251768315306
         },
         "data": {
           "node": {
@@ -6210,14 +5872,15 @@
         "measured": {
           "width": 192,
           "height": 66
-        }
+        },
+        "dragging": false
       },
       {
         "id": "ChatOutput-qFP0L",
         "type": "genericNode",
         "position": {
-          "x": 6305.538328388746,
-          "y": 2666.145685029498
+          "x": 1027.3055263304882,
+          "y": 4080.0844869082694
         },
         "data": {
           "node": {
@@ -6500,7 +6163,8 @@
         "measured": {
           "width": 192,
           "height": 66
-        }
+        },
+        "dragging": false
       },
       {
         "id": "ChatOutput-mvarx",
@@ -6836,7 +6500,8 @@
                       "type": "text",
                       "description": "Parameter name",
                       "disable_edit": false,
-                      "edit_mode": "modal"
+                      "edit_mode": "modal",
+                      "formatter": "text"
                     },
                     {
                       "name": "value",
@@ -6845,7 +6510,8 @@
                       "filterable": true,
                       "description": "Parameter value",
                       "disable_edit": false,
-                      "edit_mode": "modal"
+                      "edit_mode": "modal",
+                      "formatter": "text"
                     }
                   ]
                 },
@@ -6944,7 +6610,8 @@
                       "type": "text",
                       "description": "Header name",
                       "disable_edit": false,
-                      "edit_mode": "modal"
+                      "edit_mode": "modal",
+                      "formatter": "text"
                     },
                     {
                       "name": "value",
@@ -6954,7 +6621,8 @@
                       "type": "text",
                       "description": "Header value",
                       "disable_edit": false,
-                      "edit_mode": "modal"
+                      "edit_mode": "modal",
+                      "formatter": "text"
                     }
                   ]
                 },
@@ -7050,7 +6718,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "timeout",
-                "value": 5,
+                "value": 500,
                 "display_name": "Timeout",
                 "advanced": true,
                 "dynamic": false,
@@ -7720,7 +7388,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "system_prompt",
-                "value": "You are an helpful assistant capable of using the given tools to extract information from an API and pass on to the comparison agent\n\n## instructions\n1. Extract `{loanid}` and `{category}` and '`{task}' from the message\n   - Example input:\n        verify aadhar category for loan Drona_40 translates to :\ntask=\"verify aadhar\"\ncategory=\"aadhar\"\nloanid=\"Drona_40\"\n\n2. construct the url using the loanid\nhttp://127.0.0.1:3000/colending/internal/loan_ai_agents/`{loanid}`/document_attachment_links\n\n3. Pass on to API tool to fetch the data as json\n\n4. Pass on the received json and convert to message format\n5. pass the message to comparison agent\n\n6. receive the response from comparison agent and relay\n\n## Available tools:\nAPI agent - call an API given a URL\nComparisonAgent - provide a comparison json given an input json\n\nDo not respond to any other message , except for delegating and relaying the message received from tools",
+                "value": "You are an helpful assistant capable of using the given tools to extract information from an API and pass on to the comparison agent\n\n## instructions\n1. Extract `{loanid}` and `{category}` and '`{task}' from the message\n   - Example input:\n        verify aadhar category for loan Drona_40 translates to :\ntask=\"verify aadhar\"\ncategory=\"aadhar\"\nloanid=\"Drona_40\"\n\n2. construct the url using the loanid\nhttp://127.0.0.1:3000/colending/internal/loan_ai_agents/`{loanid}`/extract_document_data/'{category}'\n\n3. Pass on to API tool to fetch the data as json\n\n4. Pass on the received json and convert to message format\n5. pass the message to comparison agent\n\n6. receive the response from comparison agent and relay\n\n## Available tools:\nAPI agent - call an API given a URL\nComparisonAgent - provide a comparison json given an input json\n\nDo not respond to any other message , except for delegating and relaying the message received from tools",
                 "display_name": "Agent Instructions",
                 "advanced": false,
                 "input_types": [
@@ -8346,7 +8014,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "system_prompt",
-                "value": "respond that you are not yet trained to compare data",
+                "value": "# Comparison Agent - Loan Document Verification\n\n## Role Description\nYou are a Data Comparison Agent in the Loan Processing Division of a Finance Company. Your primary responsibility is to:\n1. Compare extracted document data against loan application data\n2. Generate match scores for individual data points\n3. Calculate an overall confidence score\n4. Identify potential discrepancies\n\n## Input Parameters\n- `extracted_data`: JSON object containing data extracted from document images\n- `loan_id`: Unique identifier for the loan application\n- `document_category`: Document type (Accepted values: \"Aadhar\", \"VoterID\", \"PAN Card\")\n\n## Process Flow\n\n### 1. Data Validation\n- Validate that all required input parameters are present\n- Verify `document_category` is one of the accepted values\n- Ensure `extracted_data` is in valid JSON format\n\n### 2. Loan Application Data Retrieval\n- Construct API endpoint URL:\n  ```\n  https://colend-qa-api.go-yubi.in/colending/internal/loan_ai_agents/{loan_id}/document_attachment_links/{document_category}\n  ```\n- Make API request using the API Request tool\n- Store response as `loan_application_data`\n- Handle potential API errors gracefully\n\n### 3. Data Comparison Logic\n\n#### Text Field Comparison\n- Apply the following sequence of comparisons:\n  1. Exact Match (after normalization): 100 points\n  2. Phonetic Match (using Soundex): 90 points\n  3. Levenshtein Distance Based:\n     - Distance ≤ 1: 95 points\n     - Distance = 2: 85 points\n     - Distance = 3: 75 points\n     - Distance > 3: Calculate as: max(0, (100 - (distance * 15)))\n\n#### Name Field Comparison\n- Split names into parts (first, middle, last)\n- Compare each part separately\n- Calculate average of part scores\n- Special handling:\n  - Initials vs. Full names (e.g., \"R.\" vs \"Raj\"): 90 points if matching\n  - Name order variations: Consider highest scoring combination\n  - Missing middle names: Don't penalize if missing in either source\n\n#### Address Field Comparison\n- Break down into components with weights:\n  - PIN code (30%): Exact match required\n  - House number (25%): Exact match required\n  - Street name (20%): Levenshtein distance based\n  - City (15%): Exact match after normalization\n  - State (10%): Exact match after normalization\n\n#### Date Field Comparison\n- Convert all dates to standard format (YYYY-MM-DD)\n- Compare:\n  - Exact match: 100 points\n  - Year and month match only: 90 points\n  - Year match only: 70 points\n  - No match: 0 points\n\n#### Number Field Comparison\n- For IDs and unique numbers:\n  - Exact match required: 100 or 0 points\n- For other numeric values:\n  - Exact match: 100 points\n  - Within 1% difference: 95 points\n  - Within 5% difference: 85 points\n  - Within 10% difference: 70 points\n  - Beyond 10%: 0 points\n\n### 4. Field Importance Weights\n\n#### Critical Fields (Weight: 2.0)\n- Document number (Aadhar/PAN/Voter ID)\n- Name\n- Date of Birth\n\n#### High Priority Fields (Weight: 1.5)\n- Gender\n- Address\n- Father's/Spouse's Name\n\n#### Standard Fields (Weight: 1.0)\n- All other fields\n\n### 5. Confidence Score Calculation\n\nThe final confidence score is calculated using this formula:\n\n```python\nconfidence_score = (\n    (sum(field_score * field_weight) / sum(field_weights)) *\n    (1 - penalty_factor)\n)\n```\n\nWhere:\n- field_score: Individual field match score (0-100)\n- field_weight: Importance weight of the field\n- penalty_factor: Calculated based on critical field mismatches\n\n#### Penalty Factor Calculation\n- Start with penalty_factor = 0\n- For each critical field mismatch:\n  - If score < 70: Add 0.3 to penalty_factor\n  - If score < 85: Add 0.15 to penalty_factor\n- For each high priority field mismatch:\n  - If score < 70: Add 0.15 to penalty_factor\n  - If score < 85: Add 0.07 to penalty_factor\n- Cap penalty_factor at 0.9\n\n### 6. Document-Specific Thresholds\n\n#### Aadhar Card\n- Minimum acceptable confidence: 85\n- Critical field minimum score: 90\n- Required fields: Number, Name, DOB, Gender, Address\n\n#### PAN Card\n- Minimum acceptable confidence: 80\n- Critical field minimum score: 85\n- Required fields: Number, Name, DOB, Father's Name\n\n#### Voter ID\n- Minimum acceptable confidence: 75\n- Critical field minimum score: 80\n- Required fields: Number, Name, Father's/Husband's Name, Address\n\n### 7. Special Cases\n\n#### Missing Data Handling\n- If field is optional: No penalty\n- If field is required: Score as 0 and apply weight\n- If field is critical: Apply maximum penalty\n\n#### Multiple Value Matching\n- For fields with multiple valid values:\n  - Take highest match score among all valid values\n  - Apply 5-point penalty for using alternate value\n\n#### Data Quality Adjustments\n- OCR confidence < 90%: Apply 0.95 multiplier to field score\n- OCR confidence < 80%: Apply 0.90 multiplier to field score\n- Image quality issues: Flag for manual review if confidence < threshold\n\n### 8. Response Format\nReturn JSON response with:\n```json\n{\n    \"document_category\": string,\n    \"field_scores\": {\n        \"field_name\": {\n            \"extracted_value\": any,\n            \"application_value\": any,\n            \"match_score\": number\n        }\n    },\n    \"confidence_score\": number,\n    \"comparison_timestamp\": string,\n    \"status\": string,\n    \"warnings\": array\n}\n```\n\n## Error Handling\n- Handle missing or invalid input parameters\n- Manage API connection failures\n- Process incomplete or malformed data\n- Log validation errors and warnings\n\n## Available Tools\n- API Request Tool: For fetching loan application data\n\n## Performance Requirements\n- Response time: < 5 seconds\n- Match score precision: 2 decimal places\n- Confidence score range: 0-100\n\n## Notes\n- All comparisons are case-insensitive\n- Special characters and extra spaces should be normalized before comparison\n- Document-specific validation rules apply based on `document_category`",
                 "display_name": "Agent Instructions",
                 "advanced": false,
                 "input_types": [
@@ -8581,10 +8249,476 @@
           "type": "ComparisonAgent",
           "id": "DocAgent-tHU7g"
         },
-        "selected": false,
+        "selected": true,
         "measured": {
           "width": 320,
           "height": 689
+        },
+        "dragging": false
+      },
+      {
+        "id": "APIRequest-BrFrC",
+        "type": "genericNode",
+        "position": {
+          "x": 3607.526284901364,
+          "y": -92.5552143036434
+        },
+        "data": {
+          "node": {
+            "template": {
+              "_type": "Component",
+              "query_params": {
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "list": false,
+                "list_add_label": "Add More",
+                "trace_as_input": true,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "query_params",
+                "value": {},
+                "display_name": "Query Parameters",
+                "advanced": true,
+                "input_types": [
+                  "Data"
+                ],
+                "dynamic": false,
+                "info": "The query parameters to append to the URL.",
+                "title_case": false,
+                "type": "other",
+                "_input_type": "DataInput"
+              },
+              "body": {
+                "tool_mode": false,
+                "is_list": true,
+                "list_add_label": "Add More",
+                "table_schema": {
+                  "columns": [
+                    {
+                      "name": "key",
+                      "display_name": "Key",
+                      "sortable": true,
+                      "filterable": true,
+                      "type": "text",
+                      "description": "Parameter name",
+                      "disable_edit": false,
+                      "edit_mode": "modal",
+                      "formatter": "text"
+                    },
+                    {
+                      "name": "value",
+                      "display_name": "Value",
+                      "sortable": true,
+                      "filterable": true,
+                      "description": "Parameter value",
+                      "disable_edit": false,
+                      "edit_mode": "modal",
+                      "formatter": "text"
+                    }
+                  ]
+                },
+                "trigger_text": "Open table",
+                "trigger_icon": "Table",
+                "table_icon": "Table",
+                "trace_as_metadata": true,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "body",
+                "value": [],
+                "display_name": "Body",
+                "advanced": true,
+                "input_types": [
+                  "Data"
+                ],
+                "dynamic": false,
+                "info": "The body to send with the request as a dictionary (for POST, PATCH, PUT).",
+                "title_case": false,
+                "type": "table",
+                "_input_type": "TableInput"
+              },
+              "code": {
+                "type": "code",
+                "required": true,
+                "placeholder": "",
+                "list": false,
+                "show": true,
+                "multiline": true,
+                "value": "import asyncio\nimport json\nimport re\nimport tempfile\nfrom datetime import datetime, timezone\nfrom pathlib import Path\nfrom typing import Any\nfrom urllib.parse import parse_qsl, urlencode, urlparse, urlunparse\n\nimport aiofiles\nimport aiofiles.os as aiofiles_os\nimport httpx\nimport validators\n\nfrom langflow.base.curl.parse import parse_context\nfrom langflow.custom import Component\nfrom langflow.io import (\n    BoolInput,\n    DataInput,\n    DropdownInput,\n    FloatInput,\n    IntInput,\n    MessageTextInput,\n    MultilineInput,\n    Output,\n    StrInput,\n    TableInput,\n)\nfrom langflow.schema import Data\nfrom langflow.schema.dotdict import dotdict\n\n\nclass APIRequestComponent(Component):\n    display_name = \"API Request\"\n    description = \"Make HTTP requests using URLs or cURL commands.\"\n    icon = \"Globe\"\n    name = \"APIRequest\"\n\n    default_keys = [\"urls\", \"method\", \"query_params\"]\n\n    inputs = [\n        MessageTextInput(\n            name=\"urls\",\n            display_name=\"URLs\",\n            list=True,\n            info=\"Enter one or more URLs, separated by commas.\",\n            advanced=False,\n            tool_mode=True,\n        ),\n        MultilineInput(\n            name=\"curl\",\n            display_name=\"cURL\",\n            info=(\n                \"Paste a curl command to populate the fields. \"\n                \"This will fill in the dictionary fields for headers and body.\"\n            ),\n            advanced=True,\n            real_time_refresh=True,\n            tool_mode=True,\n        ),\n        DropdownInput(\n            name=\"method\",\n            display_name=\"Method\",\n            options=[\"GET\", \"POST\", \"PATCH\", \"PUT\", \"DELETE\"],\n            info=\"The HTTP method to use.\",\n            real_time_refresh=True,\n        ),\n        BoolInput(\n            name=\"use_curl\",\n            display_name=\"Use cURL\",\n            value=False,\n            info=\"Enable cURL mode to populate fields from a cURL command.\",\n            real_time_refresh=True,\n        ),\n        DataInput(\n            name=\"query_params\",\n            display_name=\"Query Parameters\",\n            info=\"The query parameters to append to the URL.\",\n            advanced=True,\n        ),\n        TableInput(\n            name=\"body\",\n            display_name=\"Body\",\n            info=\"The body to send with the request as a dictionary (for POST, PATCH, PUT).\",\n            table_schema=[\n                {\n                    \"name\": \"key\",\n                    \"display_name\": \"Key\",\n                    \"type\": \"str\",\n                    \"description\": \"Parameter name\",\n                },\n                {\n                    \"name\": \"value\",\n                    \"display_name\": \"Value\",\n                    \"description\": \"Parameter value\",\n                },\n            ],\n            value=[],\n            input_types=[\"Data\"],\n            advanced=True,\n        ),\n        TableInput(\n            name=\"headers\",\n            display_name=\"Headers\",\n            info=\"The headers to send with the request as a dictionary.\",\n            table_schema=[\n                {\n                    \"name\": \"key\",\n                    \"display_name\": \"Header\",\n                    \"type\": \"str\",\n                    \"description\": \"Header name\",\n                },\n                {\n                    \"name\": \"value\",\n                    \"display_name\": \"Value\",\n                    \"type\": \"str\",\n                    \"description\": \"Header value\",\n                },\n            ],\n            value=[],\n            advanced=True,\n            input_types=[\"Data\"],\n        ),\n        IntInput(\n            name=\"timeout\",\n            display_name=\"Timeout\",\n            value=5,\n            info=\"The timeout to use for the request.\",\n            advanced=True,\n        ),\n        BoolInput(\n            name=\"follow_redirects\",\n            display_name=\"Follow Redirects\",\n            value=True,\n            info=\"Whether to follow http redirects.\",\n            advanced=True,\n        ),\n        BoolInput(\n            name=\"save_to_file\",\n            display_name=\"Save to File\",\n            value=False,\n            info=\"Save the API response to a temporary file\",\n            advanced=True,\n        ),\n        BoolInput(\n            name=\"include_httpx_metadata\",\n            display_name=\"Include HTTPx Metadata\",\n            value=False,\n            info=(\n                \"Include properties such as headers, status_code, response_headers, \"\n                \"and redirection_history in the output.\"\n            ),\n            advanced=True,\n        ),\n    ]\n\n    outputs = [\n        Output(display_name=\"Data\", name=\"data\", method=\"make_requests\"),\n    ]\n\n    def _parse_json_value(self, value: Any) -> Any:\n        \"\"\"Parse a value that might be a JSON string.\"\"\"\n        if not isinstance(value, str):\n            return value\n\n        try:\n            parsed = json.loads(value)\n        except json.JSONDecodeError:\n            return value\n        else:\n            return parsed\n\n    def _process_body(self, body: Any) -> dict:\n        \"\"\"Process the body input into a valid dictionary.\n\n        Args:\n            body: The body to process, can be dict, str, or list\n        Returns:\n            Processed dictionary\n        \"\"\"\n        if body is None:\n            return {}\n        if isinstance(body, dict):\n            return self._process_dict_body(body)\n        if isinstance(body, str):\n            return self._process_string_body(body)\n        if isinstance(body, list):\n            return self._process_list_body(body)\n\n        return {}\n\n    def _process_dict_body(self, body: dict) -> dict:\n        \"\"\"Process dictionary body by parsing JSON values.\"\"\"\n        return {k: self._parse_json_value(v) for k, v in body.items()}\n\n    def _process_string_body(self, body: str) -> dict:\n        \"\"\"Process string body by attempting JSON parse.\"\"\"\n        try:\n            return self._process_body(json.loads(body))\n        except json.JSONDecodeError:\n            return {\"data\": body}\n\n    def _process_list_body(self, body: list) -> dict:\n        \"\"\"Process list body by converting to key-value dictionary.\"\"\"\n        processed_dict = {}\n\n        try:\n            for item in body:\n                if not self._is_valid_key_value_item(item):\n                    continue\n\n                key = item[\"key\"]\n                value = self._parse_json_value(item[\"value\"])\n                processed_dict[key] = value\n\n        except (KeyError, TypeError, ValueError) as e:\n            self.log(f\"Failed to process body list: {e}\")\n            return {}  # Return empty dictionary instead of None\n\n        return processed_dict\n\n    def _is_valid_key_value_item(self, item: Any) -> bool:\n        \"\"\"Check if an item is a valid key-value dictionary.\"\"\"\n        return isinstance(item, dict) and \"key\" in item and \"value\" in item\n\n    def parse_curl(self, curl: str, build_config: dotdict) -> dotdict:\n        \"\"\"Parse a cURL command and update build configuration.\n\n        Args:\n            curl: The cURL command to parse\n            build_config: The build configuration to update\n        Returns:\n            Updated build configuration\n        \"\"\"\n        try:\n            parsed = parse_context(curl)\n\n            # Update basic configuration\n            build_config[\"urls\"][\"value\"] = [parsed.url]\n            build_config[\"method\"][\"value\"] = parsed.method.upper()\n            build_config[\"headers\"][\"advanced\"] = True\n            build_config[\"body\"][\"advanced\"] = True\n\n            # Process headers\n            headers_list = [{\"key\": k, \"value\": v} for k, v in parsed.headers.items()]\n            build_config[\"headers\"][\"value\"] = headers_list\n\n            if headers_list:\n                build_config[\"headers\"][\"advanced\"] = False\n\n            # Process body data\n            if not parsed.data:\n                build_config[\"body\"][\"value\"] = []\n            elif parsed.data:\n                try:\n                    json_data = json.loads(parsed.data)\n                    if isinstance(json_data, dict):\n                        body_list = [\n                            {\"key\": k, \"value\": json.dumps(v) if isinstance(v, dict | list) else str(v)}\n                            for k, v in json_data.items()\n                        ]\n                        build_config[\"body\"][\"value\"] = body_list\n                        build_config[\"body\"][\"advanced\"] = False\n                    else:\n                        build_config[\"body\"][\"value\"] = [{\"key\": \"data\", \"value\": json.dumps(json_data)}]\n                        build_config[\"body\"][\"advanced\"] = False\n                except json.JSONDecodeError:\n                    build_config[\"body\"][\"value\"] = [{\"key\": \"data\", \"value\": parsed.data}]\n                    build_config[\"body\"][\"advanced\"] = False\n\n        except Exception as exc:\n            msg = f\"Error parsing curl: {exc}\"\n            self.log(msg)\n            raise ValueError(msg) from exc\n\n        return build_config\n\n    def update_build_config(self, build_config: dotdict, field_value: Any, field_name: str | None = None) -> dotdict:\n        if field_name == \"use_curl\":\n            build_config = self._update_curl_mode(build_config, use_curl=field_value)\n\n            # Fields that should not be reset\n            preserve_fields = {\"timeout\", \"follow_redirects\", \"save_to_file\", \"include_httpx_metadata\", \"use_curl\"}\n\n            # Mapping between input types and their reset values\n            type_reset_mapping = {\n                TableInput: [],\n                BoolInput: False,\n                IntInput: 0,\n                FloatInput: 0.0,\n                MessageTextInput: \"\",\n                StrInput: \"\",\n                MultilineInput: \"\",\n                DropdownInput: \"GET\",\n                DataInput: {},\n            }\n\n            for input_field in self.inputs:\n                # Only reset if field is not in preserve list\n                if input_field.name not in preserve_fields:\n                    reset_value = type_reset_mapping.get(type(input_field), None)\n                    build_config[input_field.name][\"value\"] = reset_value\n                    self.log(f\"Reset field {input_field.name} to {reset_value}\")\n        elif field_name == \"method\" and not self.use_curl:\n            build_config = self._update_method_fields(build_config, field_value)\n        elif field_name == \"curl\" and self.use_curl and field_value:\n            build_config = self.parse_curl(field_value, build_config)\n        return build_config\n\n    def _update_curl_mode(self, build_config: dotdict, *, use_curl: bool) -> dotdict:\n        always_visible = [\"method\", \"use_curl\"]\n\n        for field in self.inputs:\n            field_name = field.name\n            field_config = build_config.get(field_name)\n            if isinstance(field_config, dict):\n                if field_name in always_visible:\n                    field_config[\"advanced\"] = False\n                elif field_name == \"urls\":\n                    field_config[\"advanced\"] = use_curl\n                elif field_name == \"curl\":\n                    field_config[\"advanced\"] = not use_curl\n                    field_config[\"real_time_refresh\"] = use_curl\n                elif field_name in [\"body\", \"headers\"]:\n                    field_config[\"advanced\"] = True  # Always keep body and headers in advanced when use_curl is False\n                else:\n                    field_config[\"advanced\"] = use_curl\n            else:\n                self.log(f\"Expected dict for build_config[{field_name}], got {type(field_config).__name__}\")\n\n        if not use_curl:\n            current_method = build_config.get(\"method\", {}).get(\"value\", \"GET\")\n            build_config = self._update_method_fields(build_config, current_method)\n\n        return build_config\n\n    def _update_method_fields(self, build_config: dotdict, method: str) -> dotdict:\n        common_fields = [\n            \"urls\",\n            \"method\",\n            \"use_curl\",\n        ]\n\n        always_advanced_fields = [\n            \"body\",\n            \"headers\",\n            \"timeout\",\n            \"follow_redirects\",\n            \"save_to_file\",\n            \"include_httpx_metadata\",\n        ]\n\n        body_fields = [\"body\"]\n\n        for field in self.inputs:\n            field_name = field.name\n            field_config = build_config.get(field_name)\n            if isinstance(field_config, dict):\n                if field_name in common_fields:\n                    field_config[\"advanced\"] = False\n                elif field_name in body_fields:\n                    field_config[\"advanced\"] = method not in [\"POST\", \"PUT\", \"PATCH\"]\n                elif field_name in always_advanced_fields:\n                    field_config[\"advanced\"] = True\n                else:\n                    field_config[\"advanced\"] = True\n            else:\n                self.log(f\"Expected dict for build_config[{field_name}], got {type(field_config).__name__}\")\n\n        return build_config\n\n    async def make_request(\n        self,\n        client: httpx.AsyncClient,\n        method: str,\n        url: str,\n        headers: dict | None = None,\n        body: Any = None,\n        timeout: int = 5,\n        *,\n        follow_redirects: bool = True,\n        save_to_file: bool = False,\n        include_httpx_metadata: bool = False,\n    ) -> Data:\n        method = method.upper()\n        if method not in {\"GET\", \"POST\", \"PATCH\", \"PUT\", \"DELETE\"}:\n            msg = f\"Unsupported method: {method}\"\n            raise ValueError(msg)\n\n        # Process body using the new helper method\n        processed_body = self._process_body(body)\n\n        try:\n            response = await client.request(\n                method,\n                url,\n                headers=headers,\n                json=processed_body,\n                timeout=timeout,\n                follow_redirects=follow_redirects,\n            )\n\n            redirection_history = [\n                {\n                    \"url\": redirect.headers.get(\"Location\", str(redirect.url)),\n                    \"status_code\": redirect.status_code,\n                }\n                for redirect in response.history\n            ]\n\n            is_binary, file_path = await self._response_info(response, with_file_path=save_to_file)\n            response_headers = self._headers_to_dict(response.headers)\n\n            metadata: dict[str, Any] = {\n                \"source\": url,\n            }\n\n            if save_to_file:\n                mode = \"wb\" if is_binary else \"w\"\n                encoding = response.encoding if mode == \"w\" else None\n                if file_path:\n                    # Ensure parent directory exists\n                    await aiofiles_os.makedirs(file_path.parent, exist_ok=True)\n                    if is_binary:\n                        async with aiofiles.open(file_path, \"wb\") as f:\n                            await f.write(response.content)\n                            await f.flush()\n                    else:\n                        async with aiofiles.open(file_path, \"w\", encoding=encoding) as f:\n                            await f.write(response.text)\n                            await f.flush()\n                    metadata[\"file_path\"] = str(file_path)\n\n                if include_httpx_metadata:\n                    metadata.update(\n                        {\n                            \"headers\": headers,\n                            \"status_code\": response.status_code,\n                            \"response_headers\": response_headers,\n                            **({\"redirection_history\": redirection_history} if redirection_history else {}),\n                        }\n                    )\n                return Data(data=metadata)\n\n            if is_binary:\n                result = response.content\n            else:\n                try:\n                    result = response.json()\n                except json.JSONDecodeError:\n                    self.log(\"Failed to decode JSON response\")\n                    result = response.text.encode(\"utf-8\")\n\n            metadata.update({\"result\": result})\n\n            if include_httpx_metadata:\n                metadata.update(\n                    {\n                        \"headers\": headers,\n                        \"status_code\": response.status_code,\n                        \"response_headers\": response_headers,\n                        **({\"redirection_history\": redirection_history} if redirection_history else {}),\n                    }\n                )\n            return Data(data=metadata)\n        except httpx.TimeoutException:\n            return Data(\n                data={\n                    \"source\": url,\n                    \"headers\": headers,\n                    \"status_code\": 408,\n                    \"error\": \"Request timed out\",\n                },\n            )\n        except Exception as exc:  # noqa: BLE001\n            self.log(f\"Error making request to {url}\")\n            return Data(\n                data={\n                    \"source\": url,\n                    \"headers\": headers,\n                    \"status_code\": 500,\n                    \"error\": str(exc),\n                    **({\"redirection_history\": redirection_history} if redirection_history else {}),\n                },\n            )\n\n    def add_query_params(self, url: str, params: dict) -> str:\n        url_parts = list(urlparse(url))\n        query = dict(parse_qsl(url_parts[4]))\n        query.update(params)\n        url_parts[4] = urlencode(query)\n        return urlunparse(url_parts)\n\n    async def make_requests(self) -> list[Data]:\n        method = self.method\n        urls = [url.strip() for url in self.urls if url.strip()]\n        headers = self.headers or {}\n        body = self.body or {}\n        timeout = self.timeout\n        follow_redirects = self.follow_redirects\n        save_to_file = self.save_to_file\n        include_httpx_metadata = self.include_httpx_metadata\n\n        if self.use_curl and self.curl:\n            self._build_config = self.parse_curl(self.curl, dotdict())\n\n        invalid_urls = [url for url in urls if not validators.url(url)]\n        if invalid_urls:\n            msg = f\"Invalid URLs provided: {invalid_urls}\"\n            raise ValueError(msg)\n\n        if isinstance(self.query_params, str):\n            query_params = dict(parse_qsl(self.query_params))\n        else:\n            query_params = self.query_params.data if self.query_params else {}\n\n        # Process headers here\n        headers = self._process_headers(headers)\n\n        # Process body\n        body = self._process_body(body)\n\n        bodies = [body] * len(urls)\n\n        urls = [self.add_query_params(url, query_params) for url in urls]\n\n        async with httpx.AsyncClient() as client:\n            results = await asyncio.gather(\n                *[\n                    self.make_request(\n                        client,\n                        method,\n                        u,\n                        headers,\n                        rec,\n                        timeout,\n                        follow_redirects=follow_redirects,\n                        save_to_file=save_to_file,\n                        include_httpx_metadata=include_httpx_metadata,\n                    )\n                    for u, rec in zip(urls, bodies, strict=False)\n                ]\n            )\n        self.status = results\n        return results\n\n    async def _response_info(\n        self, response: httpx.Response, *, with_file_path: bool = False\n    ) -> tuple[bool, Path | None]:\n        \"\"\"Determine the file path and whether the response content is binary.\n\n        Args:\n            response (Response): The HTTP response object.\n            with_file_path (bool): Whether to save the response content to a file.\n\n        Returns:\n            Tuple[bool, Path | None]:\n                A tuple containing a boolean indicating if the content is binary and the full file path (if applicable).\n        \"\"\"\n        content_type = response.headers.get(\"Content-Type\", \"\")\n        is_binary = \"application/octet-stream\" in content_type or \"application/binary\" in content_type\n\n        if not with_file_path:\n            return is_binary, None\n\n        component_temp_dir = Path(tempfile.gettempdir()) / self.__class__.__name__\n\n        # Create directory asynchronously\n        await aiofiles_os.makedirs(component_temp_dir, exist_ok=True)\n\n        filename = None\n        if \"Content-Disposition\" in response.headers:\n            content_disposition = response.headers[\"Content-Disposition\"]\n            filename_match = re.search(r'filename=\"(.+?)\"', content_disposition)\n            if filename_match:\n                extracted_filename = filename_match.group(1)\n                filename = extracted_filename\n\n        # Step 3: Infer file extension or use part of the request URL if no filename\n        if not filename:\n            # Extract the last segment of the URL path\n            url_path = urlparse(str(response.request.url) if response.request else \"\").path\n            base_name = Path(url_path).name  # Get the last segment of the path\n            if not base_name:  # If the path ends with a slash or is empty\n                base_name = \"response\"\n\n            # Infer file extension\n            content_type_to_extension = {\n                \"text/plain\": \".txt\",\n                \"application/json\": \".json\",\n                \"image/jpeg\": \".jpg\",\n                \"image/png\": \".png\",\n                \"application/octet-stream\": \".bin\",\n            }\n            extension = content_type_to_extension.get(content_type, \".bin\" if is_binary else \".txt\")\n            filename = f\"{base_name}{extension}\"\n\n        # Step 4: Define the full file path\n        file_path = component_temp_dir / filename\n\n        # Step 5: Check if file exists asynchronously and handle accordingly\n        try:\n            # Try to create the file exclusively (x mode) to check existence\n            async with aiofiles.open(file_path, \"x\") as _:\n                pass  # File created successfully, we can use this path\n        except FileExistsError:\n            # If file exists, append a timestamp to the filename\n            timestamp = datetime.now(timezone.utc).strftime(\"%Y%m%d%H%M%S%f\")\n            file_path = component_temp_dir / f\"{timestamp}-{filename}\"\n\n        return is_binary, file_path\n\n    def _headers_to_dict(self, headers: httpx.Headers) -> dict[str, str]:\n        \"\"\"Convert HTTP headers to a dictionary with lowercased keys.\"\"\"\n        return {k.lower(): v for k, v in headers.items()}\n\n    def _process_headers(self, headers: Any) -> dict:\n        \"\"\"Process the headers input into a valid dictionary.\n\n        Args:\n            headers: The headers to process, can be dict, str, or list\n        Returns:\n            Processed dictionary\n        \"\"\"\n        if headers is None:\n            return {}\n        if isinstance(headers, dict):\n            return headers\n        if isinstance(headers, list):\n            processed_headers = {}\n            try:\n                for item in headers:\n                    if not self._is_valid_key_value_item(item):\n                        continue\n                    key = item[\"key\"]\n                    value = item[\"value\"]\n                    processed_headers[key] = value\n            except (KeyError, TypeError, ValueError) as e:\n                self.log(f\"Failed to process headers list: {e}\")\n                return {}  # Return empty dictionary instead of None\n            return processed_headers\n        return {}\n",
+                "fileTypes": [],
+                "file_path": "",
+                "password": false,
+                "name": "code",
+                "advanced": true,
+                "dynamic": true,
+                "info": "",
+                "load_from_db": false,
+                "title_case": false
+              },
+              "curl": {
+                "tool_mode": true,
+                "trace_as_input": true,
+                "multiline": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "curl",
+                "value": "",
+                "display_name": "cURL",
+                "advanced": true,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "Paste a curl command to populate the fields. This will fill in the dictionary fields for headers and body.",
+                "real_time_refresh": false,
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MultilineInput"
+              },
+              "follow_redirects": {
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "follow_redirects",
+                "value": true,
+                "display_name": "Follow Redirects",
+                "advanced": true,
+                "dynamic": false,
+                "info": "Whether to follow http redirects.",
+                "title_case": false,
+                "type": "bool",
+                "_input_type": "BoolInput"
+              },
+              "headers": {
+                "tool_mode": false,
+                "is_list": true,
+                "list_add_label": "Add More",
+                "table_schema": {
+                  "columns": [
+                    {
+                      "name": "key",
+                      "display_name": "Header",
+                      "sortable": true,
+                      "filterable": true,
+                      "type": "text",
+                      "description": "Header name",
+                      "disable_edit": false,
+                      "edit_mode": "modal",
+                      "formatter": "text"
+                    },
+                    {
+                      "name": "value",
+                      "display_name": "Value",
+                      "sortable": true,
+                      "filterable": true,
+                      "type": "text",
+                      "description": "Header value",
+                      "disable_edit": false,
+                      "edit_mode": "modal",
+                      "formatter": "text"
+                    }
+                  ]
+                },
+                "trigger_text": "Open table",
+                "trigger_icon": "Table",
+                "table_icon": "Table",
+                "trace_as_metadata": true,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "headers",
+                "value": [],
+                "display_name": "Headers",
+                "advanced": true,
+                "input_types": [
+                  "Data"
+                ],
+                "dynamic": false,
+                "info": "The headers to send with the request as a dictionary.",
+                "title_case": false,
+                "type": "table",
+                "_input_type": "TableInput"
+              },
+              "include_httpx_metadata": {
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "include_httpx_metadata",
+                "value": false,
+                "display_name": "Include HTTPx Metadata",
+                "advanced": true,
+                "dynamic": false,
+                "info": "Include properties such as headers, status_code, response_headers, and redirection_history in the output.",
+                "title_case": false,
+                "type": "bool",
+                "_input_type": "BoolInput"
+              },
+              "method": {
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "options": [
+                  "GET",
+                  "POST",
+                  "PATCH",
+                  "PUT",
+                  "DELETE"
+                ],
+                "options_metadata": [],
+                "combobox": false,
+                "dialog_inputs": {},
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "method",
+                "value": "GET",
+                "display_name": "Method",
+                "advanced": false,
+                "dynamic": false,
+                "info": "The HTTP method to use.",
+                "real_time_refresh": true,
+                "title_case": false,
+                "type": "str",
+                "_input_type": "DropdownInput"
+              },
+              "save_to_file": {
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "save_to_file",
+                "value": false,
+                "display_name": "Save to File",
+                "advanced": true,
+                "dynamic": false,
+                "info": "Save the API response to a temporary file",
+                "title_case": false,
+                "type": "bool",
+                "_input_type": "BoolInput"
+              },
+              "timeout": {
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "timeout",
+                "value": 60,
+                "display_name": "Timeout",
+                "advanced": true,
+                "dynamic": false,
+                "info": "The timeout to use for the request.",
+                "title_case": false,
+                "type": "int",
+                "_input_type": "IntInput"
+              },
+              "urls": {
+                "tool_mode": true,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": true,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "urls",
+                "value": "",
+                "display_name": "URLs",
+                "advanced": false,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "Enter one or more URLs, separated by commas.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              },
+              "use_curl": {
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "list": false,
+                "list_add_label": "Add More",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "use_curl",
+                "value": false,
+                "display_name": "Use cURL",
+                "advanced": false,
+                "dynamic": false,
+                "info": "Enable cURL mode to populate fields from a cURL command.",
+                "real_time_refresh": true,
+                "title_case": false,
+                "type": "bool",
+                "_input_type": "BoolInput"
+              },
+              "tools_metadata": {
+                "tool_mode": false,
+                "is_list": true,
+                "list_add_label": "Add More",
+                "table_schema": {
+                  "columns": [
+                    {
+                      "name": "name",
+                      "display_name": "Tool Name",
+                      "sortable": false,
+                      "filterable": false,
+                      "type": "text",
+                      "description": "Specify the name of the tool.",
+                      "disable_edit": false,
+                      "edit_mode": "inline",
+                      "formatter": "text"
+                    },
+                    {
+                      "name": "description",
+                      "display_name": "Tool Description",
+                      "sortable": false,
+                      "filterable": false,
+                      "type": "text",
+                      "description": "Describe the purpose of the tool.",
+                      "disable_edit": false,
+                      "edit_mode": "popover",
+                      "formatter": "text"
+                    },
+                    {
+                      "name": "tags",
+                      "display_name": "Tool Identifiers",
+                      "sortable": false,
+                      "filterable": false,
+                      "type": "text",
+                      "description": "The default identifiers for the tools and cannot be changed.",
+                      "disable_edit": true,
+                      "edit_mode": "inline",
+                      "formatter": "text"
+                    }
+                  ]
+                },
+                "trigger_text": "",
+                "trigger_icon": "Hammer",
+                "table_icon": "Hammer",
+                "table_options": {
+                  "block_add": true,
+                  "block_delete": true,
+                  "block_edit": true,
+                  "block_sort": true,
+                  "block_filter": true,
+                  "block_hide": true,
+                  "block_select": true,
+                  "hide_options": true,
+                  "field_parsers": {
+                    "name": [
+                      "snake_case",
+                      "no_blank"
+                    ],
+                    "commands": "commands"
+                  },
+                  "description": "Modify tool names and descriptions to help agents understand when to use each tool."
+                },
+                "trace_as_metadata": true,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "tools_metadata",
+                "value": [
+                  {
+                    "name": "APIRequest-make_requests",
+                    "description": "make_requests() - Make HTTP requests using URLs or cURL commands.",
+                    "tags": [
+                      "APIRequest-make_requests"
+                    ]
+                  }
+                ],
+                "display_name": "Edit tools",
+                "advanced": false,
+                "dynamic": false,
+                "info": "",
+                "real_time_refresh": true,
+                "title_case": false,
+                "type": "table",
+                "_input_type": "TableInput"
+              }
+            },
+            "description": "Make HTTP requests using URLs or cURL commands.",
+            "icon": "Globe",
+            "base_classes": [
+              "Data"
+            ],
+            "display_name": "API Request",
+            "documentation": "",
+            "minimized": false,
+            "custom_fields": {},
+            "output_types": [],
+            "pinned": false,
+            "conditional_paths": [],
+            "frozen": false,
+            "outputs": [
+              {
+                "types": [
+                  "Tool"
+                ],
+                "selected": "Tool",
+                "name": "component_as_tool",
+                "hidden": null,
+                "display_name": "Toolset",
+                "method": "to_toolkit",
+                "value": "__UNDEFINED__",
+                "cache": true,
+                "required_inputs": null,
+                "allows_loop": false,
+                "tool_mode": true
+              }
+            ],
+            "field_order": [
+              "urls",
+              "curl",
+              "method",
+              "use_curl",
+              "query_params",
+              "body",
+              "headers",
+              "timeout",
+              "follow_redirects",
+              "save_to_file",
+              "include_httpx_metadata"
+            ],
+            "beta": false,
+            "legacy": false,
+            "edited": false,
+            "metadata": {},
+            "tool_mode": true,
+            "category": "data",
+            "key": "APIRequest",
+            "score": 0.007568328950209746,
+            "lf_version": "1.1.4"
+          },
+          "showNode": true,
+          "type": "APIRequest",
+          "id": "APIRequest-BrFrC"
+        },
+        "selected": false,
+        "measured": {
+          "width": 320,
+          "height": 467
         },
         "dragging": false
       }
@@ -8787,34 +8921,6 @@
         "className": ""
       },
       {
-        "source": "OpenAIModel-NiA5A",
-        "target": "StructuredOutput-dqGgt",
-        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-NiA5Aœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}",
-        "targetHandle": "{œfieldNameœ:œllmœ,œidœ:œStructuredOutput-dqGgtœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
-        "id": "reactflow__edge-OpenAIModel-NiA5A{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-NiA5Aœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}-StructuredOutput-dqGgt{œfieldNameœ:œllmœ,œidœ:œStructuredOutput-dqGgtœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
-        "data": {
-          "sourceHandle": {
-            "dataType": "OpenAIModel",
-            "id": "OpenAIModel-NiA5A",
-            "name": "model_output",
-            "output_types": [
-              "LanguageModel"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "llm",
-            "id": "StructuredOutput-dqGgt",
-            "inputTypes": [
-              "LanguageModel"
-            ],
-            "type": "other"
-          }
-        },
-        "selected": false,
-        "animated": false,
-        "className": ""
-      },
-      {
         "source": "StructuredOutput-dqGgt",
         "target": "DocumentRouter-jt1Dl",
         "sourceHandle": "{œdataTypeœ:œStructuredOutputœ,œidœ:œStructuredOutput-dqGgtœ,œnameœ:œstructured_outputœ,œoutput_typesœ:[œDataœ]}",
@@ -8955,34 +9061,6 @@
         "className": ""
       },
       {
-        "source": "ChatInput-ZmMCF",
-        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-ZmMCFœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "Agent-jo7w1",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-jo7w1œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "data": {
-          "targetHandle": {
-            "fieldName": "input_value",
-            "id": "Agent-jo7w1",
-            "inputTypes": [
-              "Message"
-            ],
-            "type": "str"
-          },
-          "sourceHandle": {
-            "dataType": "ChatInput",
-            "id": "ChatInput-ZmMCF",
-            "name": "message",
-            "output_types": [
-              "Message"
-            ]
-          }
-        },
-        "id": "xy-edge__ChatInput-ZmMCF{œdataTypeœ:œChatInputœ,œidœ:œChatInput-ZmMCFœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-jo7w1{œfieldNameœ:œinput_valueœ,œidœ:œAgent-jo7w1œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "animated": false,
-        "className": "",
-        "selected": false
-      },
-      {
         "source": "Agent-jTSED",
         "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-jTSEDœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-qr9JD",
@@ -9093,12 +9171,66 @@
         "animated": false,
         "className": "",
         "selected": false
+      },
+      {
+        "source": "APIRequest-BrFrC",
+        "sourceHandle": "{œdataTypeœ:œAPIRequestœ,œidœ:œAPIRequest-BrFrCœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
+        "target": "Agent-vXE9o",
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-vXE9oœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "data": {
+          "targetHandle": {
+            "fieldName": "tools",
+            "id": "Agent-vXE9o",
+            "inputTypes": [
+              "Tool"
+            ],
+            "type": "other"
+          },
+          "sourceHandle": {
+            "dataType": "APIRequest",
+            "id": "APIRequest-BrFrC",
+            "name": "component_as_tool",
+            "output_types": [
+              "Tool"
+            ]
+          }
+        },
+        "id": "xy-edge__APIRequest-BrFrC{œdataTypeœ:œAPIRequestœ,œidœ:œAPIRequest-BrFrCœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-vXE9o{œfieldNameœ:œtoolsœ,œidœ:œAgent-vXE9oœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "animated": false,
+        "className": ""
+      },
+      {
+        "source": "ChatInput-ZmMCF",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-ZmMCFœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "Agent-jo7w1",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-jo7w1œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "data": {
+          "targetHandle": {
+            "fieldName": "input_value",
+            "id": "Agent-jo7w1",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          },
+          "sourceHandle": {
+            "dataType": "ChatInput",
+            "id": "ChatInput-ZmMCF",
+            "name": "message",
+            "output_types": [
+              "Message"
+            ]
+          }
+        },
+        "id": "xy-edge__ChatInput-ZmMCF{œdataTypeœ:œChatInputœ,œidœ:œChatInput-ZmMCFœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-jo7w1{œfieldNameœ:œinput_valueœ,œidœ:œAgent-jo7w1œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "animated": false,
+        "className": ""
       }
     ],
     "viewport": {
-      "x": 222.24905588635198,
-      "y": 30.32815236870954,
-      "zoom": 0.15129358372564755
+      "x": -2503.9477504066326,
+      "y": -1961.6550390658435,
+      "zoom": 0.665981668443858
     }
   },
   "description": "Promptly Ingenious!",
